@@ -4,10 +4,13 @@ import java.util.Date;
 import java.util.Map;
 
 public class UserProfile {
+    // 用户名
     private String username;
+    // 没有设置过头像则为null
     private String portrait;
+    // 注册日期
     private Date registeredDate;
-
+    // 发帖记录
     private Map<String, Long> history;
 
     public String getUsername() {
