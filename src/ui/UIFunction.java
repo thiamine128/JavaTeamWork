@@ -1,0 +1,623 @@
+package ui;
+
+import controller.LoginController;
+import controller.MainController;
+import controller.ProvinceController;
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import Click.ProvinceDetail;
+import Game.*;
+import post.PostBox;
+
+public class UIFunction {
+
+    public static UIManager manager;
+    public static void iniPostFrame(){
+
+        manager.postController.postCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.setBlackMask(manager.postController.postFrameMask, event0 -> {
+                    try {
+                        manager.postController.postFrameIni.setMouseTransparent(false);
+                        manager.toMainFrame();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }, 600);
+            }
+        });
+        manager.postController.postCancel.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                manager.postController.postCancel.setOpacity(0.6);
+            }
+        });
+        manager.postController.postCancel.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                manager.postController.postCancel.setOpacity(0.8);
+            }
+        });
+    }
+
+    private static FadeTransition loginHintTrans = new FadeTransition();
+    public static void iniLoginFrameButton(LoginController loginController){
+
+        ColorAdjust color_adjust = new ColorAdjust();
+        color_adjust.setHue(0.7);
+        color_adjust.setBrightness(0.4);
+        color_adjust.setContrast(0.5);
+        color_adjust.setSaturation(0.5);
+
+        loginController.confirmButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                loginController.confirmButton.setEffect(color_adjust);
+                switch (loginController.loginFrameSituation){
+                    case 1: loginController.loginHint.setText("确定进行登录"); break;
+                    case 2: loginController.loginHint.setText("确定进行注册"); break;
+                }
+                UIAnimation.buttonInfoImageAnimation(loginController.loginHint, loginHintTrans, true);
+            }
+        });
+        loginController.confirmButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                loginController.confirmButton.setEffect(null);
+                if (!loginController.loginPane.isMouseTransparent())
+                    UIAnimation.buttonInfoImageAnimation(loginController.loginHint, loginHintTrans, false);
+            }
+        });
+        //登录入口
+        loginController.confirmButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+                //登录？注册？
+                switch (loginController.loginFrameSituation){
+                    case 1: {
+                        loginController.loginPane.setMouseTransparent(true);
+                        loginController.loginHint.setText("发送请求中");
+                        loginController.loginHint.setOpacity(0.8);
+                        UINetwork.trylogin(loginController.usernameInput.getText(), loginController.passwordInput.getText());
+                        break;
+                    }
+                    case 2: {
+                        loginController.loginPane.setMouseTransparent(true);
+                        loginController.loginHint.setText("发送请求中");
+                        loginController.loginHint.setOpacity(0.8);
+                        UINetwork.tryRegister(loginController.usernameInput.getText(), loginController.passwordInput.getText());
+                        break;
+                    }
+                }
+            }
+        });
+
+        loginController.reglogButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                loginController.reglogButton.setEffect(color_adjust);
+                switch (loginController.loginFrameSituation){
+                    case 1: loginController.loginHint.setText("进入注册页面"); break;
+                    case 2: loginController.loginHint.setText("返回登录页面"); break;
+                }
+                UIAnimation.buttonInfoImageAnimation(loginController.loginHint, loginHintTrans, true);
+            }
+        });
+        loginController.reglogButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                loginController.reglogButton.setEffect(null);
+                UIAnimation.buttonInfoImageAnimation(loginController.loginHint, loginHintTrans, false);
+            }
+        });
+        loginController.reglogButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                switch (loginController.loginFrameSituation){
+                    case 1: {
+                        loginController.loginFrameSituation = 2;
+                        UIAnimation.setTextChangeAnimation(loginController.reglogTitle, event1 -> {
+                            loginController.reglogTitle.setText("REGISTER");
+                            UIAnimation.setTextChangeAnimation(loginController.reglogTitle, null, 600, true);
+                        }, 600, false);
+
+                        UIAnimation.setTextChangeAnimation(loginController.reglogButton, event2->{
+                            loginController.reglogButton.setImage(new Image("resources/loginImage/house.png"));
+                            UIAnimation.setTextChangeAnimation(loginController.reglogButton, null, 600, true);
+                        }, 600, false);
+
+                        break;
+                    }
+                    case 2: {
+                        loginController.loginFrameSituation = 1;
+                        UIAnimation.setTextChangeAnimation(loginController.reglogTitle, event1 -> {
+                            loginController.reglogTitle.setText("LOGIN");
+                            UIAnimation.setTextChangeAnimation(loginController.reglogTitle, null, 600, true);
+                        }, 600, false);
+
+                        UIAnimation.setTextChangeAnimation(loginController.reglogButton, event2->{
+                            loginController.reglogButton.setImage(new Image("resources/loginImage/archive-register.png"));
+                            UIAnimation.setTextChangeAnimation(loginController.reglogButton, null, 600, true);
+                        }, 600, false);
+
+                        break;
+                    }
+                }
+            }
+        });
+
+
+    }
+
+    private static double mouseX, mouseY;
+    private static boolean mouseKey = false, isWin = false;
+
+    public static void resetWin(){
+        isWin = false;
+    }
+
+    public static void setMousePuzzleTrans(ImageView provinceImage, Group puzzleGroup){
+
+        mouseKey = false;
+
+        provinceImage.setOnMouseEntered(event->{
+
+            ColorAdjust color_adjust = new ColorAdjust();
+            color_adjust.setHue(0.9);
+            color_adjust.setBrightness(0.4);
+            color_adjust.setContrast(0.8);
+            color_adjust.setSaturation(0.5);
+            provinceImage.setEffect(color_adjust);
+
+        });
+
+
+        manager.puzzleController.puzzleCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.setBlackMask(manager.puzzleController.puzzleMask, event0 -> {
+                    try {
+                        manager.puzzleController.puzzleFrameIni.setMouseTransparent(false);
+                        manager.toMainFrame();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }, 600);
+            }
+        });
+        manager.puzzleController.puzzleCancel.setOnMouseEntered(event->{
+            ColorAdjust color_adjust = new ColorAdjust();
+            color_adjust.setHue(0.9);
+            color_adjust.setBrightness(0.4);
+            color_adjust.setContrast(0.8);
+            color_adjust.setSaturation(0.5);
+            manager.puzzleController.puzzleCancel.setEffect(color_adjust);
+        });
+        manager.puzzleController.puzzleCancel.setOnMouseExited(event->manager.puzzleController.puzzleCancel.setEffect(null));
+
+        provinceImage.setOnMouseExited(event->{
+            provinceImage.setEffect(null);
+            mouseKey = false;
+            if (!isWin){
+                isWin = PicturePuzzleGame.check();
+                if (isWin) {
+                    System.out.println("Win!"); //debug
+                    for (int i=1;i<=3;i++){
+                        UIAnimation.puzzleFireworks(//横坐标、纵坐标、场景组
+                                50+900*Math.random(), 50+700*Math.random(), puzzleGroup);
+                    }
+
+                    UIAnimation.timer(5000, event1 -> {
+                        UIAnimation.setBlackMask(manager.puzzleController.puzzleMask, event0 -> {
+                            try {
+                                manager.puzzleController.puzzleFrameIni.setMouseTransparent(false);
+                                manager.toMainFrame();
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        }, 600);
+                    });
+
+                }
+            }
+        });
+
+        provinceImage.setOnMouseClicked(
+            new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    mouseKey = false;
+                }
+            }
+        );
+
+        provinceImage.setOnMouseDragged(
+            new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+
+                    if (!isWin){
+                        double mouseNewX = event.getScreenX();
+                        double mouseNewY = event.getScreenY();
+
+                        if (!mouseKey)
+                            mouseKey = true;
+                        else{
+                            //移动
+                            double deltaX = mouseNewX - mouseX;
+                            double deltaY = mouseNewY - mouseY;
+                            provinceImage.setLayoutX(provinceImage.getLayoutX()+deltaX);
+                            provinceImage.setLayoutY(provinceImage.getLayoutY()+deltaY);
+                            PicturePuzzleGame.changePosition(provinceImage.getId(),
+                                    provinceImage.getLayoutX(), provinceImage.getLayoutY());
+                        }
+
+                        mouseX = mouseNewX;
+                        mouseY = mouseNewY;
+                    }
+
+                }
+            }
+        );
+
+        provinceImage.setOnMouseDragReleased(
+            new EventHandler<MouseDragEvent>() {
+                @Override
+                public void handle(MouseDragEvent mouseDragEvent) {
+                    mouseKey = false;
+                    System.out.println("The drag is over");
+                }
+            }
+        );
+
+    }
+
+    private static Map<Node, Double> nodeToY = new HashMap<>();
+    private static void iniProvinceY(Pane provincePane){
+        for (Node province : provincePane.getChildren()){
+            //记录每一个省的Y坐标
+            nodeToY.put(province, province.getTranslateY());
+            nodeToTransUp.put(province, new TranslateTransition());
+            nodeToTransDown.put(province, new TranslateTransition());
+        }
+    }
+
+    private static Map<Node, TranslateTransition> nodeToTransUp = new HashMap<>();
+    private static Map<Node, TranslateTransition> nodeToTransDown = new HashMap<>();
+    private static FadeTransition infoImageFadeTransition = new FadeTransition();
+    private static FadeTransition edgeImageFadeTransition = new FadeTransition();
+    public static void iniMainFrameButton(Pane provincePane, ImageView infoImage, MainController mainController){
+
+        infoImage.setOpacity(0.0);
+        iniProvinceY(provincePane); //初始化Y坐标
+        mainController.toPuzzleButton.setPickOnBounds(false);
+        mainController.toPostButton.setPickOnBounds(false);
+
+        mainController.toPostButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.setRotateAnimation(mainController.toPostButton, 0, 360);
+            }
+        });
+
+        mainController.toPostButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //进入帖子界面
+                UIAnimation.setBlackMask(mainController.mask, event1 -> {
+                    try {
+                        mainController.mainFrameIni.setMouseTransparent(false);
+                        manager.toPostFrame();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }, 600);
+            }
+        });
+
+        mainController.toPuzzleButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.setRotateAnimation(mainController.toPuzzleButton, 0, 360);
+            }
+        });
+
+        mainController.toPuzzleButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.setBlackMask(mainController.mask, event1 -> {
+                    try {
+                        mainController.mainFrameIni.setMouseTransparent(false);
+                        manager.toPuzzleFrame();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }, 600);
+            }
+        });
+
+        //按钮功能设置
+        for (Node province : provincePane.getChildren()){
+            province.setPickOnBounds(false); //透明边界不触发
+            //鼠标点击
+            province.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+
+                    //按钮点击调用
+                    ProvinceDetail provinceDetail = ProvinceDetail.getDetail(province.getId());
+                    ProvinceController.detail = provinceDetail;
+                    ProvinceController.provinceName = province.getId();
+
+                    UIAnimation.setBlackMask(mainController.mask, event1 -> {
+                        try {
+                            mainController.mainFrameIni.setMouseTransparent(false);
+                            manager.toProvinceFrame();
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    }, 600);
+
+                }
+            });
+            //鼠标进入
+            province.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+
+                    String provinceName = province.getId();
+
+                    //终止无效的进程
+                    TranslateTransition transition = nodeToTransDown.get(province);
+                    transition.stop();
+                    transition = nodeToTransUp.get(province);
+                    transition.stop();
+
+                    if (!provinceName.equals("xianggang") && !provinceName.equals("aomen")){
+                        //启动上升动画
+                        double deltaY = nodeToY.get(province)-10-province.getTranslateY();
+                        UIAnimation.buttonSimpleAnimation(province, transition, deltaY, true);
+                    }
+
+                    //颜色设计
+                    ColorAdjust color_adjust = new ColorAdjust();
+                    color_adjust.setHue(0.9);
+                    color_adjust.setBrightness(0.4);
+                    color_adjust.setContrast(0.8);
+                    color_adjust.setSaturation(0.5);
+                    province.setEffect(color_adjust);
+
+                    Image image = new Image("resources/infoImage/" + provinceName + ".png");
+                    infoImage.setImage(image); //设置艺术字信息
+                    UIAnimation.buttonInfoImageAnimation(infoImage, infoImageFadeTransition, true);
+
+                    Image image1 = new Image("resources/provinces/" + provinceName + ".png");
+                    double iniw = image1.getWidth(), inih = image1.getHeight();
+                    UIManager.mainController.provinceEdge.setImage(image1);
+                    double preFitHeight = UIManager.mainController.provinceEdge.getFitHeight();
+                    UIManager.mainController.provinceEdge.setFitHeight(
+                            UIManager.mainController.provinceEdge.getFitWidth()*inih/iniw
+                    );
+                    UIManager.mainController.provinceEdge.setLayoutY(
+                            UIManager.mainController.provinceEdge.getLayoutY() -
+                                    (UIManager.mainController.provinceEdge.getFitHeight()-preFitHeight)
+                    );
+
+                    UIAnimation.buttonInfoImageAnimation(UIManager.mainController.provinceEdge,
+                            edgeImageFadeTransition, true);
+
+                }
+            });
+            //鼠标退出
+            province.setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+
+                    //终止无效的进程
+                    TranslateTransition transition = nodeToTransUp.get(province);
+                    transition.stop();
+                    transition = nodeToTransDown.get(province);
+                    transition.stop();
+
+                    //启动下降动画
+                    double deltaY = nodeToY.get(province)-province.getTranslateY();
+                    UIAnimation.buttonSimpleAnimation(province, transition, deltaY, false);
+
+                    //关闭艺术字
+                    UIAnimation.buttonInfoImageAnimation(infoImage, infoImageFadeTransition, false);
+                    UIAnimation.buttonInfoImageAnimation(UIManager.mainController.provinceEdge,
+                            edgeImageFadeTransition, false);
+
+                }
+            });
+        }
+    }
+
+    private static FadeTransition sparklesFadeTransition = new FadeTransition();
+    private static FadeTransition foodTrans = new FadeTransition();
+    private static FadeTransition interestTrans = new FadeTransition();
+    private static FadeTransition folkTrans = new FadeTransition();
+    private static FadeTransition postTrans = new FadeTransition();
+    public static void iniProvinceFrameButton(Node postButton, Node sparkleImage, Node BackButton){
+
+        sparkleImage.setMouseTransparent(true);
+
+        manager.provinceController.foodTitle.setOpacity(0.0);
+        manager.provinceController.interestTitle.setOpacity(0.0);
+        manager.provinceController.folkTitle.setOpacity(0.0);
+        manager.provinceController.postTitle.setOpacity(0.0);
+
+        postButton.setPickOnBounds(true);
+
+        postButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    manager.toEditorFrame();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        postButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+             @Override
+             public void handle(MouseEvent mouseEvent) {
+                 UIAnimation.setRotateAnimation(postButton, 0, -30);
+                 UIAnimation.sparkleAnimation(sparkleImage, sparklesFadeTransition);
+                 UIAnimation.buttonInfoImageAnimation(manager.provinceController.postTitle, postTrans, true);
+             }
+         });
+
+        postButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.setRotateAnimation(postButton, -30, 0);
+                sparklesFadeTransition.stop();
+                UIAnimation.fadeAnimation(sparkleImage, null, false);
+                UIAnimation.buttonInfoImageAnimation(manager.provinceController.postTitle, postTrans, false);
+            }
+        });
+
+        BackButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+             @Override
+             public void handle(MouseEvent mouseEvent) {
+
+                 UIAnimation.setBlackMask(manager.provinceController.provinceFrameMask, event -> {
+                     try {
+                         manager.provinceController.provinceFrameIni.setMouseTransparent(false);
+                         manager.toMainFrame();
+                     } catch (Exception e) {
+                         throw new RuntimeException(e);
+                     }
+                 }, 600);
+
+             }
+        });
+
+        ColorAdjust color_adjust = new ColorAdjust();
+        color_adjust.setHue(0.9);
+        color_adjust.setBrightness(0.4);
+        color_adjust.setContrast(0.8);
+        color_adjust.setSaturation(0.3);
+
+        manager.provinceController.foodButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.buttonInfoImageAnimation(manager.provinceController.foodTitle, foodTrans, true);
+                manager.provinceController.foodButton.setEffect(color_adjust);
+            }
+        });
+        manager.provinceController.foodButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.buttonInfoImageAnimation(manager.provinceController.foodTitle, foodTrans, false);
+                manager.provinceController.foodButton.setEffect(null);
+            }
+        });
+        manager.provinceController.foodButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                manager.provinceController.changeType(1);
+            }
+        });
+
+        manager.provinceController.interestButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.buttonInfoImageAnimation(manager.provinceController.interestTitle, interestTrans, true);
+                manager.provinceController.interestButton.setEffect(color_adjust);
+            }
+        });
+        manager.provinceController.interestButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.buttonInfoImageAnimation(manager.provinceController.interestTitle, interestTrans, false);
+                manager.provinceController.interestButton.setEffect(null);
+            }
+        });
+        manager.provinceController.interestButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                manager.provinceController.changeType(2);
+            }
+        });
+
+        manager.provinceController.folkButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.buttonInfoImageAnimation(manager.provinceController.folkTitle, folkTrans, true);
+                manager.provinceController.folkButton.setEffect(color_adjust);
+            }
+        });
+        manager.provinceController.folkButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.buttonInfoImageAnimation(manager.provinceController.folkTitle, folkTrans, false);
+                manager.provinceController.folkButton.setEffect(null);
+            }
+        });
+        manager.provinceController.folkButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                manager.provinceController.changeType(3);
+            }
+        });
+
+        manager.provinceController.frButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                manager.provinceController.frButton.setEffect(color_adjust);
+            }
+        });
+        manager.provinceController.frButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                manager.provinceController.frButton.setEffect(null);
+            }
+        });
+        manager.provinceController.frButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                manager.provinceController.tryFr();
+            }
+        });
+
+        manager.provinceController.nxtButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                manager.provinceController.nxtButton.setEffect(color_adjust);
+            }
+        });
+        manager.provinceController.nxtButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                manager.provinceController.nxtButton.setEffect(null);
+            }
+        });
+        manager.provinceController.nxtButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                manager.provinceController.tryNxt();
+            }
+        });
+
+    }
+
+}
