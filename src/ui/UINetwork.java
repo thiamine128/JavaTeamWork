@@ -2,6 +2,7 @@ package ui;
 
 import oop.zsz.client.AppClient;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class UINetwork {
@@ -24,8 +25,8 @@ public class UINetwork {
     }
 
     //发帖子
-    public static void publishPost(String title, String province, String content){
-        appClient.publishPost(title, province, content);
+    public static void publishPost(String title, String province, String content) {
+        appClient.publishPost(title, province, content, new ArrayList<>());
     }
 
     //加评论

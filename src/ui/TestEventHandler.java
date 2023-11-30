@@ -11,6 +11,7 @@ import oop.zsz.client.IClientEventHandler;
 import oop.zsz.post.Comment;
 import oop.zsz.post.Post;
 import oop.zsz.post.Reply;
+import oop.zsz.user.UserProfile;
 import post.CommentBox;
 import post.PostBox;
 
@@ -277,6 +278,26 @@ public class TestEventHandler implements IClientEventHandler {
 
     @Override
     public void onRemovePostFailed(String data) {
+
+    }
+
+    @Override
+    public void onUploadPortraitSuccess() {
+
+    }
+
+    @Override
+    public void onUploadPortraitFailed(String error) {
+
+    }
+
+    @Override
+    public void onFetchProfileSuccess(UserProfile userProfile) {
+
+    }
+
+    @Override
+    public void onFetchProfileFailed(String error) {
 
     }
 
