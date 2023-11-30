@@ -127,7 +127,6 @@ public class AppClient {
     }
 
     public void fetchAllPost() {
-        System.out.println(1);
         HttpRequest request = authenticatedBuilder()
                 .uri(URI.create(uri + "/post/all"))
                 .GET().build();
