@@ -26,4 +26,8 @@ public interface IClientEventHandler {
     void onReplyPublishFailed(String error);
     void onFetchAllPostsSuccess(List<Post> postList);
     void onFetchAllPostsFailed(String error);
+
+    void onFetchPostInProvinceSuccess(List<Post> postList);
+
+    void onFetchPostInProvinceFailed(String data);
 }

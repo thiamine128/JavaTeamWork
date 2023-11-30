@@ -260,4 +260,14 @@ public class TestEventHandler implements IClientEventHandler {
         System.out.println(error);
     }
 
+    @Override
+    public void onFetchPostInProvinceSuccess(List<Post> postList) {
+
+    }
+
+    @Override
+    public void onFetchPostInProvinceFailed(String data) {
+
+    }
+
 }

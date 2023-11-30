@@ -141,7 +141,7 @@ public class AppClient {
                         clientEventHandler.onFetchAllPostsSuccess(gson.fromJson(response.get("data"), POSTS_LIST_TYPE));
                         return;
                     }
-                    clientEventHandler.onFetchPostFailed(response.get("data").getAsString());
+                    clientEventHandler.onFetchAllPostsFailed(response.get("data").getAsString());
                 }
         );
     }
@@ -209,5 +209,25 @@ public class AppClient {
                 .timeout(Duration.of(10, ChronoUnit.SECONDS))
                 .header("Content-Type", "application/json")
                 .headers("Authorization", "Bearer " + this.token);
+    }
+
+    public void fetchPostInProvince(String province) {
+        HttpRequest request = authenticatedBuilder()
+                .uri(URI.create(uri + "/post/province" + "?province=" + province))
+                .GET().build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onFetchPostInProvinceSuccess(gson.fromJson(response.get("data"), POSTS_LIST_TYPE));
+                        return;
+                    }
+                    clientEventHandler.onFetchPostInProvinceFailed(response.get("data").getAsString());
+                }
+        );
     }
 }
