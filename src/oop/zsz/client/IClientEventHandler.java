@@ -30,8 +30,4 @@ public interface IClientEventHandler {
     void onFetchPostInProvinceSuccess(List<Post> postList);
 
     void onFetchPostInProvinceFailed(String data);
-
-    void onRemovePostSuccess();
-
-    void onRemovePostFailed(String data);
 }

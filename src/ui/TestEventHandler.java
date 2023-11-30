@@ -270,14 +270,4 @@ public class TestEventHandler implements IClientEventHandler {
 
     }
 
-    @Override
-    public void onRemovePostSuccess() {
-
-    }
-
-    @Override
-    public void onRemovePostFailed(String data) {
-
-    }
-
 }
