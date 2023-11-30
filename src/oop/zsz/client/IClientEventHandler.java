@@ -3,6 +3,7 @@ package oop.zsz.client;
 import oop.zsz.post.Comment;
 import oop.zsz.post.Post;
 import oop.zsz.post.Reply;
+import oop.zsz.user.UserProfile;
 
 import java.util.List;
 import java.util.UUID;
@@ -30,4 +31,16 @@ public interface IClientEventHandler {
     void onFetchPostInProvinceSuccess(List<Post> postList);
 
     void onFetchPostInProvinceFailed(String data);
+
+    void onRemovePostSuccess();
+
+    void onRemovePostFailed(String data);
+
+    void onUploadPortraitSuccess();
+
+    void onUploadPortraitFailed(String data);
+
+    void onFetchProfileSuccess(UserProfile data);
+
+    void onFetchProfileFailed(String data);
 }
