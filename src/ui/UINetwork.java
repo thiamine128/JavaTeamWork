@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class UINetwork {
 
-    private static AppClient appClient = new AppClient("http://116.204.117.136:8080", new TestEventHandler());
+    private static AppClient appClient = new AppClient("http", "116.204.117.136", 8080, new TestEventHandler());
 
     //重置manager
     private static void refreshUIManager(UIManager manager){
