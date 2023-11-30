@@ -1,9 +1,6 @@
 package oop.zsz.post;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class Post {
     private UUID id;
@@ -13,6 +10,7 @@ public class Post {
     private String text;
     private Date createdDate;
     private Set<Comment> comments;
+    private List<UUID> images;
 
     public UUID getId() {
         return id;
@@ -68,5 +66,13 @@ public class Post {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<UUID> getImages() {
+        return images;
+    }
+
+    public void setImages(List<UUID> images) {
+        this.images = images;
     }
 }

@@ -12,7 +12,9 @@ import oop.zsz.user.UserProfile;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -28,14 +30,20 @@ import java.util.UUID;
 public class AppClient {
     private HttpClient httpClient;
     private String uri;
+    private String protocol;
+    private String host;
+    private int port;
     private Gson gson;
     private IClientEventHandler clientEventHandler;
     private String token;
 
     private static Type POSTS_LIST_TYPE = new TypeToken<List<Post>>(){}.getType();
-    public AppClient(String uri, IClientEventHandler clientEventHandler) {
+    public AppClient(String protocol, String host, int port, IClientEventHandler clientEventHandler) {
         this.httpClient = HttpClient.newBuilder().build();
-        this.uri = uri;
+        this.protocol = protocol;
+        this.host = host;
+        this.port = port;
+        this.uri = protocol + "://" + host + ":" + port;
         this.gson = new GsonBuilder().create();
         this.clientEventHandler = clientEventHandler;
     }
@@ -348,5 +356,19 @@ public class AppClient {
                     clientEventHandler.onFetchProfileFailed(response.get("data").getAsString());
                 }
         );
+    }
+
+    /*
+    获取用户头像URL
+     */
+    public URL getPortraitURL(String portrait) throws MalformedURLException {
+        return new URL(protocol, host, 80, "/image/portrait/" + portrait);
+    }
+
+    /*
+    获取帖子图片URL
+     */
+    public URL getPostImageURL(UUID image) throws MalformedURLException {
+        return new URL(protocol, host, 80, "/image/post/" + image.toString() + ".png");
     }
 }
