@@ -30,11 +30,11 @@ public interface IClientEventHandler {
 
     void onFetchPostInProvinceSuccess(List<Post> postList);
 
-    void onFetchPostInProvinceFailed(String data);
+    void onFetchPostInProvinceFailed(String error);
 
     void onRemovePostSuccess();
 
-    void onRemovePostFailed(String data);
+    void onRemovePostFailed(String error);
 
     void onUploadPortraitSuccess();
 
