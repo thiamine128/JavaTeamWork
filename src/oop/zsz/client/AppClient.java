@@ -230,4 +230,24 @@ public class AppClient {
                 }
         );
     }
+
+    public void removePost(UUID uuid) {
+        HttpRequest request = authenticatedBuilder()
+                .uri(URI.create(uri + "/post/remove" + "?id=" + uuid.toString()))
+                .POST(HttpRequest.BodyPublishers.noBody()).build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onRemovePostSuccess();
+                        return;
+                    }
+                    clientEventHandler.onRemovePostFailed(response.get("data").getAsString());
+                }
+        );
+    }
 }
