@@ -267,7 +267,7 @@ public class TestEventHandler implements IClientEventHandler {
     }
 
     @Override
-    public void onFetchPostInProvinceFailed(String data) {
+    public void onFetchPostInProvinceFailed(String error) {
 
     }
 
@@ -277,7 +277,7 @@ public class TestEventHandler implements IClientEventHandler {
     }
 
     @Override
-    public void onRemovePostFailed(String data) {
+    public void onRemovePostFailed(String error) {
 
     }
 
