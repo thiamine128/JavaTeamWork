@@ -47,7 +47,7 @@ public class UINetwork {
 
     //获取所有帖子
     public static void fetchAllPost(){
-        appClient.fetchAllPost();
+        appClient.fetchAllPost(0, 100);
     }
 
 }

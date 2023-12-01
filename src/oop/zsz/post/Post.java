@@ -9,8 +9,6 @@ public class Post {
     private String province;
     private String text;
     private Date createdDate;
-    private Set<Comment> comments;
-    private List<UUID> images;
 
     public UUID getId() {
         return id;
@@ -58,21 +56,5 @@ public class Post {
 
     public void setId(UUID id) {
         this.id = id;
-    }
-
-    public Set<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
-    }
-
-    public List<UUID> getImages() {
-        return images;
-    }
-
-    public void setImages(List<UUID> images) {
-        this.images = images;
     }
 }

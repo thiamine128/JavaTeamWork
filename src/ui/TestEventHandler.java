@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import oop.zsz.client.AppClient;
 import oop.zsz.client.IClientEventHandler;
 import oop.zsz.post.Comment;
+import oop.zsz.post.DetailedPost;
 import oop.zsz.post.Post;
 import oop.zsz.post.Reply;
 import oop.zsz.user.UserProfile;
@@ -112,7 +113,7 @@ public class TestEventHandler implements IClientEventHandler {
 
     private Set <CommentBox> boxSet;
     @Override
-    public void onFetchPostSuccess(Post post) {
+    public void onFetchPostSuccess(DetailedPost post) {
         System.out.println("Fetch post:");
         System.out.println(post.getText());
 
@@ -220,24 +221,6 @@ public class TestEventHandler implements IClientEventHandler {
 
     @Override
     public void onFetchAllPostsSuccess(List<Post> postList) {
-        System.out.println("Fetch posts success.");
-
-        for (var post : postList) {
-            System.out.println(post.getId().toString());
-            if (!post.getComments().isEmpty()) {
-                System.out.println("with comments:");
-                for (var comment : post.getComments()) {
-                    System.out.println(comment.getId());
-                    if (!comment.getReplies().isEmpty()) {
-                        System.out.println("with replies:");
-                        for (var reply : comment.getReplies()) {
-                            System.out.println(reply.getId());
-                        }
-                    }
-                }
-            }
-        }
-
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

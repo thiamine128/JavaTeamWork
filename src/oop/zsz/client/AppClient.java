@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import oop.zsz.post.Comment;
+import oop.zsz.post.DetailedPost;
 import oop.zsz.post.Post;
 import oop.zsz.post.Reply;
 import oop.zsz.user.UserProfile;
@@ -159,7 +160,7 @@ public class AppClient {
                         code = response.get("code").getAsInt();
                     }
                     if (code == 1) {
-                        clientEventHandler.onFetchPostSuccess(gson.fromJson(response.get("data"), Post.class));
+                        clientEventHandler.onFetchPostSuccess(gson.fromJson(response.get("data"), DetailedPost.class));
                         return;
                     }
                     clientEventHandler.onFetchPostFailed(response.get("data").getAsString());
@@ -170,9 +171,9 @@ public class AppClient {
     /*
     获取所有帖子
      */
-    public void fetchAllPost() {
+    public void fetchAllPost(int page, int size) {
         HttpRequest request = authenticatedBuilder()
-                .uri(URI.create(uri + "/post/all"))
+                .uri(URI.create(uri + "/post/all" + "?page=" + page + "&size=" + size))
                 .GET().build();
         httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
                 body -> {
@@ -266,9 +267,9 @@ public class AppClient {
     /*
     获取省份内帖子
      */
-    public void fetchPostInProvince(String province) {
+    public void fetchPostInProvince(String province, int page, int size) {
         HttpRequest request = authenticatedBuilder()
-                .uri(URI.create(uri + "/post/province" + "?province=" + province))
+                .uri(URI.create(uri + "/post/province" + "?province=" + province + "&page=" + page + "&size=" + size))
                 .GET().build();
         httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
                 body -> {

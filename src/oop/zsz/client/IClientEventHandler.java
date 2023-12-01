@@ -1,6 +1,7 @@
 package oop.zsz.client;
 
 import oop.zsz.post.Comment;
+import oop.zsz.post.DetailedPost;
 import oop.zsz.post.Post;
 import oop.zsz.post.Reply;
 import oop.zsz.user.UserProfile;
@@ -17,7 +18,7 @@ public interface IClientEventHandler {
     void onPublishPostSuccess(Post post);
     void onPublishPostFailed(String error);
 
-    void onFetchPostSuccess(Post post);
+    void onFetchPostSuccess(DetailedPost post);
     void onFetchPostFailed(String error);
 
     void onCommentPublishSuccess(Comment comment);
