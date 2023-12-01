@@ -15,18 +15,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import post.LanguageTool;
 import ui.UIAnimation;
 import ui.UIManager;
+import ui.UINetwork;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class PersonController implements Initializable {
 
@@ -55,7 +54,7 @@ public class PersonController implements Initializable {
         }
     }
 
-    private void setProvinceColor(String provinceName, int cnt){
+    public void setProvinceColor(String provinceName, int cnt){
         if (cnt > 100) cnt = 100;
         double degree = 1.0 - 0.3*(cnt)/100;
         for (Node provinceImage : provinceList)if(provinceImage.getId().equals(provinceName)){
@@ -68,17 +67,21 @@ public class PersonController implements Initializable {
     public void uploadPersonalProtrait() throws IOException { //上传图片
         File personalImage = fileChooser.showOpenDialog(UIManager.mainStage);
         if (personalImage != null){
-            BufferedImage bufferedImage = ImageIO.read(personalImage);
-            WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
-            protraitImage.setImage(image);
+            UINetwork.uploadProtrait(personalImage.toPath());
+            UIAnimation.timer(2000, event ->
+                    UINetwork.fetchProfile(UIManager.mainController.frameUsername.getText()));
         }
     }
 
-    public void addChartInfo(){
+    public void addChartInfo(Map<String, Long> mp){
+        chart.getData().clear();
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        //series.getData().add(new XYChart.Data<String, Integer>("北京", 10));
+        for (String key : mp.keySet()){
+            int cnt = Math.toIntExact(mp.get(key));
+            series.getData().add(new XYChart.Data<>(LanguageTool.englishToChinese.get(key), cnt));
+        }
         chart.getData().add(series);
-        chart.setCategoryGap(40);
+        chart.setCategoryGap(20);
         chart.setLegendVisible(false);
     }
 

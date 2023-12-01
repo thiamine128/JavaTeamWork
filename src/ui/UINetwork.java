@@ -2,6 +2,8 @@ package ui;
 
 import oop.zsz.client.AppClient;
 
+import java.io.FileNotFoundException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -48,6 +50,19 @@ public class UINetwork {
     //获取所有帖子
     public static void fetchAllPost(){
         appClient.fetchAllPost();
+    }
+
+    //删除指定帖子
+    public static void removePost(UUID postID){
+        appClient.removePost(postID);
+    }
+
+    public static void uploadProtrait(Path imagePath) throws FileNotFoundException {
+        appClient.uploadPortrait(imagePath);
+    }
+
+    public static void fetchProfile(String user){
+        appClient.fetchProfile(user);
     }
 
 }

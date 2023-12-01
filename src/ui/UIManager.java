@@ -95,8 +95,16 @@ public class UIManager extends Application {
         if (maskControl) mainController.mainFrameTrigger();
     }
 
-    public void toPersonFrame(FrameEnum frameEnum) throws Exception{
+    public void toPersonFrame(FrameEnum frameEnum, boolean changeControl) throws Exception{
         personController.backFrame = frameEnum;
+        personController.setProvinceImage();
+        if (changeControl){
+            UIManager.personController.changeButton.setMouseTransparent(false);
+            UIManager.personController.changeButton.setOpacity(0.8);
+        }else{
+            UIManager.personController.changeButton.setMouseTransparent(true);
+            UIManager.personController.changeButton.setOpacity(0.0);
+        }
         changeScene(personFrameScene);
     }
 

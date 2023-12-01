@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import ui.UIAnimation;
 import ui.UIFunction;
 import ui.UIManager;
+import ui.UINetwork;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -125,15 +126,12 @@ public class MainController implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 try {
-                    UIManager.instance.toPersonFrame(FrameEnum.MainFrame);
+                    UINetwork.fetchProfile(frameUsername.getText());
+                    UIManager.instance.toPersonFrame(FrameEnum.MainFrame, true);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }
         });
-
-
     }
-
-
 }
