@@ -34,7 +34,7 @@ public class UIFunction {
                 UIAnimation.setBlackMask(manager.postController.postFrameMask, event0 -> {
                     try {
                         manager.postController.postFrameIni.setMouseTransparent(false);
-                        manager.toMainFrame();
+                        manager.toMainFrame(true);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -194,7 +194,7 @@ public class UIFunction {
                 UIAnimation.setBlackMask(manager.puzzleController.puzzleMask, event0 -> {
                     try {
                         manager.puzzleController.puzzleFrameIni.setMouseTransparent(false);
-                        manager.toMainFrame();
+                        manager.toMainFrame(true);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -227,7 +227,7 @@ public class UIFunction {
                         UIAnimation.setBlackMask(manager.puzzleController.puzzleMask, event0 -> {
                             try {
                                 manager.puzzleController.puzzleFrameIni.setMouseTransparent(false);
-                                manager.toMainFrame();
+                                manager.toMainFrame(true);
                             } catch (Exception e) {
                                 throw new RuntimeException(e);
                             }
@@ -502,7 +502,7 @@ public class UIFunction {
                  UIAnimation.setBlackMask(manager.provinceController.provinceFrameMask, event -> {
                      try {
                          manager.provinceController.provinceFrameIni.setMouseTransparent(false);
-                         manager.toMainFrame();
+                         manager.toMainFrame(true);
                      } catch (Exception e) {
                          throw new RuntimeException(e);
                      }

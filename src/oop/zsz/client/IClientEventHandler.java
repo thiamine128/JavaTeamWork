@@ -39,9 +39,9 @@ public interface IClientEventHandler {
 
     void onUploadPortraitSuccess();
 
-    void onUploadPortraitFailed(String error);
+    void onUploadPortraitFailed(String data);
 
-    void onFetchProfileSuccess(UserProfile userProfile);
+    void onFetchProfileSuccess(UserProfile data);
 
-    void onFetchProfileFailed(String error);
+    void onFetchProfileFailed(String data);
 }

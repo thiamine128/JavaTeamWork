@@ -12,11 +12,14 @@ import Game.*;
 
 public class UIManager extends Application {
 
+    public static UIManager instance;
+
     public static void main(String [] args){ //主函数
         launch(UIManager.class); //启动窗口
     }
 
     private void setNetworkManager(){
+        instance = this;
         UIFunction.manager = this;
         TestEventHandler.manager = this;
     }
@@ -87,9 +90,22 @@ public class UIManager extends Application {
         changeScene(provinceFrameScene);
     }
 
-    public void toMainFrame() throws Exception { //切换到地图界面
+    public void toMainFrame(boolean maskControl) throws Exception { //切换到地图界面
         changeScene(mainFrameScene);
-        mainController.mainFrameTrigger();
+        if (maskControl) mainController.mainFrameTrigger();
+    }
+
+    public void toPersonFrame(FrameEnum frameEnum, boolean changeControl) throws Exception{
+        personController.backFrame = frameEnum;
+        personController.setProvinceImage();
+        if (changeControl){
+            UIManager.personController.changeButton.setMouseTransparent(false);
+            UIManager.personController.changeButton.setOpacity(0.8);
+        }else{
+            UIManager.personController.changeButton.setMouseTransparent(true);
+            UIManager.personController.changeButton.setOpacity(0.0);
+        }
+        changeScene(personFrameScene);
     }
 
     public void changeScene(Scene scene) throws Exception { //切换fxml场景
@@ -136,6 +152,5 @@ public class UIManager extends Application {
         Image icon = new Image(getClass().getResourceAsStream("../resources/icon.png"));
         stage.getIcons().add(icon); //设置ICON 暂定黑骑士
         stage.show(); //显示
-
     }
 }

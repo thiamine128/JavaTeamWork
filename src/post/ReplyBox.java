@@ -1,4 +1,5 @@
 package post;
+import controller.FrameEnum;
 import javafx.event.EventHandler;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.input.MouseEvent;
@@ -44,6 +45,12 @@ public class ReplyBox extends TextFlow {
             public void handle(MouseEvent mouseEvent) {
 
                 //点击用户名获取信息
+                UINetwork.fetchProfile(thisUsername);
+                try {
+                    UIManager.instance.toPersonFrame(FrameEnum.PostViewFrame, false);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
 
             }
         });

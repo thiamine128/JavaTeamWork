@@ -1,10 +1,13 @@
 package post;
 
+import controller.FrameEnum;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
+import ui.UIManager;
 import ui.UINetwork;
 
 import java.util.UUID;
@@ -12,6 +15,11 @@ import java.util.UUID;
 public class PostBox extends VBox{
 
     private UUID postID;
+    private String authorName;
+
+    public UUID getPostID(){
+        return postID;
+    }
 
     private Text titleMaker(String title){
         Text result = new Text("  "+title);
@@ -65,6 +73,12 @@ public class PostBox extends VBox{
             public void handle(MouseEvent mouseEvent) {
 
                 //点击用户获取信息
+                UINetwork.fetchProfile(authorName);
+                try {
+                    UIManager.instance.toPersonFrame(FrameEnum.PostFrame, false);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
 
             }
         });
@@ -79,8 +93,42 @@ public class PostBox extends VBox{
         return result;
     }
 
+    private Text cancelMaker(){
+        Text result = new Text("    "+"REMOVE"+"  ");
+        result.setFont(new Font(20));
+        result.setFill(Color.rgb(222, 28, 28));
+        result.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UINetwork.removePost(postID);
+                for (Node p : UIManager.postController.postMainVbox.getChildren()){
+                    if (p instanceof PostBox){
+                        if(((PostBox) p).getPostID().equals(postID)){
+                            UIManager.postController.postMainVbox.getChildren().removeAll(p);
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+        result.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                result.setFill(Color.rgb(222, 58, 58));
+            }
+        });
+        result.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                result.setFill(Color.rgb(222, 28, 28));
+            }
+        });
+        return result;
+    }
+
     public PostBox(UUID id, String title, String author, String province, String postTime){
         this.postID = id;
+        this.authorName = author;
         this.setMinWidth(900);
         this.setMinHeight(80);
         this.setMaxWidth(900);
@@ -88,7 +136,9 @@ public class PostBox extends VBox{
         this.getChildren().addAll(titleMaker(title));
         TextFlow flow = new TextFlow();
         flow.getChildren().addAll(authorMaker(author));
-        flow.getChildren().addAll(provinceTimeTextMaker(province, postTime));
+        flow.getChildren().addAll(provinceTimeTextMaker(LanguageTool.englishToChinese.get(province), postTime));
+        if (author.equals(UIManager.mainController.frameUsername.getText()))
+            flow.getChildren().addAll(cancelMaker());
         this.getChildren().addAll(flow);
     }
 
