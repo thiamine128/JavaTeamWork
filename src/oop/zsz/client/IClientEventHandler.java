@@ -1,5 +1,6 @@
 package oop.zsz.client;
 
+import oop.zsz.page.Page;
 import oop.zsz.post.Comment;
 import oop.zsz.post.DetailedPost;
 import oop.zsz.post.Post;
@@ -26,10 +27,10 @@ public interface IClientEventHandler {
 
     void onReplyPublishSuccess(Reply reply);
     void onReplyPublishFailed(String error);
-    void onFetchAllPostsSuccess(List<Post> postList);
+    void onFetchAllPostsSuccess(Page<Post> postList);
     void onFetchAllPostsFailed(String error);
 
-    void onFetchPostInProvinceSuccess(List<Post> postList);
+    void onFetchPostInProvinceSuccess(Page<Post> postList);
 
     void onFetchPostInProvinceFailed(String error);
 

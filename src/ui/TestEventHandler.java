@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import oop.zsz.client.AppClient;
 import oop.zsz.client.IClientEventHandler;
+import oop.zsz.page.Page;
 import oop.zsz.post.Comment;
 import oop.zsz.post.DetailedPost;
 import oop.zsz.post.Post;
@@ -225,12 +226,12 @@ public class TestEventHandler implements IClientEventHandler {
     }
 
     @Override
-    public void onFetchAllPostsSuccess(List<Post> postList) {
+    public void onFetchAllPostsSuccess(Page<Post> postList) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 UIManager.postController.postMainVbox.getChildren().clear();
-                for (Post p0 : postList){
+                for (Post p0 : postList.getList()){
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTime(p0.getCreatedDate());
                     PostBox postbox = new PostBox(p0.getId(), p0.getTitle(), p0.getPoster(), p0.getProvince(),
@@ -250,7 +251,7 @@ public class TestEventHandler implements IClientEventHandler {
     }
 
     @Override
-    public void onFetchPostInProvinceSuccess(List<Post> postList) {
+    public void onFetchPostInProvinceSuccess(Page<Post> postList) {
 
     }
 

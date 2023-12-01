@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import oop.zsz.page.Page;
 import oop.zsz.post.Comment;
 import oop.zsz.post.DetailedPost;
 import oop.zsz.post.Post;
@@ -38,7 +39,7 @@ public class AppClient {
     private IClientEventHandler clientEventHandler;
     private String token;
 
-    private static Type POSTS_LIST_TYPE = new TypeToken<List<Post>>(){}.getType();
+    private static Type POSTS_PAGE_TYPE = new TypeToken<Page<Post>>(){}.getType();
     public AppClient(String protocol, String host, int port, IClientEventHandler clientEventHandler) {
         this.httpClient = HttpClient.newBuilder().build();
         this.protocol = protocol;
@@ -183,7 +184,7 @@ public class AppClient {
                         code = response.get("code").getAsInt();
                     }
                     if (code == 1) {
-                        clientEventHandler.onFetchAllPostsSuccess(gson.fromJson(response.get("data"), POSTS_LIST_TYPE));
+                        clientEventHandler.onFetchAllPostsSuccess(gson.fromJson(response.get("data"), POSTS_PAGE_TYPE));
                         return;
                     }
                     clientEventHandler.onFetchAllPostsFailed(response.get("data").getAsString());
@@ -279,7 +280,7 @@ public class AppClient {
                         code = response.get("code").getAsInt();
                     }
                     if (code == 1) {
-                        clientEventHandler.onFetchPostInProvinceSuccess(gson.fromJson(response.get("data"), POSTS_LIST_TYPE));
+                        clientEventHandler.onFetchPostInProvinceSuccess(gson.fromJson(response.get("data"), POSTS_PAGE_TYPE));
                         return;
                     }
                     clientEventHandler.onFetchPostInProvinceFailed(response.get("data").getAsString());

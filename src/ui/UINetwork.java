@@ -48,8 +48,8 @@ public class UINetwork {
     }
 
     //获取所有帖子
-    public static void fetchAllPost(){
-        appClient.fetchAllPost(0, 100);
+    public static void fetchAllPost(int pageNum, int pageSize){
+        appClient.fetchAllPost(pageNum, pageSize);
     }
 
     //删除指定帖子

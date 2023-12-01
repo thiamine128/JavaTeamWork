@@ -22,7 +22,7 @@ public class PostController implements Initializable {
     public void setPostFrameIni(){
         postFrameIni.setMouseTransparent(true);
         UIFunction.iniPostFrame();
-        UINetwork.fetchAllPost();
+        UINetwork.fetchAllPost(0, 10);
         UIAnimation.fadeAnimation(postFrameMask, null,false, 2000);
     }
 
