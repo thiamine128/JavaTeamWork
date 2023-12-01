@@ -40,6 +40,7 @@ public class PersonController implements Initializable {
     public StackedBarChart<String, Integer> chart;
     private List<Node> provinceList = new ArrayList<>(); //省份贴图存储
     private double ratioTest = 2.0; //缩放比例
+    public FrameEnum backFrame = FrameEnum.MainFrame;
     public void setProvinceImage(){ //设置省份贴图
         provinceGroup.getChildren().clear();
         for (Node province : UIManager.mainController.provincePane.getChildren()){
@@ -83,6 +84,8 @@ public class PersonController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        UIManager.personController = this;
 
         puzzleHint.setOpacity(0.0);
         postHint.setOpacity(0.0);
@@ -140,6 +143,15 @@ public class PersonController implements Initializable {
             public void handle(MouseEvent mouseEvent) {
 
                 //回到哪里？看具体情况
+                try {
+                    switch (backFrame){
+                        case MainFrame: UIManager.instance.toMainFrame(false); break;
+                        case PostFrame: UIManager.instance.toPostFrame(true); break;
+                        case PostViewFrame: UIManager.instance.toPostViewFrame(); break;
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
 
             }
         });

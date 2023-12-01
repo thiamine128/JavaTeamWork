@@ -26,37 +26,41 @@ public class TestEventHandler implements IClientEventHandler {
         appClient.setUserToken(token);
         System.out.println("Login success: " + username);
 
-        System.out.println(UIManager.loginController);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                UIManager.personController.username.setText(username);
+                UIManager.mainController.frameUsername.setText(username);
+                UIManager.loginController.loginHint.setText("登录成功");
+                UIManager.loginController.loginHint.setOpacity(0.8);
+                //登录成功入口
+                UIAnimation.timer(2000, event114514 -> {
+                    UIManager.loginController.startHint.setImage(new Image("resources/loginImage/startButton2.png"));
+                    UIAnimation.setBlackMask(UIManager.loginController.startHint, null, 600);
+                    UIAnimation.fadeAnimation(UIManager.loginController.loginPane,null, false);
 
-        UIManager.mainController.frameUsername.setText(username);
-        UIManager.loginController.loginHint.setText("登录成功");
-        UIManager.loginController.loginHint.setOpacity(0.8);
-        //登录成功入口
-        UIAnimation.timer(2000, event114514 -> {
-            UIManager.loginController.startHint.setImage(new Image("resources/loginImage/startButton2.png"));
-            UIAnimation.setBlackMask(UIManager.loginController.startHint, null, 600);
-            UIAnimation.fadeAnimation(UIManager.loginController.loginPane,null, false);
+                    UIAnimation.vectorMove(UIManager.loginController.loginMainTitle, 0, 100, 1000, event00->{
 
-            UIAnimation.vectorMove(UIManager.loginController.loginMainTitle, 0, 100, 1000, event00->{
+                        UIAnimation.timer(2000, event0->{
 
-                UIAnimation.timer(2000, event0->{
+                            UIAnimation.setBlackMask(UIManager.loginController.loginMainTitleWhite, null, 1000);
+                            UIAnimation.setBlackMask(UIManager.loginController.loginFrameMask, evente -> {
 
-                    UIAnimation.setBlackMask(UIManager.loginController.loginMainTitleWhite, null, 1000);
-                    UIAnimation.setBlackMask(UIManager.loginController.loginFrameMask, evente -> {
-
-                        UIAnimation.timer(1500, eventt->{
-                            UIAnimation.fadeAnimation(UIManager.loginController.loginMainTitleWhite, event -> {
-                                        try {
-                                            manager.toMainFrame();
-                                        } catch (Exception e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                    },
-                                    false, 800);
+                                UIAnimation.timer(1500, eventt->{
+                                    UIAnimation.fadeAnimation(UIManager.loginController.loginMainTitleWhite, event -> {
+                                                try {
+                                                    manager.toMainFrame(true);
+                                                } catch (Exception e) {
+                                                    throw new RuntimeException(e);
+                                                }
+                                            },
+                                            false, 800);
+                                });
+                            }, 1000);
                         });
-                    }, 1000);
+                    });
                 });
-            });
+            }
         });
     }
 
