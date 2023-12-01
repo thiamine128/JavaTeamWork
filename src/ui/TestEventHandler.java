@@ -26,38 +26,43 @@ public class TestEventHandler implements IClientEventHandler {
     public void onLoginSuccess(String username, String token, AppClient appClient) {
         appClient.setUserToken(token);
         System.out.println("Login success: " + username);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
 
-        System.out.println(UIManager.loginController);
+                UIManager.personController.username.setText(username);
+                UIManager.mainController.frameUsername.setText(username);
+                UIManager.loginController.loginHint.setText("登录成功");
+                UIManager.loginController.loginHint.setOpacity(0.8);
+                //登录成功入口
+                UIAnimation.timer(2000, event114514 -> {
+                    UIManager.loginController.startHint.setImage(new Image("resources/loginImage/startButton2.png"));
+                    UIAnimation.setBlackMask(UIManager.loginController.startHint, null, 600);
+                    UIAnimation.fadeAnimation(UIManager.loginController.loginPane,null, false);
 
-        UIManager.mainController.frameUsername.setText(username);
-        UIManager.loginController.loginHint.setText("登录成功");
-        UIManager.loginController.loginHint.setOpacity(0.8);
-        //登录成功入口
-        UIAnimation.timer(2000, event114514 -> {
-            UIManager.loginController.startHint.setImage(new Image("resources/loginImage/startButton2.png"));
-            UIAnimation.setBlackMask(UIManager.loginController.startHint, null, 600);
-            UIAnimation.fadeAnimation(UIManager.loginController.loginPane,null, false);
+                    UIAnimation.vectorMove(UIManager.loginController.loginMainTitle, 0, 100, 1000, event00->{
 
-            UIAnimation.vectorMove(UIManager.loginController.loginMainTitle, 0, 100, 1000, event00->{
+                        UIAnimation.timer(2000, event0->{
 
-                UIAnimation.timer(2000, event0->{
+                            UIAnimation.setBlackMask(UIManager.loginController.loginMainTitleWhite, null, 1000);
+                            UIAnimation.setBlackMask(UIManager.loginController.loginFrameMask, evente -> {
 
-                    UIAnimation.setBlackMask(UIManager.loginController.loginMainTitleWhite, null, 1000);
-                    UIAnimation.setBlackMask(UIManager.loginController.loginFrameMask, evente -> {
-
-                        UIAnimation.timer(1500, eventt->{
-                            UIAnimation.fadeAnimation(UIManager.loginController.loginMainTitleWhite, event -> {
-                                        try {
-                                            manager.toMainFrame();
-                                        } catch (Exception e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                    },
-                                    false, 800);
+                                UIAnimation.timer(1500, eventt->{
+                                    UIAnimation.fadeAnimation(UIManager.loginController.loginMainTitleWhite, event -> {
+                                                try {
+                                                    manager.toMainFrame(true);
+                                                    UINetwork.fetchProfile(username);
+                                                } catch (Exception e) {
+                                                    throw new RuntimeException(e);
+                                                }
+                                            },
+                                            false, 800);
+                                });
+                            }, 1000);
                         });
-                    }, 1000);
+                    });
                 });
-            });
+            }
         });
     }
 
@@ -229,7 +234,7 @@ public class TestEventHandler implements IClientEventHandler {
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTime(p0.getCreatedDate());
                     PostBox postbox = new PostBox(p0.getId(), p0.getTitle(), p0.getPoster(), p0.getProvince(),
-                            calendar.get(Calendar.YEAR)+"年"+calendar.get(Calendar.MONTH)+"月"
+                            calendar.get(Calendar.YEAR)+"年"+(calendar.get(Calendar.MONTH)+1)+"月"
                                     +calendar.get(Calendar.DAY_OF_MONTH)+"日");
                     UIManager.postController.postMainVbox.getChildren().addAll(postbox);
                 }
@@ -256,7 +261,7 @@ public class TestEventHandler implements IClientEventHandler {
 
     @Override
     public void onRemovePostSuccess() {
-
+        System.out.println("remove post success");
     }
 
     @Override
@@ -266,21 +271,50 @@ public class TestEventHandler implements IClientEventHandler {
 
     @Override
     public void onUploadPortraitSuccess() {
+        System.out.println("upload image success");
+    }
+
+    @Override
+    public void onUploadPortraitFailed(String data) {
 
     }
 
     @Override
-    public void onUploadPortraitFailed(String error) {
-
+    public void onFetchProfileSuccess(UserProfile data) {
+        System.out.println("fetch profile success");
+        System.out.println(data.getHistory());
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if (data.getPortrait() != null){
+                    if (data.getUsername().equals(UIManager.mainController.frameUsername.getText())){
+                        UIManager.mainController.profilePhoto.setImage(new Image("http://116.204.117.136/portrait/"
+                                + data.getPortrait()));
+                    }
+                    UIManager.personController.protraitImage.setImage(new Image("http://116.204.117.136/portrait/"
+                            + data.getPortrait()));
+                }else{
+                    if (data.getUsername().equals(UIManager.mainController.frameUsername.getText())){
+                        UIManager.mainController.profilePhoto.setImage(new Image("resources/personImage/uncertainty.png"));
+                    }
+                    UIManager.personController.protraitImage.setImage(new Image("resources/personImage/uncertainty.png"));
+                }
+                UIManager.personController.username.setText(data.getUsername());
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(data.getRegisteredDate());
+                UIManager.personController.loginDate.setText(
+                        calendar.get(Calendar.YEAR)+"."+(calendar.get(Calendar.MONTH)+1)+"."
+                        +calendar.get(Calendar.DAY_OF_MONTH));
+                for (String key : data.getHistory().keySet()){
+                    UIManager.personController.setProvinceColor(key, Math.toIntExact(data.getHistory().get(key)));
+                }
+                UIManager.personController.addChartInfo(data.getHistory());
+            }
+        });
     }
 
     @Override
-    public void onFetchProfileSuccess(UserProfile userProfile) {
-
-    }
-
-    @Override
-    public void onFetchProfileFailed(String error) {
+    public void onFetchProfileFailed(String data) {
 
     }
 

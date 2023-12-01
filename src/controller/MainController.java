@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import ui.UIAnimation;
 import ui.UIFunction;
 import ui.UIManager;
+import ui.UINetwork;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -108,7 +109,29 @@ public class MainController implements Initializable {
         provinceEdge.setPreserveRatio(false);
         mask.setVisible(true);
         openingPane.setVisible(true);
+
+        profilePhoto.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                profilePhoto.setOpacity(0.8);
+            }
+        });
+        profilePhoto.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                profilePhoto.setOpacity(1.0);
+            }
+        });
+        profilePhoto.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    UINetwork.fetchProfile(frameUsername.getText());
+                    UIManager.instance.toPersonFrame(FrameEnum.MainFrame, true);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
-
-
 }
