@@ -227,6 +227,16 @@
                   <Image url="@../resources/puzzleImage/jigsaw-piece.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="toQuestionButton" fitHeight="43.0" fitWidth="43.0" layoutX="360.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/personImage/perspective-dice-six-faces-random.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="HButton" fitHeight="38.0" fitWidth="38.0" layoutX="410.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/path-distance.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <ImageView fx:id="provinceEdge" fitHeight="157.0" fitWidth="200.0" layoutX="730.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" />

@@ -115,7 +115,7 @@
             <Image url="@../resources/puzzleImage/cancel.png" />
          </image>
       </ImageView>
-      <StackedBarChart fx:id="chart" layoutX="464.0" layoutY="525.0" prefHeight="230.0" prefWidth="474.0">
+      <StackedBarChart fx:id="chart" layoutX="464.0" layoutY="525.0" opacity="0.8" prefHeight="230.0" prefWidth="474.0" title="到访次数统计">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
