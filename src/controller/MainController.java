@@ -35,7 +35,7 @@ public class MainController implements Initializable {
     public ImageView toPuzzleButton; //拼图游戏按钮
     public ImageView mainFrameBG; //开头场景
     public Text frameUsername;
-    public ImageView toPostButton;
+    public ImageView toPostButton, toQuestionButton, HButton;
     public ImageView profilePhoto;
 
     @FXML
@@ -133,5 +133,19 @@ public class MainController implements Initializable {
                 }
             }
         });
+
+        toQuestionButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.setRotateAnimation(toQuestionButton, 0, 360);
+            }
+        });
+        HButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.setRotateAnimation(HButton, 0, 360);
+            }
+        });
+
     }
 }

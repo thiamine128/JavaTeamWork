@@ -125,7 +125,6 @@ public class UIManager extends Application {
     private static Scene loginFrameScene; //登录界面舞台
     private static Scene personFrameScene;
     private final double iniSceneWidth = 1000, iniSceneHeight = 800; //大小设定
-
     public static EditorController editorController;
     public static LoginController loginController;
     public static MainController mainController;

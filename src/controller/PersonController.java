@@ -74,22 +74,43 @@ public class PersonController implements Initializable {
     }
 
     public void addChartInfo(Map<String, Long> mp){
-        chart.getData().clear();
-        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+
+        int cntSum = 0;
+        Map<String, Integer> mp0 = new TreeMap<>();
         for (String key : mp.keySet()){
             int cnt = Math.toIntExact(mp.get(key));
-            series.getData().add(new XYChart.Data<>(LanguageTool.englishToChinese.get(key), cnt));
+            mp0.put(key, -cnt);
+            cntSum += cnt;
+        }
+        chart.getData().clear();
+        XYChart.Series series = new XYChart.Series();
+        int j = 0;
+        for (String key : mp0.keySet()){
+            int cnt = -mp0.get(key);
+            series.getData().add(new XYChart.Data(LanguageTool.englishToChinese.get(key), cnt));
+            j++;
+            if (j > 10) break;
         }
         chart.getData().add(series);
-        chart.setCategoryGap(20);
-        chart.setLegendVisible(false);
+        for(Node n : chart.lookupAll(".default-color0.chart-bar")) {
+            n.setStyle("-fx-bar-fill: blue");
+        }
+        if (cntSum < 5) level.setImage(new Image("resources/personImage/1.png"));
+        else if (cntSum < 15) level.setImage(new Image("resources/personImage/2.png"));
+        else if (cntSum < 25) level.setImage(new Image("resources/personImage/3.png"));
+        else if (cntSum < 50) level.setImage(new Image("resources/personImage/4.png"));
+        else level.setImage(new Image("resources/personImage/5.png"));
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        chart.setAnimated(false);
+        chart.setLegendVisible(false);
+
         UIManager.personController = this;
 
+        level.setOpacity(0.8);
         puzzleHint.setOpacity(0.0);
         postHint.setOpacity(0.0);
         questionHint.setOpacity(0.0);
