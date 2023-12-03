@@ -1,10 +1,12 @@
 package controller;
 
+import Game.Hamiltonian;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -37,6 +39,7 @@ public class MainController implements Initializable {
     public Text frameUsername;
     public ImageView toPostButton, toQuestionButton, HButton;
     public ImageView profilePhoto;
+    private boolean Hsituation = false, provinceProtect = true;
 
     @FXML
     private void provinceAppear(Node[] provinceArray, int cnt, int i){ //省份贴图登入动画
@@ -144,6 +147,45 @@ public class MainController implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 UIAnimation.setRotateAnimation(HButton, 0, 360);
+            }
+        });
+        HButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //启动哈密顿路径模式
+                if (provinceProtect){
+                    provinceProtect = false;
+                    if (!Hsituation){
+                        Hsituation = true;
+                        HButton.setEffect(new ColorAdjust(0.5, 0.5, 0.5, 0.5));
+                        UIAnimation.setRotateAnimation(HButton, 0, 360);
+
+                        for(Node province : provincePane.getChildren()){
+                            UIAnimation.timer(300*Math.random(), event0->{
+                                province.setEffect(new ColorAdjust(1.0, 1.0, 0, 1.0));
+                                UIAnimation.vectorMove(province, 0, -20, 200, event -> {
+                                    UIAnimation.vectorMove(province, 0, 20, 200, event1 -> {
+                                        UIAnimation.timer(500, event2 -> provinceProtect = true);
+                                    });
+                                });
+                            });
+                        }
+                    }else{
+                        Hsituation = false;
+                        HButton.setEffect(null);
+
+                        for(Node province : provincePane.getChildren()){
+                            UIAnimation.timer(300*Math.random(), event0->{
+                                province.setEffect(null);
+                                UIAnimation.vectorMove(province, 0, -20, 200, event -> {
+                                    UIAnimation.vectorMove(province, 0, 20, 200, event1 -> {
+                                        UIAnimation.timer(500, event2 -> provinceProtect = true);
+                                    });
+                                });
+                            });
+                        }
+                    }
+                }
             }
         });
 
