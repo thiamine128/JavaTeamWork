@@ -41,7 +41,7 @@ public class ProvinceDetail {
             String name=s.substring(s.indexOf(".")+1,pos);
             res.interest[++res.interestSum]=s.substring(pos+1);
             res.interestName[res.interestSum]=name;
-            res.interestName[res.interestSum]="./image/"+x+"_景点_"+name+"_";
+            res.interestPath[res.interestSum]="./image0/"+x+"_景点_"+name+"_";
         }
         while(in.hasNext()) {
             String s=in.nextLine();
@@ -53,7 +53,7 @@ public class ProvinceDetail {
             String name=s.substring(s.indexOf('.')+1,pos);
             res.food[++res.foodSum]=s.substring(pos+1);
             res.foodName[res.foodSum]=name;
-            res.foodPath[res.foodSum]="./image/"+x+"_美食_"+name+"_";
+            res.foodPath[res.foodSum]="./image0/"+x+"_美食_"+name+"_";
         }
         while(in.hasNext()) {
             String s=in.nextLine();
@@ -65,7 +65,7 @@ public class ProvinceDetail {
             String name=s.substring(s.indexOf('.')+1,pos);
             res.folk[++res.folkSum]=s.substring(pos+1);
             res.folkName[res.folkSum]=name;
-            res.foodPath[res.folkSum]="./image/"+x+"_民俗_"+name+"_";
+            res.folkPath[res.folkSum]="./image0/"+x+"_民俗_"+name+"_";
         }
         return res;
     }

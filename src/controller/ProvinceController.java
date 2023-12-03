@@ -3,6 +3,7 @@ package controller;
 import Click.ProvinceDetail;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -30,6 +31,7 @@ public class ProvinceController implements Initializable {
     public ImageView frButton, nxtButton; //向前向后按键
     public ImageView foodTitle, interestTitle, folkTitle; //三种类型右标题
     public ImageView foodButton, interestButton, folkButton; //三种类型按钮 (1)、(2)、(3)
+    public ImageView mainImage; //照片墙
     public void provinceFrameTrigger(){ //具体省份界面初始化
 
         UIAnimation.fadeAnimation(provinceFrameMask, null, false);
@@ -38,7 +40,7 @@ public class ProvinceController implements Initializable {
 
         textPos = 1; textType = 1;
         setText(detail.foodName[textPos], detail.food[textPos]);
-
+        setMainImage(detail.foodPath[textPos]);
         provinceFrameIni.setMouseTransparent(true);
 
     }
@@ -75,14 +77,27 @@ public class ProvinceController implements Initializable {
     private void changeTextPre(){
         UIAnimation.vectorMove(titleText, -10, 0, 600, null);
         UIAnimation.vectorMove(contentText, -10, 0, 600, null);
+        UIAnimation.vectorMove(mainImage, -5, 0, 600, null);
+        UIAnimation.setTextChangeAnimation(mainImage, null, 600, false);
         UIAnimation.setTextChangeAnimation(titleText, null, 600, false);
         UIAnimation.setTextChangeAnimation(contentText, event -> {
             changeText();
+            changeMainImage();
             UIAnimation.setTextChangeAnimation(titleText, null, 600, true);
             UIAnimation.setTextChangeAnimation(contentText, null, 600, true);
+            UIAnimation.setTextChangeAnimation(mainImage, null, 600, true);
+            UIAnimation.vectorMove(mainImage, 5, 0, 600, null);
             UIAnimation.vectorMove(titleText, 10, 0, 600, null);
             UIAnimation.vectorMove(contentText, 10, 0, 600, null);
         }, 600, false);
+    }
+
+    private void changeMainImage(){
+        switch (textType){
+            case 1: setMainImage(detail.foodPath[textPos]); break;
+            case 2: setMainImage(detail.interestPath[textPos]); break;
+            case 3: setMainImage(detail.folkPath[textPos]); break;
+        }
     }
 
     private void changeText(){
@@ -99,8 +114,15 @@ public class ProvinceController implements Initializable {
         contentText.setText(contentString);
     }
 
+    private void setMainImage(String path0){
+        System.out.println(path0);
+        mainImage.setImage(new Image(path0+"1.jpg"));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         UIManager.provinceController = this;
+        provinceFrameMask.setVisible(true);
+        mainImage.setPreserveRatio(false);
     }
 }
