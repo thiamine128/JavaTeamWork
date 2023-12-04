@@ -68,10 +68,10 @@ public class Hamiltonian {
         }
     }
     int[] points=new int[20];
-    public HamiltonianDetial calcDis(String[] all) {
+    public HamiltonianDetail calcDis(String[] all) {
         int n=all.length;
         String[] res=new String[n+1];
-        if(n>17) return new HamiltonianDetial(res,0,false);
+        if(n>17||n<2) return new HamiltonianDetail(res,0,false);
         for(int i=0;i<n;i++) {
             points[i]=EnId.get(all[i]);
         }
@@ -105,12 +105,12 @@ public class Hamiltonian {
             res[i]=name[points[path.get(n-i-1)]];
         }
         res[n]=name[points[path.get(n-1)]];
-        return new HamiltonianDetial(res,minn,true);
+        return new HamiltonianDetail(res,minn,true);
     }
-    public HamiltonianDetial calcTime(String[] all) {
+    public HamiltonianDetail calcTime(String[] all) {
         int n=all.length;
         String[] res=new String[n+1];
-        if(n>17) return new HamiltonianDetial(res,0,false);
+        if(n>17) return new HamiltonianDetail(res,0,false);
         for(int i=0;i<n;i++) {
             points[i]=EnId.get(all[i]);
         }
@@ -144,7 +144,7 @@ public class Hamiltonian {
             res[i]=name[points[path.get(n-i-1)]];
         }
         res[n]=name[points[path.get(n-1)]];
-        return new HamiltonianDetial(res,minn,true);
+        return new HamiltonianDetail(res,minn,true);
     }
     ArrayList<Integer> path=new ArrayList<>();
     private void dfs(int u,int s,int n) {

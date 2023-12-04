@@ -1,7 +1,7 @@
 package controller;
 
 import Game.Hamiltonian;
-import Game.HamiltonianDetial;
+import Game.HamiltonianDetail;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -139,7 +139,7 @@ public class MainController implements Initializable {
             Hamiltonian hamiltonian = new Hamiltonian();
             String [] provinces = new String[n];
             for (String name : provinceSet) provinces[i++] = name;
-            HamiltonianDetial detail = hamiltonian.calcTime(provinces);
+            HamiltonianDetail detail = hamiltonian.calcTime(provinces);
             System.out.println(Arrays.toString(provinces));
             System.out.println(Arrays.toString(detail.path));
             if (detail.found){
