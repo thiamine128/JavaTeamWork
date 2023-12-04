@@ -169,9 +169,6 @@ public class MainController implements Initializable {
         }else{
             setHamiHint("", "生成失败");
         }
-        UIAnimation.timer(10000, event -> {
-            setHamiHint("", "可以尝试各种方案");
-        });
     }
 
     private void setHamiHint(String title, String hint){
@@ -315,18 +312,20 @@ public class MainController implements Initializable {
                             }
                         }
 
-                        UIAnimation.timer(100, null);
-
-                        for(Node province : provincePane.getChildren()){
-                            UIAnimation.timer(300*Math.random(), event0->{
-                                province.setEffect(null);
-                                UIAnimation.vectorMove(province, 0, -20, 200, event -> {
-                                    UIAnimation.vectorMove(province, 0, 20, 200, event1 -> {
-                                        UIAnimation.timer(500, event2 -> provinceProtect = true);
+                        UIAnimation.timer(100, event5 -> {
+                            for(Node province : provincePane.getChildren()){
+                                UIAnimation.timer(300*Math.random(), event0->{
+                                    province.setEffect(null);
+                                    UIAnimation.vectorMove(province, 0, -20, 200, event -> {
+                                        UIAnimation.vectorMove(province, 0, 20, 200, event1 -> {
+                                            UIAnimation.timer(500, event2 -> provinceProtect = true);
+                                        });
                                     });
                                 });
-                            });
-                        }
+                            }
+                            UIFunction.iniMainFrameButton(provincePane, infoImage, MainController.this);
+                        });
+
                         UIAnimation.fadeAnimation(pointPane, null, false, 600);
                         Set <Node> nodeSet = new HashSet<>();
                         for (Node j : pointPane.getChildren()){
@@ -335,7 +334,6 @@ public class MainController implements Initializable {
                         for (Node j : nodeSet) pointPane.getChildren().removeAll(j);
                         hamiButton.setMouseTransparent(true);
                         UIAnimation.setBlackMask(hamiButton, null, 600, 0.8, 0.0);
-                        UIFunction.iniMainFrameButton(provincePane, infoImage, MainController.this);
                         UIAnimation.setBlackMask(hamiPane, null, 600, 0.8, 0.0);
                         hamiTitle.setText("");
                         hamiHint.setText("请选择省份");
