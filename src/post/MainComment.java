@@ -36,7 +36,7 @@ public class MainComment extends HBox{
         this.content.getEngine().loadContent(content);
 
         commentAuthor = new Text(username);
-        authorImage = new ImageView(new Image(imagepath));
+        authorImage = new ImageView(new Image("http://116.204.117.136/portrait/"+username+".png"));
 
         commentAuthor.setWrappingWidth(180);
         commentAuthor.setTextAlignment(TextAlignment.CENTER);
@@ -63,6 +63,8 @@ public class MainComment extends HBox{
         this.getChildren().addAll(this.content);
         this.setPrefWidth(917);
         this.setPrefHeight(214);
+
+
 
     }
 

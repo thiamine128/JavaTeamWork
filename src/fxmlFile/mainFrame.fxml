@@ -259,12 +259,69 @@
             </Text>
          </children>
       </AnchorPane>
+      <Group fx:id="circleAnimationGroup" disable="true" />
+      <AnchorPane fx:id="pointPane" prefHeight="800.0" prefWidth="1000.0">
+         <children>
+            <Circle fill="#e0f0ff" layoutX="233.0" layoutY="431.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" fx:id="xizang" />
+            <Circle fx:id="shanghai" fill="#e0f0ff" layoutX="643.0" layoutY="416.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="anhui" fill="#e0f0ff" layoutX="584.0" layoutY="390.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="heilongjiang" fill="#e0f0ff" layoutX="724.0" layoutY="171.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="jilin" fill="#e0f0ff" layoutX="693.0" layoutY="207.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="liaoning" fill="#e0f0ff" layoutX="656.0" layoutY="245.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="tianjin" fill="#e0f0ff" layoutX="587.0" layoutY="287.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="beijing" fill="#e0f0ff" layoutX="572.0" layoutY="265.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="henan" fill="#e0f0ff" layoutX="535.0" layoutY="356.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="hebei" fill="#e0f0ff" layoutX="549.0" layoutY="297.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="chongqing" fill="#e0f0ff" layoutX="442.0" layoutY="434.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="hubei" fill="#e0f0ff" layoutX="532.0" layoutY="419.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="shandong" fill="#e0f0ff" layoutX="590.0" layoutY="322.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="jiangsu" fill="#e0f0ff" layoutX="611.0" layoutY="393.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="zhejiang" fill="#e0f0ff" layoutX="631.0" layoutY="428.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="jiangxi" fill="#e0f0ff" layoutX="572.0" layoutY="444.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="fujian" fill="#e0f0ff" layoutX="616.0" layoutY="478.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#e0f0ff" layoutX="552.0" layoutY="543.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" fx:id="xianggang" />
+            <Circle fx:id="aomen" fill="#e0f0ff" layoutX="535.0" layoutY="553.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="hainan" fill="#e0f0ff" layoutX="493.0" layoutY="577.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="taiwan" fill="#e0f0ff" layoutX="640.0" layoutY="502.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="hunan" fill="#e0f0ff" layoutX="523.0" layoutY="459.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="ningxia" fill="#e0f0ff" layoutX="439.0" layoutY="297.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="guizhou" fill="#e0f0ff" layoutX="452.0" layoutY="475.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="guangdong" fill="#e0f0ff" layoutX="538.0" layoutY="532.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="guangxi" fill="#e0f0ff" layoutX="463.0" layoutY="529.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="shanxi" fill="#e0f0ff" layoutX="520.0" layoutY="306.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="shaanxi" fill="#e0f0ff" layoutX="476.0" layoutY="353.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="neimenggu" fill="#e0f0ff" layoutX="515.0" layoutY="260.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="yunnan" fill="#e0f0ff" layoutX="387.0" layoutY="505.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="sichuan" fill="#e0f0ff" layoutX="423.0" layoutY="419.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="gansu" fill="#e0f0ff" layoutX="406.0" layoutY="338.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="qinghai" fill="#e0f0ff" layoutX="375.0" layoutY="325.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#e0f0ff" layoutX="195.0" layoutY="183.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" fx:id="xinjiang" />
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="hamiButton" fitHeight="150.0" fitWidth="200.0" layoutX="750.0" layoutY="450.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/city-car.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="hamiPane" mouseTransparent="true" prefHeight="800.0" prefWidth="1000.0">
+         <children>
+            <Text fx:id="hamiHint" fill="#165dc7" layoutX="14.0" layoutY="686.0" strokeType="OUTSIDE" strokeWidth="0.0" text="375小时" textAlignment="CENTER" wrappingWidth="459.666748046875">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Text>
+            <Text fx:id="hamiTitle" fill="#2c7dff" layoutX="26.0" layoutY="614.0" strokeType="OUTSIDE" strokeWidth="0.0" text="旅游环线" textAlignment="CENTER" wrappingWidth="435.00000000000006">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
       <ImageView fx:id="mask" fitHeight="800.0" fitWidth="1000.0" mouseTransparent="true" pickOnBounds="true" visible="false">
          <image>
             <Image url="@../resources/mask.jpg" />
          </image>
       </ImageView>
-      <Group fx:id="circleAnimationGroup" disable="true" />
       <ImageView fx:id="mainFrameIni" fitHeight="800.0" fitWidth="1017.0" layoutX="-17.0" layoutY="-23.0" onMouseEntered="#mainFrameTrigger" onMouseMoved="#mainFrameTrigger" opacity="0.0" pickOnBounds="true" />
    </children>
 </AnchorPane>

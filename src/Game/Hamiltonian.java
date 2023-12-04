@@ -11,14 +11,14 @@ import static java.lang.Math.min;
 import static java.util.Collections.swap;
 
 public class Hamiltonian {
-    static int[][] dis=new int[40][40];
-    static int[][] tim=new int[40][40];
-    static int N,INF=1000000000;
-    static HashMap<String,Integer> ChId=new HashMap<>();
-    static HashMap<String,Integer> EnId=new HashMap<>();
-    static int[][] f=new int[1<<20][20];
-    static String[] name=new String[40];
-    public static void pre() {
+    int[][] dis=new int[40][40];
+    int[][] tim=new int[40][40];
+    int N,INF=1000000000;
+    HashMap<String,Integer> ChId=new HashMap<>();
+    HashMap<String,Integer> EnId=new HashMap<>();
+    int[][] f=new int[1<<20][20];
+    String[] name=new String[40];
+    public Hamiltonian() {
         FileInputStream fin=null;
         try {
             fin=new FileInputStream("./distance/cities_name.txt");
@@ -67,8 +67,8 @@ public class Hamiltonian {
             throw new RuntimeException(e);
         }
     }
-    static int[] points=new int[20];
-    public static HamiltonianDetial calcDis(String[] all) {
+    int[] points=new int[20];
+    public HamiltonianDetial calcDis(String[] all) {
         int n=all.length;
         String[] res=new String[n+1];
         if(n>17) return new HamiltonianDetial(res,0,false);
@@ -107,7 +107,7 @@ public class Hamiltonian {
         res[n]=name[points[path.get(n-1)]];
         return new HamiltonianDetial(res,minn,true);
     }
-    public static HamiltonianDetial calcTime(String[] all) {
+    public HamiltonianDetial calcTime(String[] all) {
         int n=all.length;
         String[] res=new String[n+1];
         if(n>17) return new HamiltonianDetial(res,0,false);
@@ -146,8 +146,8 @@ public class Hamiltonian {
         res[n]=name[points[path.get(n-1)]];
         return new HamiltonianDetial(res,minn,true);
     }
-    static ArrayList<Integer> path=new ArrayList<>();
-    private static void dfs(int u,int s,int n) {
+    ArrayList<Integer> path=new ArrayList<>();
+    private void dfs(int u,int s,int n) {
         path.add(u);
         if(s==0) return ;
         for(int i=0;i<n;i++) {
@@ -159,7 +159,7 @@ public class Hamiltonian {
             }
         }
     }
-    private static void dfs2(int u,int s,int n) {
+    private void dfs2(int u,int s,int n) {
         path.add(u);
         if(s==0) return ;
         for(int i=0;i<n;i++) {

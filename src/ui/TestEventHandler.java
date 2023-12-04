@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import oop.zsz.client.AppClient;
 import oop.zsz.client.IClientEventHandler;
@@ -115,6 +116,7 @@ public class TestEventHandler implements IClientEventHandler {
     public void onPublishPostFailed(String error) {
         System.out.println("Failed to publish post:");
         System.out.println("error");
+        UIManager.editorController.resetEditor();
     }
 
     private Set <CommentBox> boxSet;
@@ -126,6 +128,9 @@ public class TestEventHandler implements IClientEventHandler {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+
+                UIManager.postViewController.authorProtrait.setImage(
+                        new Image("http://116.204.117.136/portrait/"+post.getPoster()+".png"));
 
                 UIManager.postViewController.postID = post.getId();
 

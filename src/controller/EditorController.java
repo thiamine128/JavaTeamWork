@@ -23,6 +23,17 @@ public class EditorController implements Initializable {
     public Text editorHint, provinceInfo; //提示语
     public ImageView postSuccessHint; //发帖成功
 
+    public void resetEditor(){
+        editorHint.setText("发送失败");
+        UIAnimation.timer(3000,event -> {
+            editorConfirm.setMouseTransparent(false);
+            editorCancel.setMouseTransparent(false);
+            editor.setMouseTransparent(false);
+            editorTitleField.setMouseTransparent(false);
+        });
+        editorHint.setOpacity(0.8);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         UIManager.editorController = this;
