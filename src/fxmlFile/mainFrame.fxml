@@ -278,7 +278,6 @@
             </Text>
          </children>
       </AnchorPane>
-      <Group fx:id="circleAnimationGroup" disable="true" />
       <AnchorPane fx:id="pointPane" prefHeight="800.0" prefWidth="1000.0">
          <children>
             <Circle fill="#e0f0ff" layoutX="233.0" layoutY="431.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" fx:id="xizang" />
@@ -341,6 +340,7 @@
             <Image url="@../resources/mask.jpg" />
          </image>
       </ImageView>
+      <Group fx:id="circleAnimationGroup" disable="true" />
       <ImageView fx:id="mainFrameIni" fitHeight="800.0" fitWidth="1017.0" layoutX="-17.0" layoutY="-23.0" onMouseEntered="#mainFrameTrigger" onMouseMoved="#mainFrameTrigger" opacity="0.0" pickOnBounds="true" />
    </children>
 </AnchorPane>
