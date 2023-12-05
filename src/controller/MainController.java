@@ -150,7 +150,7 @@ public class MainController implements Initializable {
                     Node p2 = findProvincePoint(result[j+1]);
                     if (p1 != null && p2 != null){
                         Line line = new Line();
-                        line.setStroke(Color.rgb(0, 52, 127));
+                        line.setStroke(Color.rgb(182, 255, 253));
                         line.setStrokeWidth(3.0);
                         line.setOpacity(0.7);
                         line.setOpacity(0.0);
