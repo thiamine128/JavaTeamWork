@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import controller.*;
 import Game.*;
+import post.LanguageTool;
 
 public class UIManager extends Application {
 
@@ -59,7 +60,8 @@ public class UIManager extends Application {
         editorController.editorTitleField.setMouseTransparent(false);
         editorController.editor.setHtmlText("");
         editorController.editorTitleField.setText("");
-        editorController.provinceInfo.setText(ProvinceController.provinceName);
+        editorController.provinceInfo.setText(LanguageTool.englishToChinese.get(ProvinceController.provinceName));
+        editorController.resetPath();
         changeScene(editorFrameScene);
     }
     public void toPostViewFrame() throws Exception{

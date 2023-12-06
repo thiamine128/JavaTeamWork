@@ -3,8 +3,11 @@ package ui;
 import oop.zsz.client.AppClient;
 
 import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class UINetwork {
@@ -27,8 +30,8 @@ public class UINetwork {
     }
 
     //发帖子
-    public static void publishPost(String title, String province, String content) {
-        appClient.publishPost(title, province, content, new ArrayList<>());
+    public static void publishPost(String title, String province, String content, List<Path> pathList) {
+        appClient.publishPost(title, province, content, pathList);
     }
 
     //加评论
@@ -65,4 +68,7 @@ public class UINetwork {
         appClient.fetchProfile(user);
     }
 
+    public static URL getImageUrl(UUID imageId) throws MalformedURLException {
+        return appClient.getPostImageURL(imageId);
+    }
 }

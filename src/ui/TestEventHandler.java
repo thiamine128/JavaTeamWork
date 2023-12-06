@@ -18,6 +18,9 @@ import oop.zsz.user.UserProfile;
 import post.CommentBox;
 import post.PostBox;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.util.*;
 import java.util.concurrent.CancellationException;
 
@@ -128,6 +131,7 @@ public class TestEventHandler implements IClientEventHandler {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                UIManager.postViewController.imageBox.getChildren().clear();
 
                 UIManager.postViewController.authorProtrait.setImage(
                         new Image("http://116.204.117.136/portrait/"+post.getPoster()+".png"));
@@ -140,8 +144,12 @@ public class TestEventHandler implements IClientEventHandler {
                 Set<Comment> commentSet = post.getComments();
                 boxSet = new HashSet<>();
                 for (Comment comment : commentSet){
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(comment.getCreatedDate());
                     CommentBox commentBox = new CommentBox(comment.getId(), comment.getUser(), comment.getText(),
-                            "./resources/icon.png", "2023", post.getProvince());
+                            "./resources/icon.png", calendar.get(Calendar.YEAR)+
+                            "年"+(calendar.get(Calendar.MONTH)+1)+"月"
+                            +calendar.get(Calendar.DAY_OF_MONTH)+"日", post.getProvince());
                     for (Reply reply : comment.getReplies()){
                         if (reply.getReplyTo() == null)
                             commentBox.addReply(reply.getId(), reply.getUser(), reply.getText());
@@ -168,6 +176,14 @@ public class TestEventHandler implements IClientEventHandler {
                     manager.toPostViewFrame();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
+                }
+
+                for (UUID id : post.getImages()){
+                    try {
+                        UIManager.postViewController.addImage(UINetwork.getImageUrl(id));
+                    } catch (MalformedURLException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
 
             }
@@ -235,6 +251,8 @@ public class TestEventHandler implements IClientEventHandler {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                UIManager.postController.setTotalNum(postList.getTotalPages());
+                System.out.println(postList.getTotalPages());
                 UIManager.postController.postMainVbox.getChildren().clear();
                 for (Post p0 : postList.getList()){
                     Calendar calendar = Calendar.getInstance();
@@ -292,6 +310,16 @@ public class TestEventHandler implements IClientEventHandler {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                UIManager.personController.username.setText(data.getUsername());
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(data.getRegisteredDate());
+                UIManager.personController.loginDate.setText(
+                        calendar.get(Calendar.YEAR)+"."+(calendar.get(Calendar.MONTH)+1)+"."
+                                +calendar.get(Calendar.DAY_OF_MONTH));
+                for (String key : data.getHistory().keySet()){
+                    UIManager.personController.setProvinceColor(key, Math.toIntExact(data.getHistory().get(key)));
+                }
+                UIManager.personController.addChartInfo(data.getHistory());
                 if (data.getPortrait() != null){
                     if (data.getUsername().equals(UIManager.mainController.frameUsername.getText())){
                         UIManager.mainController.profilePhoto.setImage(new Image("http://116.204.117.136/portrait/"
@@ -304,17 +332,14 @@ public class TestEventHandler implements IClientEventHandler {
                         UIManager.mainController.profilePhoto.setImage(new Image("resources/personImage/uncertainty.png"));
                     }
                     UIManager.personController.protraitImage.setImage(new Image("resources/personImage/uncertainty.png"));
+                    File file = new File("resources/personImage/uncertainty.png");
+                    try {
+                        UINetwork.uploadProtrait(file.toPath());
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
-                UIManager.personController.username.setText(data.getUsername());
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(data.getRegisteredDate());
-                UIManager.personController.loginDate.setText(
-                        calendar.get(Calendar.YEAR)+"."+(calendar.get(Calendar.MONTH)+1)+"."
-                        +calendar.get(Calendar.DAY_OF_MONTH));
-                for (String key : data.getHistory().keySet()){
-                    UIManager.personController.setProvinceColor(key, Math.toIntExact(data.getHistory().get(key)));
-                }
-                UIManager.personController.addChartInfo(data.getHistory());
+
             }
         });
     }

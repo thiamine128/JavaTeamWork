@@ -56,6 +56,8 @@
                   <Separator prefWidth="200.0" />
                   <WebView fx:id="postContent" minHeight="649.0" prefHeight="649.0" prefWidth="917.0" />
                   <Separator prefWidth="200.0" />
+                  <HBox fx:id="imageBox" minHeight="0.0" prefHeight="1.0" prefWidth="916.0" />
+                  <Separator prefWidth="200.0" />
                   <Text fill="#7d7b7b" strokeType="OUTSIDE" strokeWidth="0.0" text="~comments~" textAlignment="CENTER" wrappingWidth="915.5735569000244">
                      <font>
                         <Font name="System Bold" size="12.0" />
