@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
 import post.ImageSelect;
+import post.LanguageTool;
 import ui.UIAnimation;
 import ui.UIFunction;
 import ui.UIManager;
@@ -135,7 +136,8 @@ public class EditorController implements Initializable {
                     editorHint.setOpacity(0.8);
                     UIAnimation.timer(2000, event ->
                             UINetwork.publishPost(editorTitleField.getText(),
-                                    provinceInfo.getText(), editor.getHtmlText(), postImagePath));
+                                    LanguageTool.chineseToEnglish.get(provinceInfo.getText()),
+                                    editor.getHtmlText(), postImagePath));
                 }else editorHint.setText("发送内容过短！");
             }
         });

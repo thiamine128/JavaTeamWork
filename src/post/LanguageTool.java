@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class LanguageTool {
     public static Map<String, String> englishToChinese = new HashMap<>();
-
+    public static Map<String, String> chineseToEnglish = new HashMap<>();
     static {
         englishToChinese.put("anhui", "安徽");
         englishToChinese.put("beijing", "北京");
@@ -41,5 +41,9 @@ public class LanguageTool {
         englishToChinese.put("xizang", "西藏");
         englishToChinese.put("yunnan", "云南");
         englishToChinese.put("zhejiang", "浙江");
+
+        for (String key : englishToChinese.keySet()){
+            chineseToEnglish.put(englishToChinese.get(key), key);
+        }
     }
 }

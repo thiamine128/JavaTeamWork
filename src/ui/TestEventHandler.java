@@ -131,7 +131,6 @@ public class TestEventHandler implements IClientEventHandler {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                UIManager.postViewController.imageBox.getChildren().clear();
 
                 UIManager.postViewController.authorProtrait.setImage(
                         new Image("http://116.204.117.136/portrait/"+post.getPoster()+".png"));
@@ -178,7 +177,9 @@ public class TestEventHandler implements IClientEventHandler {
                     throw new RuntimeException(e);
                 }
 
+                UIManager.postViewController.resetImageBox();
                 for (UUID id : post.getImages()){
+                    System.out.println("fetch image: "+id);
                     try {
                         UIManager.postViewController.addImage(UINetwork.getImageUrl(id));
                     } catch (MalformedURLException e) {

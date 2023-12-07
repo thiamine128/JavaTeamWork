@@ -40,12 +40,20 @@ public class PostViewController implements Initializable {
     public AnchorPane replyPane;
     public ImageView replyConfirm, replyCancel;
     public UUID postID;
-    public HBox imageBox;
+    public VBox imageBox;
 
     public void addImage(URL url){
         ImageView imageView = new ImageView(new Image(url.toString()));
+        imageView.setFitHeight(606);
         imageView.setFitWidth(916);
+        imageView.setPreserveRatio(false);
+        imageBox.setMinHeight(imageBox.getMinHeight()+606);
         imageBox.getChildren().addAll(imageView);
+    }
+
+    public void resetImageBox(){
+        imageBox.setMinHeight(1);
+        imageBox.getChildren().clear();
     }
 
     @Override
