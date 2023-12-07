@@ -118,7 +118,7 @@ public class TestEventHandler implements IClientEventHandler {
     @Override
     public void onPublishPostFailed(String error) {
         System.out.println("Failed to publish post:");
-        System.out.println("error");
+        System.out.println(error);
         UIManager.editorController.resetEditor();
     }
 

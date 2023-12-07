@@ -364,13 +364,13 @@ public class AppClient {
     获取用户头像URL
      */
     public URL getPortraitURL(String portrait) throws MalformedURLException {
-        return new URL(protocol, host, 80, "/image/portrait/" + portrait);
+        return new URL(protocol, host, 80, "/portrait/" + portrait);
     }
 
     /*
     获取帖子图片URL
      */
     public URL getPostImageURL(UUID image) throws MalformedURLException {
-        return new URL(protocol, host, 80, "/image/post/" + image.toString() + ".png");
+        return new URL(protocol, host, 80, "/post/" + image.toString() + ".png");
     }
 }
