@@ -12,6 +12,7 @@ import ui.UIFunction;
 import ui.UIManager;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class ProvinceController implements Initializable {
@@ -116,7 +117,12 @@ public class ProvinceController implements Initializable {
 
     private void setMainImage(String path0){
         System.out.println(path0);
-        mainImage.setImage(new Image(path0+"1.jpg"));
+        try {
+            Random r = new Random();
+            mainImage.setImage(new Image(path0+""+(r.nextInt(2)+1)+".jpg"));
+        }catch (Exception e){
+             mainImage.setImage(new Image("./resources/mask.jpg"));
+        }
     }
 
     @Override
