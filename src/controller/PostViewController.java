@@ -43,10 +43,9 @@ public class PostViewController implements Initializable {
     public VBox imageBox;
 
     public void addImage(URL url){
-        ImageView imageView = new ImageView(new Image(url.toString()));
+        ImageView imageView = new ImageView(new Image(url.toString(), true));
         imageView.setFitHeight(606);
         imageView.setFitWidth(916);
-        imageView.setPreserveRatio(false);
         imageBox.setMinHeight(imageBox.getMinHeight()+606);
         imageBox.getChildren().addAll(imageView);
     }
