@@ -220,7 +220,7 @@ public class UIFunction {
                     System.out.println("Win!"); //debug
                     for (int i=1;i<=3;i++){
                         UIAnimation.puzzleFireworks(//横坐标、纵坐标、场景组
-                                50+900*Math.random(), 50+700*Math.random(), puzzleGroup);
+                                50+900*Math.random(), 50+700*Math.random(), puzzleGroup, true);
                     }
 
                     UIAnimation.timer(5000, event1 -> {

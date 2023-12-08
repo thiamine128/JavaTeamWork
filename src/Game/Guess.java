@@ -42,7 +42,7 @@ public class Guess {
                     name=allDetail[nowId].folkName[seed.nextInt(allDetail[nowId].folkSum)+1];
                 }
                 int random0 = seed.nextInt(2)+1;
-                String path="./image/"+all[nowId]+"_"+type[chooseType]+"_"+(name+"_"+(random0))+".jpg";
+                String path="./image0/"+all[nowId]+"_"+type[chooseType]+"_"+(name+"_"+(random0))+".jpg";
                 one.path.add(path);
             }
             Collections.shuffle(one.path,seed);

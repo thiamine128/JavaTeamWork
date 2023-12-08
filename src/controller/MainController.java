@@ -227,6 +227,20 @@ public class MainController implements Initializable {
                 UIAnimation.setRotateAnimation(toQuestionButton, 0, 360);
             }
         });
+
+        toQuestionButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.setBlackMask(mask, event -> {
+                    try {
+                        UIManager.instance.toQuestionFrame();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }, 600);
+            }
+        });
+
         HButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {

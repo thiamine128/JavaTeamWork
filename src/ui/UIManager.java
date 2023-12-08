@@ -51,6 +51,9 @@ public class UIManager extends Application {
 
         Parent personFrameParent = loader.load(getClass().getResource("../fxmlFile/personFrame.fxml"));
         personFrameScene = new Scene(personFrameParent);
+
+        Parent questionFrameParent = loader.load(getClass().getResource("../fxmlFile/questionFrame.fxml"));
+        questionFrameScene = new Scene(questionFrameParent);
     }
 
     public void toEditorFrame() throws Exception{
@@ -109,7 +112,10 @@ public class UIManager extends Application {
         }
         changeScene(personFrameScene);
     }
-
+    public void toQuestionFrame() throws Exception {
+        questionController.resetQuestion();
+        changeScene(questionFrameScene);
+    }
     public void changeScene(Scene scene) throws Exception { //切换fxml场景
         mainScene = scene;
         mainStage.setScene(scene); //设定
@@ -126,6 +132,7 @@ public class UIManager extends Application {
     private static Scene postViewFrameScene; //具体帖子浏览器
     private static Scene loginFrameScene; //登录界面舞台
     private static Scene personFrameScene;
+    private static Scene questionFrameScene;
     private final double iniSceneWidth = 1000, iniSceneHeight = 800; //大小设定
     public static EditorController editorController;
     public static LoginController loginController;
@@ -135,6 +142,7 @@ public class UIManager extends Application {
     public static ProvinceController provinceController;
     public static PuzzleController puzzleController;
     public static PersonController personController;
+    public static QuestionController questionController;
 
     @Override
     public void start(Stage stage) throws Exception { //窗口初始化
