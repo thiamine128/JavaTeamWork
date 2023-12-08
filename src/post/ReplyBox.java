@@ -77,7 +77,8 @@ public class ReplyBox extends TextFlow {
                 //点击评论进行回复（二级回复）
                 UIManager.postViewController.replyPane.setOpacity(0.8);
                 UIManager.postViewController.replyPane.setMouseTransparent(false);
-
+                UIManager.postViewController.replyField.setText("");
+                UIManager.postViewController.replyField.setPromptText("回复"+thisUsername);
                 UIManager.postViewController.replyCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {

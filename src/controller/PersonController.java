@@ -55,8 +55,8 @@ public class PersonController implements Initializable {
     }
 
     public void setProvinceColor(String provinceName, int cnt){
-        if (cnt > 100) cnt = 100;
-        double degree = 1.0 - 0.3*(cnt)/100;
+        if (cnt > 10) cnt = 10;
+        double degree = 1.0 - 0.3*(cnt)/10;
         for (Node provinceImage : provinceList)if(provinceImage.getId().equals(provinceName)){
             provinceImage.setEffect(new ColorAdjust(degree, 1.0, 0.0, 1.0));
         }
