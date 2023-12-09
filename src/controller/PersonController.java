@@ -66,6 +66,7 @@ public class PersonController implements Initializable {
 
     public void uploadPersonalProtrait() throws IOException { //上传图片
         File personalImage = fileChooser.showOpenDialog(UIManager.mainStage);
+        System.out.println(personalImage.toPath());
         if (personalImage != null){
             UINetwork.uploadProtrait(personalImage.toPath());
             UIAnimation.timer(2000, event ->

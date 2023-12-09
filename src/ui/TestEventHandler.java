@@ -333,9 +333,10 @@ public class TestEventHandler implements IClientEventHandler {
                         UIManager.mainController.profilePhoto.setImage(new Image("resources/personImage/uncertainty.png"));
                     }
                     UIManager.personController.protraitImage.setImage(new Image("resources/personImage/uncertainty.png"));
-                    File file = new File("resources/personImage/uncertainty.png");
+                    File file = new File("src/resources/personImage/uncertainty.png");
+                    System.out.println(file.getAbsoluteFile().toPath());
                     try {
-                        UINetwork.uploadProtrait(file.toPath());
+                        UINetwork.uploadProtrait(file.getAbsoluteFile().toPath());
                     } catch (FileNotFoundException e) {
                         throw new RuntimeException(e);
                     }
