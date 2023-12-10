@@ -311,6 +311,67 @@ public class AppClient {
         );
     }
 
+    public void likePost(UUID uuid) {
+        HttpRequest request = authenticatedBuilder()
+                .uri(URI.create(uri + "/post/like" + "?id=" + uuid.toString()))
+                .POST(HttpRequest.BodyPublishers.noBody()).build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onLikePostSuccess();
+                        return;
+                    }
+                    clientEventHandler.onLikePostFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
+    public void dislikePost(UUID uuid) {
+        HttpRequest request = authenticatedBuilder()
+                .uri(URI.create(uri + "/post/dislike" + "?id=" + uuid.toString()))
+                .POST(HttpRequest.BodyPublishers.noBody()).build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onDislikePostSuccess();
+                        return;
+                    }
+                    clientEventHandler.onDislikePostFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
+    public void checkLikedPost(UUID uuid) {
+        HttpRequest request = authenticatedBuilder()
+                .uri(URI.create(uri + "/user/liked-post" + "?id=" + uuid))
+                .GET().build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    System.out.println(body.body());
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onCheckLikedPostSuccess(uuid, response.get("data").getAsBoolean());
+                        return;
+                    }
+                    clientEventHandler.onCheckLikedPostFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
     /*
     上传头像
     本地文件路径

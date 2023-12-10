@@ -371,4 +371,34 @@ public class TestEventHandler implements IClientEventHandler {
 
     }
 
+    @Override
+    public void onLikePostSuccess() {
+
+    }
+
+    @Override
+    public void onLikePostFailed(String error) {
+
+    }
+
+    @Override
+    public void onDislikePostSuccess() {
+
+    }
+
+    @Override
+    public void onDislikePostFailed(String error) {
+
+    }
+
+    @Override
+    public void onCheckLikedPostSuccess(UUID post, boolean liked) {
+
+    }
+
+    @Override
+    public void onCheckLikedPostFailed(String error) {
+
+    }
+
 }

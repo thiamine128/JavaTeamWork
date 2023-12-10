@@ -49,4 +49,10 @@ public interface IClientEventHandler {
     void onUpdateJigsawFailed(String error);
     void onUpdateQuizSuccess();
     void onUpdateQuizFailed(String error);
+    void onLikePostSuccess();
+    void onLikePostFailed(String error);
+    void onDislikePostSuccess();
+    void onDislikePostFailed(String error);
+    void onCheckLikedPostSuccess(UUID post, boolean liked);
+    void onCheckLikedPostFailed(String error);
 }
