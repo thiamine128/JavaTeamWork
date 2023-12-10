@@ -351,4 +351,24 @@ public class TestEventHandler implements IClientEventHandler {
 
     }
 
+    @Override
+    public void onUpdateJigsawSuccess() {
+
+    }
+
+    @Override
+    public void onUpdateJigsawFailed(String error) {
+
+    }
+
+    @Override
+    public void onUpdateQuizSuccess() {
+
+    }
+
+    @Override
+    public void onUpdateQuizFailed(String error) {
+
+    }
+
 }

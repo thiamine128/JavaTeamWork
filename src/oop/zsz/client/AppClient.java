@@ -336,6 +336,50 @@ public class AppClient {
         );
     }
 
+    public void updateJigsaw(Long time) throws FileNotFoundException {
+
+        HttpRequest request = authenticatedBuilder()
+                .uri(URI.create(uri + "/user/mark-jigsaw-flag" + "?time=" + time))
+                .POST(HttpRequest.BodyPublishers.noBody()).build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onUpdateJigsawSuccess();
+                        return;
+                    }
+                    clientEventHandler.onUpdateJigsawFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
+    public void updateQuiz() throws FileNotFoundException {
+
+        HttpRequest request = authenticatedBuilder()
+                .uri(URI.create(uri + "/user/mark-quiz"))
+                .POST(HttpRequest.BodyPublishers.noBody()).build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onUpdateQuizSuccess();
+                        return;
+                    }
+                    clientEventHandler.onUpdateQuizFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
+
+
     /*
     获取用户资料
      */
