@@ -55,6 +55,7 @@ public class TestEventHandler implements IClientEventHandler {
                                 UIAnimation.timer(1500, eventt->{
                                     UIAnimation.fadeAnimation(UIManager.loginController.loginMainTitleWhite, event -> {
                                                 try {
+                                                    AudioManager.setBGMusic(2);
                                                     manager.toMainFrame(true);
                                                     UINetwork.fetchProfile(username);
                                                 } catch (Exception e) {

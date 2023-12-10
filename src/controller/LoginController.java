@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import ui.AudioManager;
 import ui.UIAnimation;
 import ui.UIFunction;
 import ui.UIManager;
@@ -50,6 +51,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         UIManager.loginController = this;
+        AudioManager.setBGMusic(1);
     }
 
 }

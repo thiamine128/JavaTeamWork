@@ -87,7 +87,6 @@ public class UIFunction {
         loginController.confirmButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-
                 //登录？注册？
                 switch (loginController.loginFrameSituation){
                     case 1: {
