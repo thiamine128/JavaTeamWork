@@ -71,4 +71,13 @@ public class UINetwork {
     public static URL getImageUrl(UUID imageId) throws MalformedURLException {
         return appClient.getPostImageURL(imageId);
     }
+
+    public static void setPuzzleWin(Long puzzleTime) throws FileNotFoundException {
+        appClient.updateJigsaw(puzzleTime);
+    }
+
+    public static void setQuestionWin() throws FileNotFoundException {
+        appClient.updateQuiz();
+    }
+
 }

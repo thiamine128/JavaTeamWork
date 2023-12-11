@@ -15,6 +15,7 @@ import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -221,7 +222,11 @@ public class UIFunction {
                         UIAnimation.puzzleFireworks(//横坐标、纵坐标、场景组
                                 50+900*Math.random(), 50+700*Math.random(), puzzleGroup, true);
                     }
-
+                    try {
+                        UINetwork.setPuzzleWin(UIManager.puzzleController.timer);
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
                     UIAnimation.timer(5000, event1 -> {
                         UIAnimation.setBlackMask(manager.puzzleController.puzzleMask, event0 -> {
                             try {

@@ -312,6 +312,22 @@ public class TestEventHandler implements IClientEventHandler {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+
+                if (data.getJigsawFlag() != null){
+                    UIManager.personController.puzzleTrophy.setImage(
+                            new Image("./resources/personImage/puzzle_trophy.png"));
+                    int timer = Math.toIntExact(data.getJigsawTime());
+                    UIManager.personController.puzzleTime.setText(String.format("%02d:%02d", timer/60, timer%60));
+                }else {
+                    UIManager.personController.puzzleTrophy.setImage(
+                            new Image("./resources/personImage/puzzle_trophy_null.png"));
+                    UIManager.personController.puzzleTime.setText("");
+                }
+                if (data.getQuizFlag() != null) UIManager.personController.questionTrophy.setImage(
+                        new Image("./resources/personImage/question_trophy.png"));
+                else UIManager.personController.questionTrophy.setImage(
+                        new Image("./resources/personImage/question_trophy_null.png"));
+
                 UIManager.personController.username.setText(data.getUsername());
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(data.getRegisteredDate());

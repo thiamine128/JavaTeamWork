@@ -14,7 +14,9 @@ import javafx.scene.text.Text;
 import post.LanguageTool;
 import ui.UIAnimation;
 import ui.UIManager;
+import ui.UINetwork;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -86,7 +88,15 @@ public class QuestionController implements Initializable {
                 questionMask.setMouseTransparent(true);
             }else{
                 provinceName.setFill(Color.rgb(0, 155, 255));
-                provinceName.setText("已完成所有题目");
+                if (correct < 10) provinceName.setText("已完成所有题目");
+                else {
+                    provinceName.setText("恭喜你获得答题奖杯");
+                    try {
+                        UINetwork.setQuestionWin();
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
                 starBool = false;
                 UIAnimation.timer(3000, event1 -> {
                     UIAnimation.setBlackMask(questionMask, event2 -> {

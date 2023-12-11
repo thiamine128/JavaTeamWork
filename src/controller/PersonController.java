@@ -33,7 +33,7 @@ public class PersonController implements Initializable {
     public ImageView personCancel, changeButton; //退出按钮、切换头像按钮
     public ImageView level, protraitImage, hkImage, mcImage; //用户等级、头像、港澳贴图
     public Group provinceGroup; //身份图片组
-    public Text username, loginDate; //用户名、注册日期
+    public Text username, loginDate, puzzleTime; //用户名、注册日期
     public ImageView puzzleTrophy, postTrophy, questionTrophy; //奖杯
     public Text puzzleHint, postHint, questionHint; //奖杯名称显示
     public StackedBarChart<String, Integer> chart;
@@ -101,6 +101,10 @@ public class PersonController implements Initializable {
         else if (cntSum < 25) level.setImage(new Image("resources/personImage/3.png"));
         else if (cntSum < 50) level.setImage(new Image("resources/personImage/4.png"));
         else level.setImage(new Image("resources/personImage/5.png"));
+
+        if (cntSum >= 100) postTrophy.setImage(new Image("./resources/personImage/post_trophy.png"));
+        else postTrophy.setImage(new Image("./resources/personImage/post_trophy_null.png"));
+
     }
 
     @Override
