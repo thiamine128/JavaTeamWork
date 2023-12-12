@@ -34,7 +34,7 @@ public class TestEventHandler implements IClientEventHandler {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-
+                AudioManager.setButtonAudio(4);
                 UIManager.personController.username.setText(username);
                 UIManager.mainController.frameUsername.setText(username);
                 UIManager.loginController.loginHint.setText("登录成功");
@@ -55,7 +55,7 @@ public class TestEventHandler implements IClientEventHandler {
                                 UIAnimation.timer(1500, eventt->{
                                     UIAnimation.fadeAnimation(UIManager.loginController.loginMainTitleWhite, event -> {
                                                 try {
-                                                    AudioManager.setBGMusic(2);
+                                                    AudioManager.cancelMusic();
                                                     manager.toMainFrame(true);
                                                     UINetwork.fetchProfile(username);
                                                 } catch (Exception e) {

@@ -14,6 +14,14 @@ public class AudioManager {
         player.play();
     }
 
+    private static void oneShot(String musicFile, double volume){
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer player = new MediaPlayer(sound);
+        player.setCycleCount(1);
+        player.setVolume(volume);
+        player.play();
+    }
+
     public static void setButtonAudio(int i){
         switch (i){
             case 1: oneShot("src/audio/button1.wav"); break;
@@ -21,6 +29,14 @@ public class AudioManager {
             case 3: oneShot("src/audio/button3.wav"); break;
             case 4: oneShot("src/audio/button4.mp3"); break;
         }
+    }
+
+    public static void starAudio(){
+        oneShot("src/audio/star.wav", 0.5);
+    }
+
+    public static void hitAudio(){
+        oneShot("src/audio/hit.wav");
     }
 
     public static void winAudio(endOfGame e){
@@ -35,9 +51,15 @@ public class AudioManager {
     public static void setBGMusic(int i){
         if (mainPlayer != null) {
             mainPlayer.setVolume(0.8);
-            UIAnimation.timer(500, event -> {
-                mainPlayer.setVolume(0.4);
-                UIAnimation.timer(500, event1 -> mainPlayer.stop());
+            UIAnimation.timer(200, event -> {
+                mainPlayer.setVolume(0.6);
+                UIAnimation.timer(200, event1 -> {
+                    mainPlayer.setVolume(0.4);
+                    UIAnimation.timer(200, event2->{
+                       mainPlayer.setVolume(0.2);
+                       UIAnimation.timer(200, event3 -> mainPlayer.stop());
+                    });
+                });
             });
         }
         UIAnimation.timer(1500, event -> {
@@ -49,7 +71,25 @@ public class AudioManager {
             mainPlayer.setVolume(1.0);
             mainPlayer.play();
         });
+    }
 
+    public static void cancelMusic(){
+        if (mainPlayer != null) {
+            mainPlayer.setVolume(0.8);
+            UIAnimation.timer(200, event -> {
+                mainPlayer.setVolume(0.6);
+                UIAnimation.timer(200, event1 -> {
+                    mainPlayer.setVolume(0.4);
+                    UIAnimation.timer(200, event2->{
+                        mainPlayer.setVolume(0.2);
+                        UIAnimation.timer(200, event3 -> {
+                            mainPlayer.stop();
+                            mainPlayer = null;
+                        });
+                    });
+                });
+            });
+        }
     }
 
 }

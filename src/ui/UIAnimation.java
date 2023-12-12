@@ -169,6 +169,7 @@ public class UIAnimation {
         transition.setDuration(Duration.millis(100)); //持续时间
         transition.setAutoReverse(true); //自动翻转
         transition.play(); //播放
+        AudioManager.hitAudio();
     }
 
     public static void buttonInfoImageAnimation(Node imageView, FadeTransition fadeTransition, boolean control){

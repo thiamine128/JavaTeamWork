@@ -221,6 +221,11 @@
       </AnchorPane>
       <AnchorPane prefHeight="85.0" prefWidth="484.0">
          <children>
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="17.5" layoutY="17.5" opacity="0.3" pickOnBounds="true">
+               <image>
+                  <Image url="@../resources/mask.jpg" />
+               </image>
+            </ImageView>
             <ImageView fx:id="profilePhoto" fitHeight="55.0" fitWidth="63.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/provinceFrameImage/gyroscope.png" />

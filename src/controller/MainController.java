@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -15,10 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
-import ui.UIAnimation;
-import ui.UIFunction;
-import ui.UIManager;
-import ui.UINetwork;
+import ui.*;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -46,7 +44,7 @@ public class MainController implements Initializable {
     public Text frameUsername;
     public ImageView toPostButton, toQuestionButton, HButton, hamiButton, hamiButton2;
     public ImageView profilePhoto;
-    private boolean Hsituation = false, provinceProtect = false;
+    public boolean Hsituation = false, provinceProtect = false;
     private Set<String> provinceSet = new HashSet<>();
     @FXML
     private void provinceAppear(Node[] provinceArray, int cnt, int i){ //省份贴图登入动画
@@ -63,6 +61,8 @@ public class MainController implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 UIAnimation.setSparkleCircle(mouseEvent.getX(), mouseEvent.getY(), circleAnimationGroup);
+                AudioManager.starAudio();
+                UIAnimation.timer(2000, event -> AudioManager.setBGMusic(2));
                 UIAnimation.timer(200, event -> {
                     try {
                         mainFrameButtonIni();
@@ -232,13 +232,6 @@ public class MainController implements Initializable {
             }
         });
 
-        toQuestionButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                UIAnimation.setRotateAnimation(toQuestionButton, 0, 360);
-            }
-        });
-
         toQuestionButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -252,15 +245,10 @@ public class MainController implements Initializable {
             }
         });
 
-        HButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                UIAnimation.setRotateAnimation(HButton, 0, 360);
-            }
-        });
         HButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                UIFunction.infoFade();
                 if (provinceProtect){
                     provinceProtect = false;
                     if (!Hsituation){
