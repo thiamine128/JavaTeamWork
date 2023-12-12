@@ -316,9 +316,14 @@
             <Circle fill="#e0f0ff" layoutX="195.0" layoutY="183.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" fx:id="xinjiang" />
          </children>
       </AnchorPane>
-      <ImageView fx:id="hamiButton" fitHeight="150.0" fitWidth="200.0" layoutX="750.0" layoutY="450.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="hamiButton" fitHeight="100.0" fitWidth="200.0" layoutX="725.0" layoutY="525.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/city-car.png" />
+            <Image url="@../resources/clock-tower.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="hamiButton2" fitHeight="100.0" fitWidth="200.0" layoutX="840.0" layoutY="525.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/jeep.png" />
          </image>
       </ImageView>
       <AnchorPane fx:id="hamiPane" mouseTransparent="true" prefHeight="800.0" prefWidth="1000.0">
