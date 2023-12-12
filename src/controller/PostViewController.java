@@ -59,7 +59,7 @@ public class PostViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         UIManager.postViewController = this;
 
-        postContent.setMouseTransparent(false);
+        postContent.setMouseTransparent(true);
 
         commentPane.setOpacity(0.0);
         commentPane.setMouseTransparent(true);
