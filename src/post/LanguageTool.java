@@ -1,11 +1,16 @@
 package post;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class LanguageTool {
     public static Map<String, String> englishToChinese = new HashMap<>();
     public static Map<String, String> chineseToEnglish = new HashMap<>();
+    public static Set<String> provinceSetChn = new HashSet<>();
+    public static Set<String> provinceSetEng = new HashSet<>();
+
     static {
         englishToChinese.put("anhui", "安徽");
         englishToChinese.put("beijing", "北京");
@@ -44,6 +49,8 @@ public class LanguageTool {
 
         for (String key : englishToChinese.keySet()){
             chineseToEnglish.put(englishToChinese.get(key), key);
+            provinceSetChn.add(englishToChinese.get(key));
+            provinceSetEng.add(key);
         }
     }
 }

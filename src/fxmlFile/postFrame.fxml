@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -51,6 +52,16 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
+      <TextField fx:id="provinceSearch" alignment="CENTER" layoutX="160.0" layoutY="14.0" opacity="0.8" prefHeight="41.0" prefWidth="242.0" promptText="按省份查询">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </TextField>
+      <ImageView fx:id="searchButton" fitHeight="150.0" fitWidth="41.0" layoutX="410.0" layoutY="14.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/search.png" />
+         </image>
+      </ImageView>
       <ImageView fx:id="postFrameMask" fitHeight="800.0" fitWidth="1000.0" mouseTransparent="true" pickOnBounds="true" visible="false">
          <image>
             <Image url="@../resources/mask.jpg" />

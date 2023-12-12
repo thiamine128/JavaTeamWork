@@ -248,8 +248,7 @@ public class TestEventHandler implements IClientEventHandler {
         System.out.println(error);
     }
 
-    @Override
-    public void onFetchAllPostsSuccess(Page<Post> postList) {
+    private void postsSet(Page<Post> postList){
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -266,7 +265,10 @@ public class TestEventHandler implements IClientEventHandler {
                 }
             }
         });
-
+    }
+    @Override
+    public void onFetchAllPostsSuccess(Page<Post> postList) {
+        postsSet(postList);
     }
 
     @Override
@@ -277,7 +279,7 @@ public class TestEventHandler implements IClientEventHandler {
 
     @Override
     public void onFetchPostInProvinceSuccess(Page<Post> postList) {
-
+        postsSet(postList);
     }
 
     @Override

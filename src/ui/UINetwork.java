@@ -55,6 +55,10 @@ public class UINetwork {
         appClient.fetchAllPost(pageNum, pageSize);
     }
 
+    public static void fetchPostInProvince(int pageNum, int pageSize, String provinceName){
+        appClient.fetchPostInProvince(provinceName, pageNum, pageSize);
+    }
+
     //删除指定帖子
     public static void removePost(UUID postID){
         appClient.removePost(postID);
@@ -79,5 +83,11 @@ public class UINetwork {
     public static void setQuestionWin() throws FileNotFoundException {
         appClient.updateQuiz();
     }
+
+    public static void setPostLikes(UUID postID){
+        appClient.likePost(postID);
+    }
+
+
 
 }
