@@ -16,6 +16,8 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import javafx.event.EventHandler;
 
+import static java.lang.Thread.sleep;
+
 public class UIAnimation {
 
     public static void setRotateAnimation(Node item0, double startAngle, double endAngle){
@@ -167,6 +169,7 @@ public class UIAnimation {
         transition.setDuration(Duration.millis(100)); //持续时间
         transition.setAutoReverse(true); //自动翻转
         transition.play(); //播放
+        AudioManager.hitAudio();
     }
 
     public static void buttonInfoImageAnimation(Node imageView, FadeTransition fadeTransition, boolean control){
@@ -181,13 +184,14 @@ public class UIAnimation {
     }
 
     //烟花动画：游戏胜利结算
-    public static void puzzleFireworks(double centerX, double centerY, Group sceneGroup) {
+    public static void puzzleFireworks(double centerX, double centerY, Group sceneGroup, boolean colorControl) {
         for (int i = 0; i < 1145; i++) {
 
             PathTransition transition = new PathTransition();
             FadeTransition fadeTransition = new FadeTransition();
             Circle circle = new Circle(centerX, centerY, 1.0+4.5 * Math.random()); //烟花单位元
-            circle.setFill(Color.color(Math.random(), Math.random(), Math.random())); //颜色
+            if (colorControl) circle.setFill(Color.color(Math.random(), Math.random(), Math.random())); //颜色
+            else circle.setFill(Color.color(0, 0, 0));
             sceneGroup.getChildren().addAll(circle); //载入Group
 
             Path fireworksPath = new Path(new MoveTo(centerX, centerY),
@@ -268,4 +272,22 @@ public class UIAnimation {
         fadeTransition.play();
     }
 
+    public static void starworks(Group sceneGroup) throws InterruptedException {
+        for (int i = 0; i < 5; i++) {
+            double centerX = 1000*Math.random();
+            double centerY = 600*Math.random();
+            FadeTransition fadeTransition = new FadeTransition();
+            Circle circle = new Circle(centerX, centerY, 1.0+2.5 * Math.random()); //烟花单位元
+            circle.setFill(Color.rgb(255, 255, 255)); //颜色
+            circle.setOpacity(0.0);
+            sceneGroup.getChildren().addAll(circle); //载入Group
+            fadeTransition.setCycleCount(1);
+            fadeTransition.setToValue(0);
+            fadeTransition.setNode(circle);
+            fadeTransition.setDuration(Duration.millis(600));
+            fadeTransition.setOnFinished(event1 ->
+                    sceneGroup.getChildren().removeAll(circle)); //回收烟花单位元
+            setBlackMask(circle, event -> fadeTransition.play(), 600, 0, 0.85);
+        }
+    }
 }

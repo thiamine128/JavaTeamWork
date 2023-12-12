@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import ui.ProvinceInfoStruct;
 import ui.UIAnimation;
 import ui.UIFunction;
@@ -33,6 +34,9 @@ public class PuzzleController implements Initializable {
     public ImageView puzzleFrameIni; //初始化触发器
     public ImageView puzzleCancel; //退出按键
     private List<ProvinceInfoStruct> provinceInfoSet = new ArrayList(); //省份信息列
+    public Text timerText;
+    public Thread thread;
+    public Long timer = 0L;
     public void puzzleFrameTrigger(){
 
         puzzleFrameIni.setMouseTransparent(true);
@@ -45,6 +49,8 @@ public class PuzzleController implements Initializable {
         puzzleMask.setOpacity(1.0);
 
         puzzleGroup.getChildren().clear();
+        timer = 0L;
+        timerText.setText("00:00");
 
         UIAnimation.fadeAnimation(puzzleMask, event -> {
 
@@ -90,10 +96,17 @@ public class PuzzleController implements Initializable {
             }
 
         }, false);
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        puzzleMask.setVisible(true);
         UIManager.puzzleController = this;
+        TimerThread timerThread = new TimerThread();
+        thread = new Thread(timerThread);
+        thread.setDaemon(true);
+        thread.start();
     }
+
 }

@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -15,10 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
-import ui.UIAnimation;
-import ui.UIFunction;
-import ui.UIManager;
-import ui.UINetwork;
+import ui.*;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -44,9 +42,9 @@ public class MainController implements Initializable {
     public ImageView toPuzzleButton; //拼图游戏按钮
     public ImageView mainFrameBG; //开头场景
     public Text frameUsername;
-    public ImageView toPostButton, toQuestionButton, HButton, hamiButton;
+    public ImageView toPostButton, toQuestionButton, HButton, hamiButton, hamiButton2;
     public ImageView profilePhoto;
-    private boolean Hsituation = false, provinceProtect = true;
+    public boolean Hsituation = false, provinceProtect = false;
     private Set<String> provinceSet = new HashSet<>();
     @FXML
     private void provinceAppear(Node[] provinceArray, int cnt, int i){ //省份贴图登入动画
@@ -63,6 +61,8 @@ public class MainController implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 UIAnimation.setSparkleCircle(mouseEvent.getX(), mouseEvent.getY(), circleAnimationGroup);
+                AudioManager.starAudio();
+                UIAnimation.timer(2000, event -> AudioManager.setBGMusic(2));
                 UIAnimation.timer(200, event -> {
                     try {
                         mainFrameButtonIni();
@@ -99,6 +99,12 @@ public class MainController implements Initializable {
                     provinceAppear(provinceArray, 25, 20);
                     provinceAppear(provinceArray, 30, 25);
                     provinceAppear(provinceArray, 34, 30);
+
+                    UIAnimation.timer(5000, event2 -> {
+                        System.out.println("provinceProtect is true");
+                        provinceProtect = true;
+                    });
+
                 }, false);
             });
 
@@ -106,7 +112,6 @@ public class MainController implements Initializable {
 
         setMouseCircleAnimation(circleAnimationGroup); //鼠标特效设置
         UIFunction.iniMainFrameButton(provincePane, infoImage, this); //按钮设定
-
     }
 
     public void setMouseCircleAnimation(Group group){
@@ -123,7 +128,7 @@ public class MainController implements Initializable {
     public Text hamiHint, hamiTitle;
     public Pane hamiPane;
 
-    private void hamiltonianCal(){
+    private void hamiltonianCal(boolean timeControl){
         Set <Node> nodeSet = new HashSet<>();
         for (Node j : pointPane.getChildren()){
             if (j instanceof Line) nodeSet.add(j);
@@ -139,7 +144,9 @@ public class MainController implements Initializable {
             Hamiltonian hamiltonian = new Hamiltonian();
             String [] provinces = new String[n];
             for (String name : provinceSet) provinces[i++] = name;
-            HamiltonianDetail detail = hamiltonian.calcTime(provinces);
+            HamiltonianDetail detail;
+            if (timeControl) detail = hamiltonian.calcTime(provinces);
+            else detail = hamiltonian.calcDis(provinces);
             System.out.println(Arrays.toString(provinces));
             System.out.println(Arrays.toString(detail.path));
             if (detail.found){
@@ -150,7 +157,7 @@ public class MainController implements Initializable {
                     Node p2 = findProvincePoint(result[j+1]);
                     if (p1 != null && p2 != null){
                         Line line = new Line();
-                        line.setStroke(Color.rgb(0, 52, 127));
+                        line.setStroke(Color.rgb(182, 255, 253));
                         line.setStrokeWidth(3.0);
                         line.setOpacity(0.7);
                         line.setOpacity(0.0);
@@ -162,16 +169,15 @@ public class MainController implements Initializable {
                         UIAnimation.setBlackMask(line, null, 600);
                     }
                 }
-                setHamiHint("路径生成成功", String.format("总时长为%d小时", detail.cost));
+                if (timeControl)
+                    setHamiHint("路径生成成功", String.format("总时长为%d小时", detail.cost));
+                else setHamiHint("路径生成成功", String.format("总距离为%d千米", detail.cost));
             }else{
                 setHamiHint("", "生成失败");
             }
         }else{
             setHamiHint("", "生成失败");
         }
-        UIAnimation.timer(10000, event -> {
-            setHamiHint("", "可以尝试各种方案");
-        });
     }
 
     private void setHamiHint(String title, String hint){
@@ -194,6 +200,8 @@ public class MainController implements Initializable {
         pointPane.setOpacity(0.0);
         hamiButton.setMouseTransparent(true);
         hamiButton.setOpacity(0.0);
+        hamiButton2.setMouseTransparent(true);
+        hamiButton2.setOpacity(0.0);
 
         UIManager.mainController = this;
         provinceEdge.setPreserveRatio(false);
@@ -224,21 +232,23 @@ public class MainController implements Initializable {
             }
         });
 
-        toQuestionButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        toQuestionButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                UIAnimation.setRotateAnimation(toQuestionButton, 0, 360);
+                UIAnimation.setBlackMask(mask, event -> {
+                    try {
+                        UIManager.instance.toQuestionFrame();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }, 600);
             }
         });
-        HButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                UIAnimation.setRotateAnimation(HButton, 0, 360);
-            }
-        });
+
         HButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                UIFunction.infoFade();
                 if (provinceProtect){
                     provinceProtect = false;
                     if (!Hsituation){
@@ -289,16 +299,32 @@ public class MainController implements Initializable {
                         hamiButton.setMouseTransparent(false);
                         UIAnimation.setBlackMask(hamiButton, null, 600, 0.0, 0.8);
 
+                        hamiButton2.setMouseTransparent(false);
+                        UIAnimation.setBlackMask(hamiButton2, null, 600, 0.0, 0.8);
+
                         hamiButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent mouseEvent) {
-                                hamiltonianCal();
+                                hamiltonianCal(true);
                             }
                         });
+                        hamiButton2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent mouseEvent) {
+                                hamiltonianCal(false);
+                            }
+                        });
+
                         hamiButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent mouseEvent) {
                                 UIAnimation.setRotateAnimation(hamiButton, 0, 360);
+                            }
+                        });
+                        hamiButton2.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent mouseEvent) {
+                                UIAnimation.setRotateAnimation(hamiButton2, 0, 360);
                             }
                         });
 
@@ -315,18 +341,20 @@ public class MainController implements Initializable {
                             }
                         }
 
-                        UIAnimation.timer(100, null);
-
-                        for(Node province : provincePane.getChildren()){
-                            UIAnimation.timer(300*Math.random(), event0->{
-                                province.setEffect(null);
-                                UIAnimation.vectorMove(province, 0, -20, 200, event -> {
-                                    UIAnimation.vectorMove(province, 0, 20, 200, event1 -> {
-                                        UIAnimation.timer(500, event2 -> provinceProtect = true);
+                        UIAnimation.timer(100, event5 -> {
+                            for(Node province : provincePane.getChildren()){
+                                UIAnimation.timer(300*Math.random(), event0->{
+                                    province.setEffect(null);
+                                    UIAnimation.vectorMove(province, 0, -20, 200, event -> {
+                                        UIAnimation.vectorMove(province, 0, 20, 200, event1 -> {
+                                            UIAnimation.timer(500, event2 -> provinceProtect = true);
+                                        });
                                     });
                                 });
-                            });
-                        }
+                            }
+                            UIFunction.iniMainFrameButton(provincePane, infoImage, MainController.this);
+                        });
+
                         UIAnimation.fadeAnimation(pointPane, null, false, 600);
                         Set <Node> nodeSet = new HashSet<>();
                         for (Node j : pointPane.getChildren()){
@@ -335,7 +363,8 @@ public class MainController implements Initializable {
                         for (Node j : nodeSet) pointPane.getChildren().removeAll(j);
                         hamiButton.setMouseTransparent(true);
                         UIAnimation.setBlackMask(hamiButton, null, 600, 0.8, 0.0);
-                        UIFunction.iniMainFrameButton(provincePane, infoImage, MainController.this);
+                        hamiButton2.setMouseTransparent(true);
+                        UIAnimation.setBlackMask(hamiButton2, null, 600, 0.8, 0.0);
                         UIAnimation.setBlackMask(hamiPane, null, 600, 0.8, 0.0);
                         hamiTitle.setText("");
                         hamiHint.setText("请选择省份");

@@ -33,7 +33,7 @@ public class PersonController implements Initializable {
     public ImageView personCancel, changeButton; //退出按钮、切换头像按钮
     public ImageView level, protraitImage, hkImage, mcImage; //用户等级、头像、港澳贴图
     public Group provinceGroup; //身份图片组
-    public Text username, loginDate; //用户名、注册日期
+    public Text username, loginDate, puzzleTime; //用户名、注册日期
     public ImageView puzzleTrophy, postTrophy, questionTrophy; //奖杯
     public Text puzzleHint, postHint, questionHint; //奖杯名称显示
     public StackedBarChart<String, Integer> chart;
@@ -55,8 +55,8 @@ public class PersonController implements Initializable {
     }
 
     public void setProvinceColor(String provinceName, int cnt){
-        if (cnt > 100) cnt = 100;
-        double degree = 1.0 - 0.3*(cnt)/100;
+        if (cnt > 10) cnt = 10;
+        double degree = 1.0 - 0.3*(cnt)/10;
         for (Node provinceImage : provinceList)if(provinceImage.getId().equals(provinceName)){
             provinceImage.setEffect(new ColorAdjust(degree, 1.0, 0.0, 1.0));
         }
@@ -66,6 +66,7 @@ public class PersonController implements Initializable {
 
     public void uploadPersonalProtrait() throws IOException { //上传图片
         File personalImage = fileChooser.showOpenDialog(UIManager.mainStage);
+        System.out.println(personalImage.toPath());
         if (personalImage != null){
             UINetwork.uploadProtrait(personalImage.toPath());
             UIAnimation.timer(2000, event ->
@@ -100,6 +101,10 @@ public class PersonController implements Initializable {
         else if (cntSum < 25) level.setImage(new Image("resources/personImage/3.png"));
         else if (cntSum < 50) level.setImage(new Image("resources/personImage/4.png"));
         else level.setImage(new Image("resources/personImage/5.png"));
+
+        if (cntSum >= 100) postTrophy.setImage(new Image("./resources/personImage/post_trophy.png"));
+        else postTrophy.setImage(new Image("./resources/personImage/post_trophy_null.png"));
+
     }
 
     @Override

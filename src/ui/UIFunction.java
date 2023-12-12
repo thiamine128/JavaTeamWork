@@ -15,6 +15,7 @@ import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -87,7 +88,6 @@ public class UIFunction {
         loginController.confirmButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-
                 //登录？注册？
                 switch (loginController.loginFrameSituation){
                     case 1: {
@@ -220,9 +220,13 @@ public class UIFunction {
                     System.out.println("Win!"); //debug
                     for (int i=1;i<=3;i++){
                         UIAnimation.puzzleFireworks(//横坐标、纵坐标、场景组
-                                50+900*Math.random(), 50+700*Math.random(), puzzleGroup);
+                                50+900*Math.random(), 50+700*Math.random(), puzzleGroup, true);
                     }
-
+                    try {
+                        UINetwork.setPuzzleWin(UIManager.puzzleController.timer);
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
                     UIAnimation.timer(5000, event1 -> {
                         UIAnimation.setBlackMask(manager.puzzleController.puzzleMask, event0 -> {
                             try {
@@ -302,6 +306,11 @@ public class UIFunction {
     private static Map<Node, TranslateTransition> nodeToTransDown = new HashMap<>();
     private static FadeTransition infoImageFadeTransition = new FadeTransition();
     private static FadeTransition edgeImageFadeTransition = new FadeTransition();
+
+    public static void infoFade(){
+        UIAnimation.buttonInfoImageAnimation(UIManager.mainController.infoImage, infoImageFadeTransition, false);
+    }
+
     public static void iniMainFrameButton(Pane provincePane, ImageView infoImage, MainController mainController){
 
         infoImage.setOpacity(0.0);
@@ -309,10 +318,57 @@ public class UIFunction {
         mainController.toPuzzleButton.setPickOnBounds(false);
         mainController.toPostButton.setPickOnBounds(false);
 
+        mainController.HButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.setRotateAnimation(mainController.HButton, 0, 360);
+                if (!mainController.Hsituation){
+                    Image image = new Image("resources/infoImage/path.png");
+                    infoImage.setImage(image); //设置艺术字信息
+                    UIAnimation.buttonInfoImageAnimation(infoImage, infoImageFadeTransition, true);
+                }
+            }
+        });
+        mainController.HButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.buttonInfoImageAnimation(infoImage, infoImageFadeTransition, false);
+            }
+        });
+
+        mainController.toQuestionButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.setRotateAnimation(mainController.toQuestionButton, 0, 360);
+                if (!mainController.Hsituation){
+                    Image image = new Image("resources/infoImage/question.png");
+                    infoImage.setImage(image); //设置艺术字信息
+                    UIAnimation.buttonInfoImageAnimation(infoImage, infoImageFadeTransition, true);
+                }
+            }
+        });
+        mainController.toQuestionButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.buttonInfoImageAnimation(infoImage, infoImageFadeTransition, false);
+            }
+        });
+
         mainController.toPostButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 UIAnimation.setRotateAnimation(mainController.toPostButton, 0, 360);
+                if (!mainController.Hsituation){
+                    Image image = new Image("resources/infoImage/post.png");
+                    infoImage.setImage(image); //设置艺术字信息
+                    UIAnimation.buttonInfoImageAnimation(infoImage, infoImageFadeTransition, true);
+                }
+            }
+        });
+        mainController.toPostButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.buttonInfoImageAnimation(infoImage, infoImageFadeTransition, false);
             }
         });
 
@@ -335,8 +391,21 @@ public class UIFunction {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 UIAnimation.setRotateAnimation(mainController.toPuzzleButton, 0, 360);
+                if (!mainController.Hsituation){
+                    Image image = new Image("resources/infoImage/puzzle.png");
+                    infoImage.setImage(image); //设置艺术字信息
+                    UIAnimation.buttonInfoImageAnimation(infoImage, infoImageFadeTransition, true);
+                }
+
             }
         });
+        mainController.toPuzzleButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UIAnimation.buttonInfoImageAnimation(infoImage, infoImageFadeTransition, false);
+            }
+        });
+
 
         mainController.toPuzzleButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

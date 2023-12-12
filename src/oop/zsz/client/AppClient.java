@@ -311,6 +311,67 @@ public class AppClient {
         );
     }
 
+    public void likePost(UUID uuid) {
+        HttpRequest request = authenticatedBuilder()
+                .uri(URI.create(uri + "/post/like" + "?id=" + uuid.toString()))
+                .POST(HttpRequest.BodyPublishers.noBody()).build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onLikePostSuccess();
+                        return;
+                    }
+                    clientEventHandler.onLikePostFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
+    public void dislikePost(UUID uuid) {
+        HttpRequest request = authenticatedBuilder()
+                .uri(URI.create(uri + "/post/dislike" + "?id=" + uuid.toString()))
+                .POST(HttpRequest.BodyPublishers.noBody()).build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onDislikePostSuccess();
+                        return;
+                    }
+                    clientEventHandler.onDislikePostFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
+    public void checkLikedPost(UUID uuid) {
+        HttpRequest request = authenticatedBuilder()
+                .uri(URI.create(uri + "/user/liked-post" + "?id=" + uuid))
+                .GET().build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    System.out.println(body.body());
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onCheckLikedPostSuccess(uuid, response.get("data").getAsBoolean());
+                        return;
+                    }
+                    clientEventHandler.onCheckLikedPostFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
     /*
     上传头像
     本地文件路径
@@ -335,6 +396,50 @@ public class AppClient {
                 }
         );
     }
+
+    public void updateJigsaw(Long time) throws FileNotFoundException {
+
+        HttpRequest request = authenticatedBuilder()
+                .uri(URI.create(uri + "/user/mark-jigsaw-flag" + "?time=" + time))
+                .POST(HttpRequest.BodyPublishers.noBody()).build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onUpdateJigsawSuccess();
+                        return;
+                    }
+                    clientEventHandler.onUpdateJigsawFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
+    public void updateQuiz() throws FileNotFoundException {
+
+        HttpRequest request = authenticatedBuilder()
+                .uri(URI.create(uri + "/user/mark-quiz"))
+                .POST(HttpRequest.BodyPublishers.noBody()).build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onUpdateQuizSuccess();
+                        return;
+                    }
+                    clientEventHandler.onUpdateQuizFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
+
 
     /*
     获取用户资料
@@ -364,13 +469,13 @@ public class AppClient {
     获取用户头像URL
      */
     public URL getPortraitURL(String portrait) throws MalformedURLException {
-        return new URL(protocol, host, 80, "/image/portrait/" + portrait);
+        return new URL(protocol, host, 80, "/portrait/" + portrait);
     }
 
     /*
     获取帖子图片URL
      */
     public URL getPostImageURL(UUID image) throws MalformedURLException {
-        return new URL(protocol, host, 80, "/image/post/" + image.toString() + ".png");
+        return new URL(protocol, host, 80, "/post/" + image.toString() + ".png");
     }
 }

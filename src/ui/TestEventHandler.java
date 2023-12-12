@@ -18,6 +18,9 @@ import oop.zsz.user.UserProfile;
 import post.CommentBox;
 import post.PostBox;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.util.*;
 import java.util.concurrent.CancellationException;
 
@@ -31,7 +34,7 @@ public class TestEventHandler implements IClientEventHandler {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-
+                AudioManager.setButtonAudio(4);
                 UIManager.personController.username.setText(username);
                 UIManager.mainController.frameUsername.setText(username);
                 UIManager.loginController.loginHint.setText("登录成功");
@@ -52,6 +55,7 @@ public class TestEventHandler implements IClientEventHandler {
                                 UIAnimation.timer(1500, eventt->{
                                     UIAnimation.fadeAnimation(UIManager.loginController.loginMainTitleWhite, event -> {
                                                 try {
+                                                    AudioManager.cancelMusic();
                                                     manager.toMainFrame(true);
                                                     UINetwork.fetchProfile(username);
                                                 } catch (Exception e) {
@@ -140,8 +144,12 @@ public class TestEventHandler implements IClientEventHandler {
                 Set<Comment> commentSet = post.getComments();
                 boxSet = new HashSet<>();
                 for (Comment comment : commentSet){
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(comment.getCreatedDate());
                     CommentBox commentBox = new CommentBox(comment.getId(), comment.getUser(), comment.getText(),
-                            "./resources/icon.png", "2023", post.getProvince());
+                            "./resources/icon.png", calendar.get(Calendar.YEAR)+
+                            "年"+(calendar.get(Calendar.MONTH)+1)+"月"
+                            +calendar.get(Calendar.DAY_OF_MONTH)+"日", post.getProvince());
                     for (Reply reply : comment.getReplies()){
                         if (reply.getReplyTo() == null)
                             commentBox.addReply(reply.getId(), reply.getUser(), reply.getText());
@@ -168,6 +176,16 @@ public class TestEventHandler implements IClientEventHandler {
                     manager.toPostViewFrame();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
+                }
+
+                UIManager.postViewController.resetImageBox();
+                for (UUID id : post.getImages()){
+                    System.out.println("fetch image: "+id);
+                    try {
+                        UIManager.postViewController.addImage(UINetwork.getImageUrl(id));
+                    } catch (MalformedURLException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
 
             }
@@ -230,11 +248,12 @@ public class TestEventHandler implements IClientEventHandler {
         System.out.println(error);
     }
 
-    @Override
-    public void onFetchAllPostsSuccess(Page<Post> postList) {
+    private void postsSet(Page<Post> postList){
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                UIManager.postController.setTotalNum(postList.getTotalPages());
+                System.out.println(postList.getTotalPages());
                 UIManager.postController.postMainVbox.getChildren().clear();
                 for (Post p0 : postList.getList()){
                     Calendar calendar = Calendar.getInstance();
@@ -246,7 +265,10 @@ public class TestEventHandler implements IClientEventHandler {
                 }
             }
         });
-
+    }
+    @Override
+    public void onFetchAllPostsSuccess(Page<Post> postList) {
+        postsSet(postList);
     }
 
     @Override
@@ -257,7 +279,7 @@ public class TestEventHandler implements IClientEventHandler {
 
     @Override
     public void onFetchPostInProvinceSuccess(Page<Post> postList) {
-
+        postsSet(postList);
     }
 
     @Override
@@ -292,6 +314,32 @@ public class TestEventHandler implements IClientEventHandler {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+
+                if (data.getJigsawFlag() != null){
+                    UIManager.personController.puzzleTrophy.setImage(
+                            new Image("./resources/personImage/puzzle_trophy.png"));
+                    int timer = Math.toIntExact(data.getJigsawTime());
+                    UIManager.personController.puzzleTime.setText(String.format("%02d:%02d", timer/60, timer%60));
+                }else {
+                    UIManager.personController.puzzleTrophy.setImage(
+                            new Image("./resources/personImage/puzzle_trophy_null.png"));
+                    UIManager.personController.puzzleTime.setText("");
+                }
+                if (data.getQuizFlag() != null) UIManager.personController.questionTrophy.setImage(
+                        new Image("./resources/personImage/question_trophy.png"));
+                else UIManager.personController.questionTrophy.setImage(
+                        new Image("./resources/personImage/question_trophy_null.png"));
+
+                UIManager.personController.username.setText(data.getUsername());
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(data.getRegisteredDate());
+                UIManager.personController.loginDate.setText(
+                        calendar.get(Calendar.YEAR)+"."+(calendar.get(Calendar.MONTH)+1)+"."
+                                +calendar.get(Calendar.DAY_OF_MONTH));
+                for (String key : data.getHistory().keySet()){
+                    UIManager.personController.setProvinceColor(key, Math.toIntExact(data.getHistory().get(key)));
+                }
+                UIManager.personController.addChartInfo(data.getHistory());
                 if (data.getPortrait() != null){
                     if (data.getUsername().equals(UIManager.mainController.frameUsername.getText())){
                         UIManager.mainController.profilePhoto.setImage(new Image("http://116.204.117.136/portrait/"
@@ -304,23 +352,71 @@ public class TestEventHandler implements IClientEventHandler {
                         UIManager.mainController.profilePhoto.setImage(new Image("resources/personImage/uncertainty.png"));
                     }
                     UIManager.personController.protraitImage.setImage(new Image("resources/personImage/uncertainty.png"));
+                    File file = new File("src/resources/personImage/uncertainty.png");
+                    System.out.println(file.getAbsoluteFile().toPath());
+                    try {
+                        UINetwork.uploadProtrait(file.getAbsoluteFile().toPath());
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
-                UIManager.personController.username.setText(data.getUsername());
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(data.getRegisteredDate());
-                UIManager.personController.loginDate.setText(
-                        calendar.get(Calendar.YEAR)+"."+(calendar.get(Calendar.MONTH)+1)+"."
-                        +calendar.get(Calendar.DAY_OF_MONTH));
-                for (String key : data.getHistory().keySet()){
-                    UIManager.personController.setProvinceColor(key, Math.toIntExact(data.getHistory().get(key)));
-                }
-                UIManager.personController.addChartInfo(data.getHistory());
+
             }
         });
     }
 
     @Override
     public void onFetchProfileFailed(String data) {
+
+    }
+
+    @Override
+    public void onUpdateJigsawSuccess() {
+
+    }
+
+    @Override
+    public void onUpdateJigsawFailed(String error) {
+
+    }
+
+    @Override
+    public void onUpdateQuizSuccess() {
+
+    }
+
+    @Override
+    public void onUpdateQuizFailed(String error) {
+
+    }
+
+    @Override
+    public void onLikePostSuccess() {
+
+    }
+
+    @Override
+    public void onLikePostFailed(String error) {
+
+    }
+
+    @Override
+    public void onDislikePostSuccess() {
+
+    }
+
+    @Override
+    public void onDislikePostFailed(String error) {
+
+    }
+
+    @Override
+    public void onCheckLikedPostSuccess(UUID post, boolean liked) {
+
+    }
+
+    @Override
+    public void onCheckLikedPostFailed(String error) {
 
     }
 

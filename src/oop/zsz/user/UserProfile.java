@@ -12,6 +12,9 @@ public class UserProfile {
     private Date registeredDate;
     // 发帖记录
     private Map<String, Long> history;
+    private Long jigsawTime;
+    private Boolean jigsawFlag;
+    private Boolean quizFlag;
 
     public String getUsername() {
         return username;
@@ -43,5 +46,29 @@ public class UserProfile {
 
     public void setHistory(Map<String, Long> history) {
         this.history = history;
+    }
+
+    public Boolean getJigsawFlag() {
+        return jigsawFlag;
+    }
+
+    public Boolean getQuizFlag() {
+        return quizFlag;
+    }
+
+    public Long getJigsawTime() {
+        return jigsawTime;
+    }
+
+    public void setJigsawTime(Long jigsawTime) {
+        this.jigsawTime = jigsawTime;
+    }
+
+    public void setJigsawFlag(Boolean jigsawFlag) {
+        this.jigsawFlag = jigsawFlag;
+    }
+
+    public void setQuizFlag(Boolean quizFlag) {
+        this.quizFlag = quizFlag;
     }
 }

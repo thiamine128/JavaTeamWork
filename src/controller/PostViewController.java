@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.web.HTMLEditor;
@@ -39,6 +40,20 @@ public class PostViewController implements Initializable {
     public AnchorPane replyPane;
     public ImageView replyConfirm, replyCancel;
     public UUID postID;
+    public VBox imageBox;
+
+    public void addImage(URL url){
+        ImageView imageView = new ImageView(new Image(url.toString(), true));
+        imageView.setFitHeight(606);
+        imageView.setFitWidth(916);
+        imageBox.setMinHeight(imageBox.getMinHeight()+606);
+        imageBox.getChildren().addAll(imageView);
+    }
+
+    public void resetImageBox(){
+        imageBox.setMinHeight(1);
+        imageBox.getChildren().clear();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -76,7 +76,8 @@ public class MainComment extends HBox{
                 //点击进行回复（一级回复）
                 UIManager.postViewController.replyPane.setOpacity(0.8);
                 UIManager.postViewController.replyPane.setMouseTransparent(false);
-
+                UIManager.postViewController.replyField.setText("");
+                UIManager.postViewController.replyField.setPromptText("回复"+commentAuthor.getText());
                 UIManager.postViewController.replyCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {

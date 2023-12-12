@@ -10,6 +10,11 @@
 
 <AnchorPane fx:id="primePane" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
+      <ImageView fitHeight="846.0" fitWidth="1127.0" layoutX="-80.0" layoutY="-37.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/asia%20map.png" />
+         </image>
+      </ImageView>
       <AnchorPane layoutX="-40.0" layoutY="-34.0" prefHeight="800.0" prefWidth="1000.0">
          <children>
             <ImageView fx:id="mainMap" fitHeight="800.0" fitWidth="831.0" layoutX="38.0" layoutY="28.0" preserveRatio="true">
@@ -186,6 +191,20 @@
          </children>
       </AnchorPane>
       <ImageView fx:id="infoImage" fitHeight="150.0" fitWidth="435.0" layoutX="35.0" layoutY="575.0" pickOnBounds="true" preserveRatio="true" />
+      <AnchorPane layoutX="3.0" layoutY="3.0" mouseTransparent="true" prefHeight="800.0" prefWidth="1000.0">
+         <children>
+            <Text disable="true" fill="WHITE" layoutX="900.0" layoutY="770.0" opacity="0.77" strokeType="OUTSIDE" strokeWidth="0.0" text="TRAVEL" textAlignment="CENTER" wrappingWidth="264.4813232421875" x="-200.0" y="-85.0">
+               <font>
+                  <Font name="Microsoft Himalaya" size="96.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="930.0" layoutY="800.0" strokeType="OUTSIDE" strokeWidth="0.0" text="~Wonderful Everyday~" textAlignment="CENTER" wrappingWidth="200.0" x="-200.0" y="-85.0">
+               <font>
+                  <Font name="Consolas" size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
       <AnchorPane mouseTransparent="true" prefHeight="800.0" prefWidth="1000.0">
          <children>
             <Text disable="true" fill="#2b6fc7" layoutX="900.0" layoutY="770.0" opacity="0.77" strokeType="OUTSIDE" strokeWidth="0.0" text="TRAVEL" textAlignment="CENTER" wrappingWidth="264.4813232421875" x="-200.0" y="-85.0">
@@ -202,6 +221,11 @@
       </AnchorPane>
       <AnchorPane prefHeight="85.0" prefWidth="484.0">
          <children>
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="17.5" layoutY="17.5" opacity="0.3" pickOnBounds="true">
+               <image>
+                  <Image url="@../resources/mask.jpg" />
+               </image>
+            </ImageView>
             <ImageView fx:id="profilePhoto" fitHeight="55.0" fitWidth="63.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/provinceFrameImage/gyroscope.png" />
@@ -259,7 +283,6 @@
             </Text>
          </children>
       </AnchorPane>
-      <Group fx:id="circleAnimationGroup" disable="true" />
       <AnchorPane fx:id="pointPane" prefHeight="800.0" prefWidth="1000.0">
          <children>
             <Circle fill="#e0f0ff" layoutX="233.0" layoutY="431.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" fx:id="xizang" />
@@ -298,9 +321,14 @@
             <Circle fill="#e0f0ff" layoutX="195.0" layoutY="183.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" fx:id="xinjiang" />
          </children>
       </AnchorPane>
-      <ImageView fx:id="hamiButton" fitHeight="150.0" fitWidth="200.0" layoutX="750.0" layoutY="450.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="hamiButton" fitHeight="100.0" fitWidth="200.0" layoutX="725.0" layoutY="525.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/city-car.png" />
+            <Image url="@../resources/clock-tower.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="hamiButton2" fitHeight="100.0" fitWidth="200.0" layoutX="840.0" layoutY="525.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/jeep.png" />
          </image>
       </ImageView>
       <AnchorPane fx:id="hamiPane" mouseTransparent="true" prefHeight="800.0" prefWidth="1000.0">
@@ -322,6 +350,7 @@
             <Image url="@../resources/mask.jpg" />
          </image>
       </ImageView>
+      <Group fx:id="circleAnimationGroup" disable="true" />
       <ImageView fx:id="mainFrameIni" fitHeight="800.0" fitWidth="1017.0" layoutX="-17.0" layoutY="-23.0" onMouseEntered="#mainFrameTrigger" onMouseMoved="#mainFrameTrigger" opacity="0.0" pickOnBounds="true" />
    </children>
 </AnchorPane>

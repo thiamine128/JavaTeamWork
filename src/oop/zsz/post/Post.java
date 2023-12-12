@@ -9,6 +9,7 @@ public class Post {
     private String province;
     private String text;
     private Date createdDate;
+    private Long likes;
 
     public UUID getId() {
         return id;
@@ -56,5 +57,13 @@ public class Post {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public void setLikes(Long likes) {
+        this.likes = likes;
+    }
+
+    public Long getLikes() {
+        return likes;
     }
 }
