@@ -4,6 +4,7 @@ import controller.PostController;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -262,6 +263,7 @@ public class TestEventHandler implements IClientEventHandler {
                             calendar.get(Calendar.YEAR)+"年"+(calendar.get(Calendar.MONTH)+1)+"月"
                                     +calendar.get(Calendar.DAY_OF_MONTH)+"日");
                     UIManager.postController.postMainVbox.getChildren().addAll(postbox);
+                    UIManager.postController.postMainVbox.getChildren().addAll(new Separator());
                 }
             }
         });

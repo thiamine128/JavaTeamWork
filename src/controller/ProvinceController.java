@@ -116,12 +116,13 @@ public class ProvinceController implements Initializable {
     }
 
     private void setMainImage(String path0){
-        System.out.println(path0);
         try {
             Random r = new Random();
             mainImage.setImage(new Image(path0+""+(r.nextInt(2)+1)+".jpg"));
+            System.out.println(path0);
         }catch (Exception e){
              mainImage.setImage(new Image("./resources/mask.jpg"));
+             e.printStackTrace();
         }
     }
 
