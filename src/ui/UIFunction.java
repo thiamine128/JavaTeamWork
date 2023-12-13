@@ -32,10 +32,12 @@ public class UIFunction {
         manager.postController.postCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                manager.postController.postFrameMask.setMouseTransparent(false);
                 UIAnimation.setBlackMask(manager.postController.postFrameMask, event0 -> {
                     try {
                         manager.postController.postFrameIni.setMouseTransparent(false);
                         manager.toMainFrame(true);
+                        manager.postController.postFrameMask.setMouseTransparent(true);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -191,10 +193,12 @@ public class UIFunction {
         manager.puzzleController.puzzleCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                manager.puzzleController.puzzleMask.setMouseTransparent(false);
                 UIAnimation.setBlackMask(manager.puzzleController.puzzleMask, event0 -> {
                     try {
                         manager.puzzleController.puzzleFrameIni.setMouseTransparent(false);
                         manager.toMainFrame(true);
+                        manager.puzzleController.puzzleMask.setMouseTransparent(true);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -228,10 +232,12 @@ public class UIFunction {
                         throw new RuntimeException(e);
                     }
                     UIAnimation.timer(5000, event1 -> {
+                        manager.puzzleController.puzzleMask.setMouseTransparent(false);
                         UIAnimation.setBlackMask(manager.puzzleController.puzzleMask, event0 -> {
                             try {
                                 manager.puzzleController.puzzleFrameIni.setMouseTransparent(false);
                                 manager.toMainFrame(true);
+                                manager.puzzleController.puzzleMask.setMouseTransparent(true);
                             } catch (Exception e) {
                                 throw new RuntimeException(e);
                             }
@@ -376,6 +382,7 @@ public class UIFunction {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 //进入帖子界面
+                mainController.mask.setMouseTransparent(false);
                 UIAnimation.setBlackMask(mainController.mask, event -> {
                     mainController.loadTitle.setText("旅行论坛");
                     mainController.loadText.setText("在这里与全国的旅行者进行交流！");
@@ -391,6 +398,7 @@ public class UIFunction {
                                 UIAnimation.fadeAnimation(mainController.loadPane, event3 -> {
                                     try {
                                         mainController.mainFrameIni.setMouseTransparent(false);
+                                        mainController.mask.setMouseTransparent(true);
                                         manager.toPostFrame();
                                     } catch (Exception e) {
                                         throw new RuntimeException(e);
@@ -426,7 +434,7 @@ public class UIFunction {
         mainController.toPuzzleButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-
+                mainController.mask.setMouseTransparent(false);
                 UIAnimation.setBlackMask(mainController.mask, event -> {
                     mainController.loadTitle.setText("地理拼图");
                     mainController.loadText.setText("识别省份轮廓，还原整个中国版图");
@@ -442,6 +450,7 @@ public class UIFunction {
                                 UIAnimation.fadeAnimation(mainController.loadPane, event3 -> {
                                     try {
                                         mainController.mainFrameIni.setMouseTransparent(false);
+                                        mainController.mask.setMouseTransparent(true);
                                         manager.toPuzzleFrame();
                                     } catch (Exception e) {
                                         throw new RuntimeException(e);
@@ -467,9 +476,11 @@ public class UIFunction {
                     ProvinceController.detail = provinceDetail;
                     ProvinceController.provinceName = province.getId();
 
+                    mainController.mask.setMouseTransparent(false);
                     UIAnimation.setBlackMask(mainController.mask, event1 -> {
                         try {
                             mainController.mainFrameIni.setMouseTransparent(false);
+                            mainController.mask.setMouseTransparent(true);
                             manager.toProvinceFrame();
                         } catch (Exception e) {
                             throw new RuntimeException(e);
@@ -600,11 +611,12 @@ public class UIFunction {
         BackButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
              @Override
              public void handle(MouseEvent mouseEvent) {
-
+                 manager.provinceController.provinceFrameMask.setMouseTransparent(false);
                  UIAnimation.setBlackMask(manager.provinceController.provinceFrameMask, event -> {
                      try {
                          manager.provinceController.provinceFrameIni.setMouseTransparent(false);
                          manager.toMainFrame(true);
+                         manager.provinceController.provinceFrameMask.setMouseTransparent(true);
                      } catch (Exception e) {
                          throw new RuntimeException(e);
                      }

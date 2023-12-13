@@ -61,6 +61,7 @@ public class MainController implements Initializable {
         mainFrameBG.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                mainFrameBG.setMouseTransparent(true);
                 UIAnimation.setSparkleCircle(mouseEvent.getX(), mouseEvent.getY(), circleAnimationGroup);
                 AudioManager.starAudio();
                 UIAnimation.timer(2000, event -> AudioManager.setBGMusic(2));
@@ -85,7 +86,6 @@ public class MainController implements Initializable {
 
             openingPane.setVisible(false);
             openingPane.setDisable(true);
-            mask.setMouseTransparent(true);
             UIAnimation.timer(2000, event5->{
                 UIAnimation.fadeAnimation(mask, event1->{
                     Node [] provinceArray = new Node[40];
@@ -105,7 +105,7 @@ public class MainController implements Initializable {
                         System.out.println("provinceProtect is true");
                         provinceProtect = true;
                     });
-
+                    UIAnimation.timer(2000, event2 -> mask.setMouseTransparent(true));
                 }, false);
             });
 
@@ -113,6 +113,7 @@ public class MainController implements Initializable {
 
         setMouseCircleAnimation(circleAnimationGroup); //鼠标特效设置
         UIFunction.iniMainFrameButton(provincePane, infoImage, this); //按钮设定
+        mask.setMouseTransparent(false);
     }
 
     public void setMouseCircleAnimation(Group group){
@@ -238,6 +239,7 @@ public class MainController implements Initializable {
         toQuestionButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                mask.setMouseTransparent(false);
                 UIAnimation.setBlackMask(mask, event -> {
                     loadTitle.setText("问答游戏");
                     loadText.setText("根据省份选择符合的图片，努力全部答对！");
@@ -253,6 +255,7 @@ public class MainController implements Initializable {
                                 UIAnimation.fadeAnimation(loadPane, event3 -> {
                                     try {
                                         UIManager.instance.toQuestionFrame();
+                                        mask.setMouseTransparent(true);
                                     } catch (Exception e) {
                                         throw new RuntimeException(e);
                                     }
@@ -281,12 +284,11 @@ public class MainController implements Initializable {
                                 province.setEffect(new ColorAdjust(1.0, 1.0, 0, 1.0));
                                 UIAnimation.vectorMove(province, 0, -20, 200, event -> {
                                     UIAnimation.vectorMove(province, 0, 20, 200, event1 -> {
-                                        UIAnimation.timer(500, event2 -> provinceProtect = true);
                                     });
                                 });
                             });
                         }
-
+                        UIAnimation.timer(2000, event2 -> provinceProtect = true);
                         //启动哈密顿路径模式
                         for (Node province : provincePane.getChildren()){
                             province.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -351,6 +353,7 @@ public class MainController implements Initializable {
                         UIAnimation.setBlackMask(hamiPane, null, 600, 0.0, 0.8);
 
                     }else{
+
                         Hsituation = false;
                         HButton.setEffect(null);
 
@@ -367,13 +370,13 @@ public class MainController implements Initializable {
                                     province.setEffect(null);
                                     UIAnimation.vectorMove(province, 0, -20, 200, event -> {
                                         UIAnimation.vectorMove(province, 0, 20, 200, event1 -> {
-                                            UIAnimation.timer(500, event2 -> provinceProtect = true);
                                         });
                                     });
                                 });
                             }
                             UIFunction.iniMainFrameButton(provincePane, infoImage, MainController.this);
                         });
+                        UIAnimation.timer(2000, event2 -> provinceProtect = true);
 
                         UIAnimation.fadeAnimation(pointPane, null, false, 600);
                         Set <Node> nodeSet = new HashSet<>();

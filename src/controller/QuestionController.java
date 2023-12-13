@@ -99,6 +99,7 @@ public class QuestionController implements Initializable {
                 }
                 starBool = false;
                 UIAnimation.timer(3000, event1 -> {
+                    questionMask.setMouseTransparent(false);
                     UIAnimation.setBlackMask(questionMask, event2 -> {
                         try {
                             UIManager.instance.toMainFrame(true);
@@ -152,10 +153,12 @@ public class QuestionController implements Initializable {
         questionCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                questionMask.setMouseTransparent(false);
                 UIAnimation.setBlackMask(questionMask, event -> {
                     try {
                         starBool = false;
                         UIManager.instance.toMainFrame(true);
+                        questionMask.setMouseTransparent(true);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }

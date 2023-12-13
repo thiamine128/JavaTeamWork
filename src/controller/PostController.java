@@ -43,7 +43,10 @@ public class PostController implements Initializable {
         thisPage = 1;
         thisName = "";
         fetchPosts(0, pageSize0, thisName);
-        UIAnimation.fadeAnimation(postFrameMask, null,false, 2000);
+        postFrameMask.setMouseTransparent(false);
+        UIAnimation.fadeAnimation(postFrameMask, event -> {
+            postFrameMask.setMouseTransparent(true);
+        },false, 2000);
     }
 
     private void setButtonChange(ImageView b){

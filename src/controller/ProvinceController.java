@@ -40,7 +40,10 @@ public class ProvinceController implements Initializable {
         int y = Math.abs(r.nextInt())%6 + 1;
         System.out.println("image: "+y);
         provinceBG.setImage(new Image("./resources/provinceFrameImage/bg"+y+".jpg"));
-        UIAnimation.fadeAnimation(provinceFrameMask, null, false);
+        provinceFrameMask.setMouseTransparent(false);
+        UIAnimation.fadeAnimation(provinceFrameMask, event -> {
+            provinceFrameMask.setMouseTransparent(true);
+        }, false);
         UIFunction.iniProvinceFrameButton(postButton, sparkles, provinceFrameBackButton);
         UIAnimation.titleSparkleAnimation(provinceFrameTitle, 0.5, 0.8);
 

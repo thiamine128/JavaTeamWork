@@ -51,7 +51,7 @@ public class PuzzleController implements Initializable {
         puzzleGroup.getChildren().clear();
         timer = 0L;
         timerText.setText("00:00");
-
+        puzzleMask.setMouseTransparent(false);
         UIAnimation.fadeAnimation(puzzleMask, event -> {
 
             UIAnimation.setBlackMask(puzzleInfo, null, 500);
@@ -94,6 +94,7 @@ public class PuzzleController implements Initializable {
                             UIFunction.setMousePuzzleTrans(provinceImage, puzzleGroup);},
                         100+300*Math.random());
             }
+            puzzleMask.setMouseTransparent(true);
 
         }, false);
 
