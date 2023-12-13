@@ -10,9 +10,9 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProvinceController">
    <children>
-      <ImageView fitHeight="800.0" fitWidth="1000.0" pickOnBounds="true">
+      <ImageView fx:id="provinceBG" fitHeight="800.0" fitWidth="1000.0" pickOnBounds="true">
          <image>
-            <Image url="@../resources/provinceFrameImage/bg.jpg" />
+            <Image url="@../resources/provinceFrameImage/bg1.jpg" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#edf6ff" height="560.0" layoutX="34.0" layoutY="90.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" width="830.0" />

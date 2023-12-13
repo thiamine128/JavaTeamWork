@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
+import post.Likes;
 import ui.UIAnimation;
 import ui.UIManager;
 import ui.UINetwork;
@@ -33,7 +34,7 @@ public class PostViewController implements Initializable {
     public WebView postContent;
     public ImageView authorProtrait;
     public Text authorText, title;
-    public AnchorPane commentPane;
+    public AnchorPane commentPane, mainPane;
     public ImageView likeButton, commentButton, commentCancel, commentConfirm;
     public HTMLEditor commentEditor;
     public TextField replyField;
@@ -55,6 +56,14 @@ public class PostViewController implements Initializable {
         imageBox.getChildren().clear();
     }
 
+    public void setWhiteHeart(){
+        likeButton.setImage(new Image("./resources/postViewFrameImage/hearts.png"));
+    }
+
+    public void setRedHeart(){
+        likeButton.setImage(new Image("./resources/postViewFrameImage/redHearts.png"));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         UIManager.postViewController = this;
@@ -69,7 +78,13 @@ public class PostViewController implements Initializable {
         likeButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                UIAnimation.setRotateAnimation(likeButton, 0, 360);
+                likeButton.setOpacity(0.7);
+            }
+        });
+        likeButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                likeButton.setOpacity(1.0);
             }
         });
         likeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -77,7 +92,19 @@ public class PostViewController implements Initializable {
             public void handle(MouseEvent mouseEvent) {
                 //点赞？
                 likeButton.setImage(new Image("./resources/postViewFrameImage/redHearts.png"));
-                UIAnimation.setRotateAnimation(likeButton, 0, 360);
+                UIAnimation.vectorMove(likeButton, 0, -5, 50, event -> {
+                    UIAnimation.vectorMove(likeButton, 0, 5, 50, null);
+                });
+                Likes newlikes = new Likes();
+                mainPane.getChildren().addAll(newlikes);
+                UIAnimation.setBlackMask(newlikes, null, 50, 0.0, 0.8);
+                UIAnimation.vectorMove(newlikes, 0, -8, 200, event -> {
+                    UIAnimation.fadeAnimation(newlikes, event1 -> {
+                        mainPane.getChildren().removeAll(newlikes);
+                    }, false, 200);
+                });
+                System.out.println("post likes: "+postID);
+                UINetwork.setPostLikes(postID);
             }
         });
 
@@ -87,6 +114,7 @@ public class PostViewController implements Initializable {
                 UIAnimation.setRotateAnimation(commentButton, 0, 360);
             }
         });
+
         commentButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {

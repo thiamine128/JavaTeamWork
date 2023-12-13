@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import ui.*;
 
@@ -37,7 +38,7 @@ public class MainController implements Initializable {
     @FXML
     public ImageView mask; //遮罩动画
     @FXML
-    public ImageView infoImage, provinceEdge; //省份艺术字信息
+    public ImageView infoImage, provinceEdge, loadImage; //省份艺术字信息
     public ImageView mainFrameIni; //初始化触发器
     public ImageView toPuzzleButton; //拼图游戏按钮
     public ImageView mainFrameBG; //开头场景
@@ -125,9 +126,9 @@ public class MainController implements Initializable {
         return null;
     }
 
-    public Text hamiHint, hamiTitle;
-    public Pane hamiPane;
-
+    public Text hamiHint, hamiTitle, loadText, loadTitle;
+    public Pane hamiPane, loadPane;
+    public Rectangle loadKey, rec;
     private void hamiltonianCal(boolean timeControl){
         Set <Node> nodeSet = new HashSet<>();
         for (Node j : pointPane.getChildren()){
@@ -193,6 +194,8 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        loadPane.setOpacity(0.0);
+
         hamiPane.setOpacity(0.0);
         hamiTitle.setText("");
         hamiHint.setText("请选择省份");
@@ -236,12 +239,29 @@ public class MainController implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 UIAnimation.setBlackMask(mask, event -> {
-                    try {
-                        UIManager.instance.toQuestionFrame();
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                }, 600);
+                    loadTitle.setText("问答游戏");
+                    loadText.setText("根据省份选择符合的图片，努力全部答对！");
+                    loadText.setOpacity(0.0);
+                    loadTitle.setOpacity(0.0);
+                    rec.setLayoutX(rec.getLayoutX()-1200);
+                    UIAnimation.setBlackMask(loadPane, event1 -> {
+                        UIAnimation.setBlackMask(loadTitle, null, 300, 0.0, 0.8);
+                        UIAnimation.vectorMove(rec, 1200, 0, 300, null);
+                        UIAnimation.setBlackMask(loadText, event4->{
+                            UIAnimation.vectorMove(loadKey, 400, 0, 3000, event2 -> {
+                                UIAnimation.vectorMove(loadKey, -400, 0, 10, null);
+                                UIAnimation.fadeAnimation(loadPane, event3 -> {
+                                    try {
+                                        UIManager.instance.toQuestionFrame();
+                                    } catch (Exception e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }, false, 100);
+                            });
+                        }, 300, 0.0, 0.8);
+                    }, 300);
+                }, 300);
+
             }
         });
 

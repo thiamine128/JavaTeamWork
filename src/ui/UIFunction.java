@@ -376,14 +376,30 @@ public class UIFunction {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 //进入帖子界面
-                UIAnimation.setBlackMask(mainController.mask, event1 -> {
-                    try {
-                        mainController.mainFrameIni.setMouseTransparent(false);
-                        manager.toPostFrame();
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                }, 600);
+                UIAnimation.setBlackMask(mainController.mask, event -> {
+                    mainController.loadTitle.setText("旅行论坛");
+                    mainController.loadText.setText("在这里与全国的旅行者进行交流！");
+                    mainController.loadText.setOpacity(0.0);
+                    mainController.loadTitle.setOpacity(0.0);
+                    mainController.rec.setLayoutX(mainController.rec.getLayoutX()-1200);
+                    UIAnimation.setBlackMask(mainController.loadPane, event1 -> {
+                        UIAnimation.setBlackMask(mainController.loadTitle, null, 300, 0.0, 0.8);
+                        UIAnimation.vectorMove(mainController.rec, 1200, 0, 300, null);
+                        UIAnimation.setBlackMask(mainController.loadText, event4->{
+                            UIAnimation.vectorMove(mainController.loadKey, 400, 0, 3000, event2 -> {
+                                UIAnimation.vectorMove(mainController.loadKey, -400, 0, 10, null);
+                                UIAnimation.fadeAnimation(mainController.loadPane, event3 -> {
+                                    try {
+                                        mainController.mainFrameIni.setMouseTransparent(false);
+                                        manager.toPostFrame();
+                                    } catch (Exception e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }, false, 100);
+                            });
+                        }, 300, 0.0, 0.8);
+                    }, 300);
+                }, 300);
             }
         });
 
@@ -410,14 +426,31 @@ public class UIFunction {
         mainController.toPuzzleButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                UIAnimation.setBlackMask(mainController.mask, event1 -> {
-                    try {
-                        mainController.mainFrameIni.setMouseTransparent(false);
-                        manager.toPuzzleFrame();
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                }, 600);
+
+                UIAnimation.setBlackMask(mainController.mask, event -> {
+                    mainController.loadTitle.setText("地理拼图");
+                    mainController.loadText.setText("识别省份轮廓，还原整个中国版图");
+                    mainController.loadText.setOpacity(0.0);
+                    mainController.loadTitle.setOpacity(0.0);
+                    mainController.rec.setLayoutX(mainController.rec.getLayoutX()-1200);
+                    UIAnimation.setBlackMask(mainController.loadPane, event1 -> {
+                        UIAnimation.setBlackMask(mainController.loadTitle, null, 300, 0.0, 0.8);
+                        UIAnimation.vectorMove(mainController.rec, 1200, 0, 300, null);
+                        UIAnimation.setBlackMask(mainController.loadText, event4->{
+                            UIAnimation.vectorMove(mainController.loadKey, 400, 0, 3000, event2 -> {
+                                UIAnimation.vectorMove(mainController.loadKey, -400, 0, 10, null);
+                                UIAnimation.fadeAnimation(mainController.loadPane, event3 -> {
+                                    try {
+                                        mainController.mainFrameIni.setMouseTransparent(false);
+                                        manager.toPuzzleFrame();
+                                    } catch (Exception e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }, false, 100);
+                            });
+                        }, 300, 0.0, 0.8);
+                    }, 300);
+                }, 300);
             }
         });
 

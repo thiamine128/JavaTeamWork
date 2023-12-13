@@ -88,6 +88,8 @@ public class UINetwork {
         appClient.likePost(postID);
     }
 
-
+    public static void checkLikes(UUID postID){
+        appClient.checkLikedPost(postID);
+    }
 
 }

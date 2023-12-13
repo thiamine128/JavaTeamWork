@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 public class ProvinceController implements Initializable {
 
     //provinceFrame.fxml 具体身份界面
+    public ImageView provinceBG;
     public Group provinceFrameGroup; //表面实例组
     public Rectangle maskRectangle; //图片设定矩形
     public ImageView sparkles; //相机上闪光特效
@@ -35,6 +36,10 @@ public class ProvinceController implements Initializable {
     public ImageView mainImage; //照片墙
     public void provinceFrameTrigger(){ //具体省份界面初始化
 
+        Random r = new Random();
+        int y = Math.abs(r.nextInt())%6 + 1;
+        System.out.println("image: "+y);
+        provinceBG.setImage(new Image("./resources/provinceFrameImage/bg"+y+".jpg"));
         UIAnimation.fadeAnimation(provinceFrameMask, null, false);
         UIFunction.iniProvinceFrameButton(postButton, sparkles, provinceFrameBackButton);
         UIAnimation.titleSparkleAnimation(provinceFrameTitle, 0.5, 0.8);

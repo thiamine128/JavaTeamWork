@@ -5,12 +5,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="primePane" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
-      <ImageView fitHeight="846.0" fitWidth="1127.0" layoutX="-80.0" layoutY="-37.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="846.0" fitWidth="1127.0" layoutX="-81.0" layoutY="-37.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/asia%20map.png" />
          </image>
@@ -345,11 +346,56 @@
             </Text>
          </children>
       </AnchorPane>
-      <ImageView fx:id="mask" fitHeight="800.0" fitWidth="1000.0" mouseTransparent="true" pickOnBounds="true" visible="false">
+      <ImageView fx:id="mask" fitHeight="800.0" fitWidth="1000.0" mouseTransparent="true" pickOnBounds="true">
          <image>
             <Image url="@../resources/mask.jpg" />
          </image>
       </ImageView>
+      <AnchorPane fx:id="loadPane" mouseTransparent="true" prefHeight="800.0" prefWidth="1000.0">
+         <children>
+            <Rectangle fx:id="loadKey" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="170.0" layoutX="15.0" layoutY="582.0" stroke="BLACK" strokeType="INSIDE" width="588.0" />
+            <ImageView fx:id="loadImage" fitHeight="770.0" fitWidth="1000.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../resources/questionAni.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="loadText" fill="WHITE" layoutX="45.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="说明文字" wrappingWidth="588.0">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+            <Rectangle fx:id="rec" arcHeight="5.0" arcWidth="5.0" fill="#00c4ff" height="316.0" stroke="#747474" strokeType="INSIDE" width="1100.0" />
+            <Text fx:id="loadTitle" fill="WHITE" layoutX="43.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="问答游戏" wrappingWidth="588.0">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="850.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/samara-mosque.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="417.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/island.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="89.0" fitWidth="55.0" layoutX="700.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/factory.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="89.0" fitWidth="55.0" layoutX="650.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/modern-city.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="89.0" fitWidth="55.0" layoutX="800.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/qaitbay-citadel.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
       <Group fx:id="circleAnimationGroup" disable="true" />
       <ImageView fx:id="mainFrameIni" fitHeight="800.0" fitWidth="1017.0" layoutX="-17.0" layoutY="-23.0" onMouseEntered="#mainFrameTrigger" onMouseMoved="#mainFrameTrigger" opacity="0.0" pickOnBounds="true" />
    </children>

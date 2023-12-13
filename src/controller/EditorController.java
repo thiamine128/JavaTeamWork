@@ -80,6 +80,7 @@ public class EditorController implements Initializable {
         UIManager.editorController = this;
         postSuccessHint.setOpacity(0.0);
         editorHint.setText("");
+        editorTitleField.setPromptText("在这里输入标题");
 
         editorImage.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override

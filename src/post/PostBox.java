@@ -16,6 +16,7 @@ public class PostBox extends VBox{
 
     private UUID postID;
     private String authorName;
+    private int likes;
 
     public UUID getPostID(){
         return postID;
@@ -43,6 +44,7 @@ public class PostBox extends VBox{
             @Override
             public void handle(MouseEvent mouseEvent) {
                 //进入帖子
+                UINetwork.checkLikes(postID);
                 UINetwork.fetchPost(postID);
             }
         });
@@ -93,6 +95,14 @@ public class PostBox extends VBox{
         return result;
     }
 
+    private Text likesTextMaker(){
+        Text result = new Text("  "+likes+" likes  ");
+        Font font = Font.font("system", FontWeight.BOLD, FontPosture.REGULAR, 20);
+        result.setFont(font);
+        result.setFill(Color.rgb(13, 51, 255));
+        return result;
+    }
+
     private Text cancelMaker(){
         Text result = new Text("    "+"REMOVE"+"  ");
         result.setFont(new Font(20));
@@ -126,7 +136,8 @@ public class PostBox extends VBox{
         return result;
     }
 
-    public PostBox(UUID id, String title, String author, String province, String postTime){
+    public PostBox(UUID id, String title, String author, String province, String postTime, int likes){
+        this.likes = likes;
         this.postID = id;
         this.authorName = author;
         this.setMinWidth(900);
@@ -136,6 +147,7 @@ public class PostBox extends VBox{
         this.getChildren().addAll(titleMaker(title));
         TextFlow flow = new TextFlow();
         flow.getChildren().addAll(authorMaker(author));
+        flow.getChildren().addAll(likesTextMaker());
         flow.getChildren().addAll(provinceTimeTextMaker(LanguageTool.englishToChinese.get(province), postTime));
         if (author.equals(UIManager.mainController.frameUsername.getText()))
             flow.getChildren().addAll(cancelMaker());

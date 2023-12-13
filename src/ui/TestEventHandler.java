@@ -134,6 +134,8 @@ public class TestEventHandler implements IClientEventHandler {
             @Override
             public void run() {
 
+
+
                 UIManager.postViewController.authorProtrait.setImage(
                         new Image("http://116.204.117.136/portrait/"+post.getPoster()+".png"));
 
@@ -257,11 +259,14 @@ public class TestEventHandler implements IClientEventHandler {
                 System.out.println(postList.getTotalPages());
                 UIManager.postController.postMainVbox.getChildren().clear();
                 for (Post p0 : postList.getList()){
+
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTime(p0.getCreatedDate());
+                    int likesNum = 0;
+                    if (p0.getLikes() != null) likesNum = Math.toIntExact(p0.getLikes());
                     PostBox postbox = new PostBox(p0.getId(), p0.getTitle(), p0.getPoster(), p0.getProvince(),
                             calendar.get(Calendar.YEAR)+"年"+(calendar.get(Calendar.MONTH)+1)+"月"
-                                    +calendar.get(Calendar.DAY_OF_MONTH)+"日");
+                                    +calendar.get(Calendar.DAY_OF_MONTH)+"日", likesNum);
                     UIManager.postController.postMainVbox.getChildren().addAll(postbox);
                     UIManager.postController.postMainVbox.getChildren().addAll(new Separator());
                 }
@@ -374,52 +379,54 @@ public class TestEventHandler implements IClientEventHandler {
 
     @Override
     public void onUpdateJigsawSuccess() {
-
+        System.out.println("update jigsaw success");
     }
 
     @Override
     public void onUpdateJigsawFailed(String error) {
-
+        System.out.println("update jigsaw failed");
     }
 
     @Override
     public void onUpdateQuizSuccess() {
-
+        System.out.println("update quiz success");
     }
 
     @Override
     public void onUpdateQuizFailed(String error) {
-
+        System.out.println("update quiz failed");
     }
 
     @Override
     public void onLikePostSuccess() {
-
+        System.out.println("like post success");
     }
 
     @Override
     public void onLikePostFailed(String error) {
-
+        System.out.println("like post failed");
     }
 
     @Override
     public void onDislikePostSuccess() {
-
+        System.out.println("dislike post success");
     }
 
     @Override
     public void onDislikePostFailed(String error) {
-
+        System.out.println("dislike post failed");
     }
 
     @Override
     public void onCheckLikedPostSuccess(UUID post, boolean liked) {
-
+        System.out.println("check liked success: "+liked);
+        if (liked) UIManager.postViewController.setRedHeart();
+        else UIManager.postViewController.setWhiteHeart();
     }
 
     @Override
     public void onCheckLikedPostFailed(String error) {
-
+        System.out.println("check liked post failed");
     }
 
 }
