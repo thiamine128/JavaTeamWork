@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
+import post.Dislikes;
 import post.Likes;
 import ui.UIAnimation;
 import ui.UIManager;
@@ -56,12 +57,17 @@ public class PostViewController implements Initializable {
         imageBox.getChildren().clear();
     }
 
-    public void setWhiteHeart(){
+    private boolean isLiked = false;
+    public void setWhiteHeart(int key){
+        isLiked = false;
         likeButton.setImage(new Image("./resources/postViewFrameImage/hearts.png"));
+        UIManager.postController.updateLikes(postID, key);
     }
 
-    public void setRedHeart(){
+    public void setRedHeart(int key){
+        isLiked = true;
         likeButton.setImage(new Image("./resources/postViewFrameImage/redHearts.png"));
+        UIManager.postController.updateLikes(postID, key);
     }
 
     @Override
@@ -91,20 +97,39 @@ public class PostViewController implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 //点赞？
-                likeButton.setImage(new Image("./resources/postViewFrameImage/redHearts.png"));
-                UIAnimation.vectorMove(likeButton, 0, -5, 50, event -> {
-                    UIAnimation.vectorMove(likeButton, 0, 5, 50, null);
-                });
-                Likes newlikes = new Likes();
-                mainPane.getChildren().addAll(newlikes);
-                UIAnimation.setBlackMask(newlikes, null, 50, 0.0, 0.8);
-                UIAnimation.vectorMove(newlikes, 0, -8, 200, event -> {
-                    UIAnimation.fadeAnimation(newlikes, event1 -> {
-                        mainPane.getChildren().removeAll(newlikes);
-                    }, false, 200);
-                });
-                System.out.println("post likes: "+postID);
-                UINetwork.setPostLikes(postID);
+                if (isLiked){
+                    setWhiteHeart(-1);
+                    UIAnimation.vectorMove(likeButton, 0, -5, 100, event -> {
+                        UIAnimation.vectorMove(likeButton, 0, 5, 100, null);
+                    });
+                    Dislikes newdislikes = new Dislikes();
+                    mainPane.getChildren().add(newdislikes);
+                    UIAnimation.setBlackMask(newdislikes, null, 50, 0.0, 0.8);
+                    UIAnimation.vectorMove(newdislikes, 0, -8, 200, event -> {
+                        UIAnimation.fadeAnimation(newdislikes, event1 -> {
+                            mainPane.getChildren().removeAll(newdislikes);
+                        }, false, 200);
+                    });
+                    System.out.println("post dislikes: "+postID);
+                    UINetwork.setPostDislikes(postID);
+                }else{
+                    setRedHeart(1);
+                    UIAnimation.vectorMove(likeButton, 0, -5, 50, event -> {
+                        UIAnimation.vectorMove(likeButton, 0, 5, 50, null);
+                    });
+                    Likes newlikes = new Likes();
+                    mainPane.getChildren().addAll(newlikes);
+                    UIAnimation.setBlackMask(newlikes, null, 50, 0.0, 0.8);
+                    UIAnimation.vectorMove(newlikes, 0, -8, 200, event -> {
+                        UIAnimation.fadeAnimation(newlikes, event1 -> {
+                            mainPane.getChildren().removeAll(newlikes);
+                        }, false, 200);
+                    });
+                    System.out.println("post likes: "+postID);
+                    UINetwork.setPostLikes(postID);
+                }
+                likeButton.setMouseTransparent(true);
+                UIAnimation.timer(5000, event -> likeButton.setMouseTransparent(false));
             }
         });
 

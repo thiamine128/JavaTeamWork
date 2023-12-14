@@ -107,6 +107,7 @@ public class TestEventHandler implements IClientEventHandler {
                     UIAnimation.fadeAnimation(UIManager.editorController.postSuccessHint, event1 -> {
                         try {
                             manager.toProvinceFrame(true);
+                            UIManager.editorController.imageHbox.getChildren().clear();
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
@@ -259,7 +260,6 @@ public class TestEventHandler implements IClientEventHandler {
                 System.out.println(postList.getTotalPages());
                 UIManager.postController.postMainVbox.getChildren().clear();
                 for (Post p0 : postList.getList()){
-
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTime(p0.getCreatedDate());
                     int likesNum = 0;
@@ -267,6 +267,13 @@ public class TestEventHandler implements IClientEventHandler {
                     PostBox postbox = new PostBox(p0.getId(), p0.getTitle(), p0.getPoster(), p0.getProvince(),
                             calendar.get(Calendar.YEAR)+"年"+(calendar.get(Calendar.MONTH)+1)+"月"
                                     +calendar.get(Calendar.DAY_OF_MONTH)+"日", likesNum);
+                    for (UUID imageID : p0.getImages()){
+                        try {
+                            postbox.addImage(UINetwork.getImageUrl(imageID));
+                        } catch (MalformedURLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                     UIManager.postController.postMainVbox.getChildren().addAll(postbox);
                     UIManager.postController.postMainVbox.getChildren().addAll(new Separator());
                 }
@@ -420,8 +427,8 @@ public class TestEventHandler implements IClientEventHandler {
     @Override
     public void onCheckLikedPostSuccess(UUID post, boolean liked) {
         System.out.println("check liked success: "+liked);
-        if (liked) UIManager.postViewController.setRedHeart();
-        else UIManager.postViewController.setWhiteHeart();
+        if (liked) UIManager.postViewController.setRedHeart(0);
+        else UIManager.postViewController.setWhiteHeart(0);
     }
 
     @Override

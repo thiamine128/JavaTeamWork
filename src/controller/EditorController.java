@@ -45,7 +45,7 @@ public class EditorController implements Initializable {
     }
 
     public void uploadPostImage() throws IOException { //上传图片
-        if (postImagePath.size() < 2){
+        if (postImagePath.size() <= 2){
             File postImage = fileChooser.showOpenDialog(UIManager.mainStage);
             if (postImage != null){
                 Path imagePath = postImage.toPath();
@@ -165,6 +165,7 @@ public class EditorController implements Initializable {
                     editorTitleField.clear();
                     editor.setHtmlText("");
                     UIFunction.manager.toProvinceFrame(true);
+                    imageHbox.getChildren().clear();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

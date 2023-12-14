@@ -66,4 +66,14 @@ public class Post {
     public Long getLikes() {
         return likes;
     }
+
+    private List<UUID> images;
+
+    public List<UUID> getImages() {
+        return images;
+    }
+
+    public void setImages(List<UUID> images) {
+        this.images = images;
+    }
 }

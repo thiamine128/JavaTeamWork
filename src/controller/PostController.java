@@ -2,6 +2,7 @@ package controller;
 
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
@@ -15,6 +16,7 @@ import ui.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class PostController implements Initializable {
 
@@ -29,6 +31,13 @@ public class PostController implements Initializable {
     private int thisPage = 1, pageTotalNum = 1, pageSize0 = 10;
     public void setTotalNum(int num){
         pageTotalNum = num;
+    }
+    private PostBox thisPostBox;
+    public void setPostBox(PostBox box){
+        thisPostBox = box;
+    }
+    public void updateLikes(UUID postID, int key){
+        if (thisPostBox != null) thisPostBox.setlikes(key);
     }
 
     private void fetchPosts(int pageNumber, int pageSize, String name){
