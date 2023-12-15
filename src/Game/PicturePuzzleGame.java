@@ -47,7 +47,7 @@ public class PicturePuzzleGame {
     static public boolean check() {
         for(int i=1;i<=32;i++) {
             Vector tmp=new Vector(pos[i].x-pos[provinceId.get("beijing")].x,pos[i].y-pos[provinceId.get("beijing")].y);
-            if(!Vector.checkSame(standard[i], tmp,100.0)) {
+            if(!Vector.checkSame(standard[i], tmp,20.0)) {
                 return false;
             }
         }
