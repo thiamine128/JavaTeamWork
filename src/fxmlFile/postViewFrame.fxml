@@ -25,7 +25,7 @@
             <Image url="@../resources/puzzleImage/cancel.png" />
          </image>
       </ImageView>
-      <ScrollPane fx:id="postViewScrollPane" layoutX="32.0" layoutY="29.0" opacity="0.9" pannable="true" prefHeight="676.0" prefWidth="935.0">
+      <ScrollPane fx:id="postViewScrollPane" layoutX="32.0" layoutY="29.0" opacity="0.95" pannable="true" prefHeight="676.0" prefWidth="935.0">
          <content>
             <VBox fx:id="mainVBox" prefHeight="600.0" prefWidth="917.0">
                <children>

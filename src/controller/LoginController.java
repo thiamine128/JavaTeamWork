@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -18,10 +19,10 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
-    public ImageView loginFrameIni; //登录界面触发器
+    public ImageView loginFrameIni, loginBG; //登录界面触发器
     public ImageView startHint; //初始界面提示
     public ImageView loginMainTitle, loginMainTitleWhite; //总标题
-    public AnchorPane loginPane; //登录输入端
+    public AnchorPane loginPane; //登录输, 入端
     public ImageView confirmButton; //确认按键
     public ImageView reglogButton;
     public Text loginHint, reglogTitle;
@@ -52,6 +53,7 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         UIManager.loginController = this;
         AudioManager.setBGMusic(1);
+        loginBG.setImage(new Image("./resources/loginImage/bg1.jpg"));
     }
 
 }

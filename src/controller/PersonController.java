@@ -80,7 +80,7 @@ public class PersonController implements Initializable {
         Map<String, Integer> mp0 = new TreeMap<>();
         for (String key : mp.keySet()){
             int cnt = Math.toIntExact(mp.get(key));
-            mp0.put(key, -cnt);
+            if (cnt > 0) mp0.put(key, -cnt);
             cntSum += cnt;
         }
         chart.getData().clear();
@@ -96,9 +96,9 @@ public class PersonController implements Initializable {
         for(Node n : chart.lookupAll(".default-color0.chart-bar")) {
             n.setStyle("-fx-bar-fill: blue");
         }
-        if (cntSum < 5) level.setImage(new Image("resources/personImage/1.png"));
-        else if (cntSum < 15) level.setImage(new Image("resources/personImage/2.png"));
-        else if (cntSum < 25) level.setImage(new Image("resources/personImage/3.png"));
+        if (cntSum < 20) level.setImage(new Image("resources/personImage/2.png"));
+        else if (cntSum < 30) level.setImage(new Image("resources/personImage/1.png"));
+        else if (cntSum < 40) level.setImage(new Image("resources/personImage/3.png"));
         else if (cntSum < 50) level.setImage(new Image("resources/personImage/4.png"));
         else level.setImage(new Image("resources/personImage/5.png"));
 
@@ -128,12 +128,14 @@ public class PersonController implements Initializable {
         level.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                level.setEffect(new ColorAdjust(0.7, 0.5, 0.5, 0.7));
+                level.setOpacity(0.5);
+                level.setEffect(new ColorAdjust(0.3, 0.5, 0.5, 0.3));
             }
         });
         level.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                level.setOpacity(0.8);
                 level.setEffect(null);
             }
         });

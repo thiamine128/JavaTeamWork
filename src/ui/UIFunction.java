@@ -170,6 +170,9 @@ public class UIFunction {
     private static double mouseX, mouseY;
     private static boolean mouseKey = false, isWin = false;
 
+    public static boolean checkWin(){
+        return isWin;
+    }
     public static void resetWin(){
         isWin = false;
     }
