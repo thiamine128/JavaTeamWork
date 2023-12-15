@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -56,7 +55,7 @@ public class UINetwork {
     }
 
     public static void fetchPostInProvince(int pageNum, int pageSize, String provinceName){
-        appClient.fetchPostInProvince(provinceName, pageNum, pageSize);
+        appClient.searchPost(provinceName, "", pageNum, pageSize);
     }
 
     //删除指定帖子

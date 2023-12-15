@@ -292,12 +292,12 @@ public class TestEventHandler implements IClientEventHandler {
     }
 
     @Override
-    public void onFetchPostInProvinceSuccess(Page<Post> postList) {
+    public void onSearchPostSuccessSuccess(Page<Post> postList) {
         postsSet(postList);
     }
 
     @Override
-    public void onFetchPostInProvinceFailed(String error) {
+    public void onSearchPostFailed(String error) {
 
     }
 
@@ -381,7 +381,7 @@ public class TestEventHandler implements IClientEventHandler {
 
     @Override
     public void onFetchProfileFailed(String data) {
-
+        System.out.println(data);
     }
 
     @Override

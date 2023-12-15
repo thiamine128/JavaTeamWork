@@ -268,9 +268,9 @@ public class AppClient {
     /*
     获取省份内帖子
      */
-    public void fetchPostInProvince(String province, int page, int size) {
+    public void searchPost(String province, String key, int page, int size) {
         HttpRequest request = authenticatedBuilder()
-                .uri(URI.create(uri + "/post/province" + "?province=" + province + "&page=" + page + "&size=" + size))
+                .uri(URI.create(uri + "/post/search" + "?province=" + province + "&key=" + key + "&page=" + page + "&size=" + size))
                 .GET().build();
         httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
                 body -> {
@@ -280,10 +280,10 @@ public class AppClient {
                         code = response.get("code").getAsInt();
                     }
                     if (code == 1) {
-                        clientEventHandler.onFetchPostInProvinceSuccess(gson.fromJson(response.get("data"), POSTS_PAGE_TYPE));
+                        clientEventHandler.onSearchPostSuccessSuccess(gson.fromJson(response.get("data"), POSTS_PAGE_TYPE));
                         return;
                     }
-                    clientEventHandler.onFetchPostInProvinceFailed(response.get("data").getAsString());
+                    clientEventHandler.onSearchPostFailed(response.get("data").getAsString());
                 }
         );
     }

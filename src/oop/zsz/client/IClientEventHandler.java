@@ -7,7 +7,6 @@ import oop.zsz.post.Post;
 import oop.zsz.post.Reply;
 import oop.zsz.user.UserProfile;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface IClientEventHandler {
@@ -30,9 +29,9 @@ public interface IClientEventHandler {
     void onFetchAllPostsSuccess(Page<Post> postList);
     void onFetchAllPostsFailed(String error);
 
-    void onFetchPostInProvinceSuccess(Page<Post> postList);
+    void onSearchPostSuccessSuccess(Page<Post> postList);
 
-    void onFetchPostInProvinceFailed(String error);
+    void onSearchPostFailed(String error);
 
     void onRemovePostSuccess();
 
