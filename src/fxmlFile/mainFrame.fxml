@@ -346,12 +346,12 @@
             </Text>
          </children>
       </AnchorPane>
-      <ImageView fx:id="mask" fitHeight="800.0" fitWidth="1000.0" mouseTransparent="true" pickOnBounds="true">
+      <ImageView fx:id="mask" fitHeight="800.0" fitWidth="1000.0" mouseTransparent="true" pickOnBounds="true" visible="false">
          <image>
             <Image url="@../resources/mask.jpg" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="loadPane" mouseTransparent="true" prefHeight="800.0" prefWidth="1000.0">
+      <AnchorPane fx:id="loadPane" mouseTransparent="true" opacity="0.0" prefHeight="800.0" prefWidth="1000.0">
          <children>
             <Rectangle fx:id="loadKey" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="170.0" layoutX="15.0" layoutY="582.0" stroke="BLACK" strokeType="INSIDE" width="588.0" />
             <ImageView fx:id="loadImage" fitHeight="770.0" fitWidth="1000.0" pickOnBounds="true">

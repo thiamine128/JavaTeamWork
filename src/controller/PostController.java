@@ -41,8 +41,11 @@ public class PostController implements Initializable {
     }
 
     private void fetchPosts(int pageNumber, int pageSize, String name){
+        System.out.println("search: "+name);
         if (name.length() == 0) UINetwork.fetchAllPost(pageNumber, pageSize);
-        else UINetwork.fetchPostInProvince(pageNumber, pageSize, name);
+        else if (LanguageTool.provinceSetEng.contains(name))
+            UINetwork.fetchPostInProvince(pageNumber, pageSize, name, "");
+        else UINetwork.fetchPostInProvince(pageNumber, pageSize, "", name);
         pageNum.setText((pageNumber+1)+"");
     }
 
@@ -83,7 +86,11 @@ public class PostController implements Initializable {
             thisName = LanguageTool.chineseToEnglish.get(provinceName);
             fetchPosts(0, 10, thisName);
             thisPage = 1;
-        }else if (provinceName.length() == 0){
+        }else if (provinceName.length() > 0){
+            thisName = provinceName;
+            fetchPosts(0, pageSize0, provinceName);
+            thisPage = 1;
+        }else{
             thisName = "";
             fetchPosts(0, pageSize0, "");
             thisPage = 1;

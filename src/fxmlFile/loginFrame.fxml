@@ -20,7 +20,7 @@
             <Image url="@../resources/loginImage/bg1.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="loginMainTitle" fitHeight="437.0" fitWidth="633.0" layoutX="184.0" layoutY="242.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="loginMainTitle" fitHeight="437.0" fitWidth="633.0" layoutX="184.0" layoutY="242.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../resources/loginImage/TitleImage.png" />
          </image></ImageView>
@@ -28,29 +28,54 @@
          <image>
             <Image url="@../resources/loginImage/startButton.png" />
          </image></ImageView>
-      <AnchorPane fx:id="loginPane" opacity="0.0" prefHeight="800.0" prefWidth="1000.0">
+      <AnchorPane fx:id="loginPane" prefHeight="800.0" prefWidth="1000.0">
          <children>
-            <PasswordField fx:id="passwordInput" layoutX="430.0" layoutY="510.0" opacity="0.8" prefHeight="36.0" prefWidth="260.0" promptText="请输入密码">
+            <PasswordField fx:id="passwordInput" layoutX="430.0" layoutY="490.0" opacity="0.8" prefHeight="36.0" prefWidth="260.0" promptText="请输入密码">
                <font>
                   <Font size="18.0" />
                </font>
             </PasswordField>
-            <TextField fx:id="usernameInput" layoutX="430.0" layoutY="459.0" opacity="0.8" prefHeight="36.0" prefWidth="260.0" promptText="请输入你的用户名">
+            <TextField fx:id="usernameInput" layoutX="430.0" layoutY="439.0" opacity="0.8" prefHeight="36.0" prefWidth="260.0" promptText="请输入你的用户名">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Text fill="#2d42c7" layoutX="320.0" layoutY="486.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+            <TextField fx:id="codeInput" layoutX="430.0" layoutY="388.0" opacity="0.8" prefHeight="36.0" prefWidth="260.0" promptText="请输入邮件验证码">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="emailInput" layoutX="430.0" layoutY="337.0" opacity="0.8" prefHeight="36.0" prefWidth="220.0" promptText="请输入电子邮箱">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <ImageView fx:id="sendButton" fitHeight="42.0" fitWidth="40.0" layoutX="650.0" layoutY="335.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/loginImage/envelope.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="lemail" fill="#2d42c7" layoutX="335.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email ">
                <font>
                   <Font name="Freestyle Script" size="36.0" />
                </font>
             </Text>
-            <Text fill="#2d42c7" layoutX="320.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+            <Text fx:id="lcode" fill="#2d42c7" layoutX="310.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verification">
                <font>
                   <Font name="Freestyle Script" size="36.0" />
                </font>
             </Text>
-            <Text fx:id="reglogTitle" fill="#212fe6" layoutX="309.0" layoutY="424.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN" textAlignment="CENTER" wrappingWidth="381.04693603515625">
+            <Text fill="#2d42c7" layoutX="320.0" layoutY="466.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+               <font>
+                  <Font name="Freestyle Script" size="36.0" />
+               </font>
+            </Text>
+            <Text fill="#2d42c7" layoutX="320.0" layoutY="517.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+               <font>
+                  <Font name="Freestyle Script" size="36.0" />
+               </font>
+            </Text>
+            <Text fx:id="reglogTitle" fill="#212fe6" layoutX="309.0" layoutY="290.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN" textAlignment="CENTER" wrappingWidth="381.04693603515625">
                <font>
                   <Font name="Engravers MT" size="36.0" />
                </font>
@@ -60,12 +85,22 @@
                   <Image url="@../resources/loginImage/check-mark.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="reglogButton" fitHeight="42.0" fitWidth="40.0" layoutX="602.0" layoutY="549.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="regButton" fitHeight="42.0" fitWidth="40.0" layoutX="602.0" layoutY="549.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/loginImage/archive-register.png" />
                </image>
             </ImageView>
-            <Text fx:id="loginHint" fill="#1a83c5" layoutX="337.0" layoutY="577.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="账号注册" textAlignment="CENTER" wrappingWidth="259.7178039550781">
+            <ImageView fx:id="resetButton" fitHeight="42.0" fitWidth="42.0" layoutX="554.0" layoutY="549.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/loginImage/passport.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="logButton" fitHeight="42.0" fitWidth="40.0" layoutX="506.0" layoutY="549.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/loginImage/house.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="loginHint" fill="#1a83c5" layoutX="321.0" layoutY="577.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="账号注册" textAlignment="CENTER" wrappingWidth="180.38446044921875">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

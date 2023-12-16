@@ -46,7 +46,7 @@ public class TestEventHandler implements IClientEventHandler {
                     UIAnimation.setBlackMask(UIManager.loginController.startHint, null, 600);
                     UIAnimation.fadeAnimation(UIManager.loginController.loginPane,null, false);
 
-                    UIAnimation.vectorMove(UIManager.loginController.loginMainTitle, 0, 100, 1000, event00->{
+                    UIAnimation.vectorMove(UIManager.loginController.loginMainTitle, 0, 80, 1000, event00->{
 
                         UIAnimation.timer(2000, event0->{
 
@@ -438,22 +438,38 @@ public class TestEventHandler implements IClientEventHandler {
 
     @Override
     public void onSendVerificationCodeSuccess() {
-
+        System.out.println("send code success");
+        UIManager.loginController.loginHint.setText("发送邮件成功");
     }
 
     @Override
     public void onSendVerificationCodeFailed(String error) {
-
+        System.out.println("send code failed");
+        UIManager.loginController.loginHint.setText("发送邮件失败");
     }
 
     @Override
     public void onResetPasswordSuccess() {
-
+        System.out.println("reset password success");
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                UIManager.loginController.loginHint.setText("修改密码成功");
+                UIAnimation.timer(1000, event -> UIManager.loginController.loginPane.setMouseTransparent(false));
+            }
+        });
     }
 
     @Override
     public void onResetPasswordFailed(String error) {
-
+        System.out.println("reset password failed");
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                UIManager.loginController.loginHint.setText("修改密码失败");
+                UIAnimation.timer(1000, event -> UIManager.loginController.loginPane.setMouseTransparent(false));
+            }
+        });
     }
 
 }

@@ -1,6 +1,7 @@
 package ui;
 
 import controller.LoginController;
+import controller.LoginSituation;
 import controller.MainController;
 import controller.ProvinceController;
 import javafx.animation.FadeTransition;
@@ -59,6 +60,7 @@ public class UIFunction {
     }
 
     private static FadeTransition loginHintTrans = new FadeTransition();
+    private static boolean sendCold = true;
     public static void iniLoginFrameButton(LoginController loginController){
 
         ColorAdjust color_adjust = new ColorAdjust();
@@ -67,13 +69,41 @@ public class UIFunction {
         color_adjust.setContrast(0.5);
         color_adjust.setSaturation(0.5);
 
+        loginController.sendButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                loginController.sendButton.setEffect(color_adjust);
+                loginController.loginHint.setText("发送邮件");
+                UIAnimation.buttonInfoImageAnimation(loginController.loginHint, loginHintTrans, true);
+            }
+        });
+        loginController.sendButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                loginController.sendButton.setEffect(null);
+                UIAnimation.buttonInfoImageAnimation(loginController.loginHint, loginHintTrans, false);
+            }
+        });
+        loginController.sendButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (sendCold){
+                    sendCold = false;
+                    UIAnimation.timer(10000, event -> sendCold = true);
+                    UINetwork.sendEmail(loginController.emailInput.getText());
+                }else loginController.loginHint.setText("操作过于频繁！");
+            }
+        });
+
         loginController.confirmButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 loginController.confirmButton.setEffect(color_adjust);
-                switch (loginController.loginFrameSituation){
-                    case 1: loginController.loginHint.setText("确定进行登录"); break;
-                    case 2: loginController.loginHint.setText("确定进行注册"); break;
+                LoginSituation situation = loginController.getLoginFrameSituation();
+                switch (situation){
+                    case LOGIN: loginController.loginHint.setText("确定进行登录"); break;
+                    case REGISTER: loginController.loginHint.setText("确定进行注册"); break;
+                    case RESET: loginController.loginHint.setText("确定找回密码"); break;
                 }
                 UIAnimation.buttonInfoImageAnimation(loginController.loginHint, loginHintTrans, true);
             }
@@ -91,79 +121,99 @@ public class UIFunction {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 //登录？注册？
-                switch (loginController.loginFrameSituation){
-                    case 1: {
+                switch (loginController.getLoginFrameSituation()){
+                    case LOGIN: {
                         loginController.loginPane.setMouseTransparent(true);
                         loginController.loginHint.setText("发送请求中");
                         loginController.loginHint.setOpacity(0.8);
                         UINetwork.trylogin(loginController.usernameInput.getText(), loginController.passwordInput.getText());
                         break;
                     }
-                    case 2: {
+                    case REGISTER: {
                         loginController.loginPane.setMouseTransparent(true);
                         loginController.loginHint.setText("发送请求中");
                         loginController.loginHint.setOpacity(0.8);
-                        UINetwork.tryRegister(loginController.usernameInput.getText(), loginController.passwordInput.getText());
+                        UINetwork.tryRegister(loginController.usernameInput.getText(), loginController.passwordInput.getText(),
+                                loginController.emailInput.getText(), loginController.codeInput.getText());
+                        break;
+                    }
+                    case RESET:{
+                        loginController.loginPane.setMouseTransparent(true);
+                        loginController.loginHint.setText("发送请求中");
+                        loginController.loginHint.setOpacity(0.8);
+                        UINetwork.resetPassword(loginController.emailInput.getText(), loginController.codeInput.getText(),
+                                loginController.passwordInput.getText());
                         break;
                     }
                 }
             }
         });
 
-        loginController.reglogButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        loginController.regButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                loginController.reglogButton.setEffect(color_adjust);
-                switch (loginController.loginFrameSituation){
-                    case 1: loginController.loginHint.setText("进入注册页面"); break;
-                    case 2: loginController.loginHint.setText("返回登录页面"); break;
-                }
+                loginController.regButton.setEffect(color_adjust);
+                loginController.loginHint.setText("进入注册页面");
                 UIAnimation.buttonInfoImageAnimation(loginController.loginHint, loginHintTrans, true);
             }
         });
-        loginController.reglogButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+        loginController.regButton.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                loginController.reglogButton.setEffect(null);
+                loginController.regButton.setEffect(null);
                 UIAnimation.buttonInfoImageAnimation(loginController.loginHint, loginHintTrans, false);
             }
         });
-        loginController.reglogButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        loginController.regButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                switch (loginController.loginFrameSituation){
-                    case 1: {
-                        loginController.loginFrameSituation = 2;
-                        UIAnimation.setTextChangeAnimation(loginController.reglogTitle, event1 -> {
-                            loginController.reglogTitle.setText("REGISTER");
-                            UIAnimation.setTextChangeAnimation(loginController.reglogTitle, null, 600, true);
-                        }, 600, false);
-
-                        UIAnimation.setTextChangeAnimation(loginController.reglogButton, event2->{
-                            loginController.reglogButton.setImage(new Image("resources/loginImage/house.png"));
-                            UIAnimation.setTextChangeAnimation(loginController.reglogButton, null, 600, true);
-                        }, 600, false);
-
-                        break;
-                    }
-                    case 2: {
-                        loginController.loginFrameSituation = 1;
-                        UIAnimation.setTextChangeAnimation(loginController.reglogTitle, event1 -> {
-                            loginController.reglogTitle.setText("LOGIN");
-                            UIAnimation.setTextChangeAnimation(loginController.reglogTitle, null, 600, true);
-                        }, 600, false);
-
-                        UIAnimation.setTextChangeAnimation(loginController.reglogButton, event2->{
-                            loginController.reglogButton.setImage(new Image("resources/loginImage/archive-register.png"));
-                            UIAnimation.setTextChangeAnimation(loginController.reglogButton, null, 600, true);
-                        }, 600, false);
-
-                        break;
-                    }
-                }
+                loginController.setSituation(LoginSituation.REGISTER);
             }
         });
 
+        loginController.logButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                loginController.logButton.setEffect(color_adjust);
+                loginController.loginHint.setText("进入登录页面");
+                UIAnimation.buttonInfoImageAnimation(loginController.loginHint, loginHintTrans, true);
+            }
+        });
+        loginController.logButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                loginController.logButton.setEffect(null);
+                UIAnimation.buttonInfoImageAnimation(loginController.loginHint, loginHintTrans, false);
+            }
+        });
+        loginController.logButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                loginController.setSituation(LoginSituation.LOGIN);
+            }
+        });
+
+        loginController.resetButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                loginController.resetButton.setEffect(color_adjust);
+                loginController.loginHint.setText("找回密码");
+                UIAnimation.buttonInfoImageAnimation(loginController.loginHint, loginHintTrans, true);
+            }
+        });
+        loginController.resetButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                loginController.resetButton.setEffect(null);
+                UIAnimation.buttonInfoImageAnimation(loginController.loginHint, loginHintTrans, false);
+            }
+        });
+        loginController.resetButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                loginController.setSituation(LoginSituation.RESET);
+            }
+        });
 
     }
 

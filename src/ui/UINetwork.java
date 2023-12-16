@@ -18,14 +18,24 @@ public class UINetwork {
         TestEventHandler.manager = manager;
     }
 
+    public static void resetPassword(String email, String code, String password){
+        appClient.resetPassword(email, code, password);
+    }
+
     //尝试登录
     public static void trylogin(String username, String password){
-        appClient.login(username, password);
+        if (username.contains("@")) appClient.loginEmail(username, password);
+        else appClient.login(username, password);
     }
 
     //尝试注册
-    public static void tryRegister(String username, String password){
-        appClient.register(username, password, null, null);
+    public static void tryRegister(String username, String password, String email, String code){
+        appClient.register(username, password, email, code);
+    }
+
+    public static void sendEmail(String email){
+        System.out.println("try to send email to "+email);
+        appClient.requestVerificationCode(email);
     }
 
     //发帖子
@@ -54,8 +64,8 @@ public class UINetwork {
         appClient.fetchAllPost(pageNum, pageSize);
     }
 
-    public static void fetchPostInProvince(int pageNum, int pageSize, String provinceName){
-        appClient.searchPost(provinceName, "", pageNum, pageSize);
+    public static void fetchPostInProvince(int pageNum, int pageSize, String provinceName, String keyword){
+        appClient.searchPost(provinceName, keyword, pageNum, pageSize);
     }
 
     //删除指定帖子

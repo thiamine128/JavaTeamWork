@@ -52,7 +52,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="provinceSearch" alignment="CENTER" layoutX="160.0" layoutY="14.0" opacity="0.8" prefHeight="41.0" prefWidth="242.0" promptText="按省份查询">
+      <TextField fx:id="provinceSearch" alignment="CENTER" layoutX="160.0" layoutY="14.0" opacity="0.8" prefHeight="41.0" prefWidth="242.0" promptText="输入关键词">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
