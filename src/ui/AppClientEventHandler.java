@@ -1,12 +1,10 @@
 package ui;
 
-import controller.PostController;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import oop.zsz.client.AppClient;
 import oop.zsz.client.IClientEventHandler;
@@ -23,10 +21,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.util.*;
-import java.util.concurrent.CancellationException;
 
-public class TestEventHandler implements IClientEventHandler {
+/**
+ * The type App client event handler.
+ */
+public class AppClientEventHandler implements IClientEventHandler {
 
+    /**
+     * The constant manager.
+     */
     public static UIManager manager;
     @Override
     public void onLoginSuccess(String username, String token, AppClient appClient) {
@@ -225,6 +228,9 @@ public class TestEventHandler implements IClientEventHandler {
         System.out.println(error);
     }
 
+    /**
+     * The constant commentID.
+     */
     public static UUID commentID;
     @Override
     public void onReplyPublishSuccess(Reply reply) {

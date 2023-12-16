@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.scene.web.WebView;
-import ui.TestEventHandler;
+import ui.AppClientEventHandler;
 import ui.UIManager;
 import ui.UINetwork;
 
@@ -89,7 +89,7 @@ public class MainComment extends HBox{
                     @Override
                     public void handle(MouseEvent mouseEvent) {
                         if (UIManager.postViewController.replyField.getText().length() > 0){
-                            TestEventHandler.commentID = commentID;
+                            AppClientEventHandler.commentID = commentID;
                             UINetwork.addCommentReply(commentID,
                                     UIManager.postViewController.replyField.getText(), null);
                             UIManager.postViewController.replyPane.setOpacity(0.0);

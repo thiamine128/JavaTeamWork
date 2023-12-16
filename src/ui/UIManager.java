@@ -22,7 +22,7 @@ public class UIManager extends Application {
     private void setNetworkManager(){
         instance = this;
         UIFunction.manager = this;
-        TestEventHandler.manager = this;
+        AppClientEventHandler.manager = this;
     }
 
     private void fxmlFileLoad() throws IOException {

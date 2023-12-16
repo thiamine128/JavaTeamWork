@@ -1,14 +1,11 @@
 package post;
 import controller.FrameEnum;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
-import ui.TestEventHandler;
+import ui.AppClientEventHandler;
 import ui.UIManager;
 import ui.UINetwork;
 
@@ -92,7 +89,7 @@ public class ReplyBox extends TextFlow {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
                         if (UIManager.postViewController.replyField.getText().length() > 0){
-                            TestEventHandler.commentID = commentID;
+                            AppClientEventHandler.commentID = commentID;
                             UINetwork.addCommentReply(commentID,
                                     UIManager.postViewController.replyField.getText(), thisUsername);
 

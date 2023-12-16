@@ -29,6 +29,13 @@ import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The type App client. Provides methods to interact with server as a client.
+ *
+ * @author thiamine128
+ * @Description:
+ * @date 2023 /12/16 19:56
+ */
 public class AppClient {
     private HttpClient httpClient;
     private String uri;
@@ -40,6 +47,15 @@ public class AppClient {
     private String token;
 
     private static Type POSTS_PAGE_TYPE = new TypeToken<Page<Post>>(){}.getType();
+
+    /**
+     * Instantiates a new App client.
+     *
+     * @param protocol           the protocol
+     * @param host               the host
+     * @param port               the port
+     * @param clientEventHandler the client event handler
+     */
     public AppClient(String protocol, String host, int port, IClientEventHandler clientEventHandler) {
         this.httpClient = HttpClient.newBuilder().build();
         this.protocol = protocol;
@@ -50,10 +66,13 @@ public class AppClient {
         this.clientEventHandler = clientEventHandler;
     }
 
-    /*
-    用户注册
-    用户名：数字，大小写字母构成的6-13长度的字符串
-    密码：数字，大小写字母构成的6-13长度的字符串
+    /**
+     * Send register request and response asynchronously.
+     *
+     * @param username         the username
+     * @param password         the password
+     * @param email            the email
+     * @param verificationCode the verification code
      */
     public void register(String username, String password, String email, String verificationCode) {
         JsonObject jsonObject = new JsonObject();
@@ -80,9 +99,11 @@ public class AppClient {
         );
     }
 
-    /*
-    用户登录
-    用户名，密码
+    /**
+     * Send login request and response asynchronously.
+     *
+     * @param username the username
+     * @param password the password
      */
     public void login(String username, String password) {
         JsonObject jsonObject = new JsonObject();
@@ -109,6 +130,13 @@ public class AppClient {
         );
     }
 
+
+    /**
+     * Send login request via email and response asynchronously.
+     *
+     * @param email    the email
+     * @param password the password
+     */
     public void loginEmail(String email, String password) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("email", email);
@@ -134,10 +162,14 @@ public class AppClient {
         );
     }
 
-    /*
-    发布帖子
-    标题，省份，内容，图片列表
-    图片列表为本地文件路径列表
+
+    /**
+     * Send publish post request and response asynchronously.
+     *
+     * @param title    the title
+     * @param province the province
+     * @param text     the text
+     * @param images   the images
      */
     public void publishPost(String title, String province, String text, List<Path> images) {
         JsonObject jsonObject = new JsonObject();
@@ -173,8 +205,11 @@ public class AppClient {
         );
     }
 
-    /*
-    获取单篇帖子
+
+    /**
+     * Send fetch post request and response asynchronously.
+     *
+     * @param uuid the uuid
      */
     public void fetchPost(UUID uuid) {
         HttpRequest request = authenticatedBuilder()
@@ -196,8 +231,12 @@ public class AppClient {
         );
     }
 
-    /*
-    获取所有帖子
+
+    /**
+     * Send fetch all post request and response asynchronously.
+     *
+     * @param page the page
+     * @param size the size
      */
     public void fetchAllPost(int page, int size) {
         HttpRequest request = authenticatedBuilder()
@@ -219,8 +258,11 @@ public class AppClient {
         );
     }
 
-    /*
-    发布回复
+    /**
+     * Send publish comment request and response asynchronously.
+     *
+     * @param postId the post id
+     * @param text   the text
      */
     public void publishComment(UUID postId, String text) {
         JsonObject jsonObject = new JsonObject();
@@ -245,8 +287,13 @@ public class AppClient {
         );
     }
 
-    /*
-    发布回复
+
+    /**
+     * Send publish reply request and response asynchronously.
+     *
+     * @param commentId the comment id
+     * @param text      the text
+     * @param replyTo   the reply to
      */
     public void publishReply(UUID commentId, String text, String replyTo) {
         JsonObject jsonObject = new JsonObject();
@@ -272,8 +319,11 @@ public class AppClient {
         );
     }
 
-    /*
-    设置登录信息
+
+    /**
+     * Sets user token.
+     *
+     * @param token the token
      */
     public void setUserToken(String token) {
         this.token = token;
@@ -292,8 +342,14 @@ public class AppClient {
                 .headers("Authorization", "Bearer " + this.token);
     }
 
-    /*
-    获取省份内帖子
+
+    /**
+     * Send search post and response asynchronously.
+     *
+     * @param province the province
+     * @param key      the key
+     * @param page     the page
+     * @param size     the size
      */
     public void searchPost(String province, String key, int page, int size) {
         HttpRequest request = authenticatedBuilder()
@@ -315,7 +371,12 @@ public class AppClient {
         );
     }
 
-    /*
+    /**
+     * Send remove post request and response asynchronously.
+     *
+     * @param uuid the uuid
+     */
+/*
     删除帖子
      */
     public void removePost(UUID uuid) {
@@ -338,6 +399,11 @@ public class AppClient {
         );
     }
 
+    /**
+     * Send remove comment and response asynchronously.
+     *
+     * @param uuid the uuid
+     */
     public void removeComment(UUID uuid) {
         HttpRequest request = authenticatedBuilder()
                 .uri(URI.create(uri + "/comment/remove" + "?id=" + uuid.toString()))
@@ -358,6 +424,11 @@ public class AppClient {
         );
     }
 
+    /**
+     * Send remove reply request and response asynchronously.
+     *
+     * @param uuid the uuid
+     */
     public void removeReply(UUID uuid) {
         HttpRequest request = authenticatedBuilder()
                 .uri(URI.create(uri + "/reply/remove" + "?id=" + uuid.toString()))
@@ -379,6 +450,11 @@ public class AppClient {
     }
 
 
+    /**
+     * Send like post and response asynchronously.
+     *
+     * @param uuid the uuid
+     */
     public void likePost(UUID uuid) {
         HttpRequest request = authenticatedBuilder()
                 .uri(URI.create(uri + "/post/like" + "?id=" + uuid.toString()))
@@ -399,6 +475,11 @@ public class AppClient {
         );
     }
 
+    /**
+     * Send dislike post and response asynchronously.
+     *
+     * @param uuid the uuid
+     */
     public void dislikePost(UUID uuid) {
         HttpRequest request = authenticatedBuilder()
                 .uri(URI.create(uri + "/post/dislike" + "?id=" + uuid.toString()))
@@ -419,6 +500,13 @@ public class AppClient {
         );
     }
 
+    /**
+     * Send reset password and response asynchronously.
+     *
+     * @param email            the email
+     * @param verificationCode the verification code
+     * @param newPassword      the new password
+     */
     public void resetPassword(String email, String verificationCode, String newPassword) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("password", newPassword);
@@ -443,6 +531,11 @@ public class AppClient {
         );
     }
 
+    /**
+     * Send check liked post request and response asynchronously.
+     *
+     * @param uuid the uuid
+     */
     public void checkLikedPost(UUID uuid) {
         HttpRequest request = authenticatedBuilder()
                 .uri(URI.create(uri + "/user/liked-post" + "?id=" + uuid))
@@ -464,7 +557,13 @@ public class AppClient {
         );
     }
 
-    /*
+    /**
+     * Send upload portrait request and response asynchronously.
+     *
+     * @param file the file
+     * @throws FileNotFoundException the file not found exception
+     */
+/*
     上传头像
     本地文件路径
      */
@@ -489,6 +588,12 @@ public class AppClient {
         );
     }
 
+    /**
+     * Send update jigsaw request and response asynchronously.
+     *
+     * @param time the time
+     * @throws FileNotFoundException the file not found exception
+     */
     public void updateJigsaw(Long time) throws FileNotFoundException {
 
         HttpRequest request = authenticatedBuilder()
@@ -510,6 +615,11 @@ public class AppClient {
         );
     }
 
+    /**
+     * Send update quiz and response asynchronously.
+     *
+     * @throws FileNotFoundException the file not found exception
+     */
     public void updateQuiz() throws FileNotFoundException {
 
         HttpRequest request = authenticatedBuilder()
@@ -531,9 +641,12 @@ public class AppClient {
         );
     }
 
-
-
-    /*
+    /**
+     * Send fetch profile request and response asynchronously.
+     *
+     * @param username the username
+     */
+/*
     获取用户资料
      */
     public void fetchProfile(String username) {
@@ -557,6 +670,11 @@ public class AppClient {
         );
     }
 
+    /**
+     * Send request verification code request and response asynchronously.
+     *
+     * @param email the email
+     */
     public void requestVerificationCode(String email) {
         HttpRequest request = defaultBuilder()
                 .uri(URI.create(uri + "/verify/send-code" + "?email=" + email))
@@ -577,15 +695,26 @@ public class AppClient {
         );
     }
 
-    /*
+    /**
+     * Gets portrait url.
+     *
+     * @param portrait the portrait
+     * @return the portrait url
+     * @throws MalformedURLException the malformed url exception
+     */
+/*
     获取用户头像URL
      */
     public URL getPortraitURL(String portrait) throws MalformedURLException {
         return new URL(protocol, host, 80, "/portrait/" + portrait);
     }
 
-    /*
-    获取帖子图片URL
+    /**
+     * Gets post image url.
+     *
+     * @param image the image
+     * @return the post image url
+     * @throws MalformedURLException the malformed url exception
      */
     public URL getPostImageURL(UUID image) throws MalformedURLException {
         return new URL(protocol, host, 80, "/post/" + image.toString() + ".png");
