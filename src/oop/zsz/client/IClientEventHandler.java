@@ -36,6 +36,12 @@ public interface IClientEventHandler {
     void onRemovePostSuccess();
 
     void onRemovePostFailed(String error);
+    void onRemoveCommentSuccess();
+
+    void onRemoveCommentFailed(String error);
+    void onRemoveReplySuccess();
+
+    void onRemoveReplyFailed(String error);
 
     void onUploadPortraitSuccess();
 

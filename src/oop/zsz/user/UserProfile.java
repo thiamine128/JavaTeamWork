@@ -15,6 +15,7 @@ public class UserProfile {
     private Long jigsawTime;
     private Boolean jigsawFlag;
     private Boolean quizFlag;
+    private Boolean administrator;
 
     public String getUsername() {
         return username;
@@ -70,5 +71,13 @@ public class UserProfile {
 
     public void setQuizFlag(Boolean quizFlag) {
         this.quizFlag = quizFlag;
+    }
+
+    public void setAdministrator(Boolean administrator) {
+        this.administrator = administrator;
+    }
+
+    public Boolean getAdministrator() {
+        return administrator;
     }
 }

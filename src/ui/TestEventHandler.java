@@ -312,6 +312,26 @@ public class TestEventHandler implements IClientEventHandler {
     }
 
     @Override
+    public void onRemoveCommentSuccess() {
+
+    }
+
+    @Override
+    public void onRemoveCommentFailed(String error) {
+
+    }
+
+    @Override
+    public void onRemoveReplySuccess() {
+
+    }
+
+    @Override
+    public void onRemoveReplyFailed(String error) {
+
+    }
+
+    @Override
     public void onUploadPortraitSuccess() {
         System.out.println("upload image success");
     }

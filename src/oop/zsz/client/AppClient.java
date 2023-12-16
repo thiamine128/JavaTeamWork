@@ -338,6 +338,47 @@ public class AppClient {
         );
     }
 
+    public void removeComment(UUID uuid) {
+        HttpRequest request = authenticatedBuilder()
+                .uri(URI.create(uri + "/comment/remove" + "?id=" + uuid.toString()))
+                .POST(HttpRequest.BodyPublishers.noBody()).build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onRemoveCommentSuccess();
+                        return;
+                    }
+                    clientEventHandler.onRemoveCommentFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
+    public void removeReply(UUID uuid) {
+        HttpRequest request = authenticatedBuilder()
+                .uri(URI.create(uri + "/reply/remove" + "?id=" + uuid.toString()))
+                .POST(HttpRequest.BodyPublishers.noBody()).build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onRemoveReplySuccess();
+                        return;
+                    }
+                    clientEventHandler.onRemoveReplyFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
+
     public void likePost(UUID uuid) {
         HttpRequest request = authenticatedBuilder()
                 .uri(URI.create(uri + "/post/like" + "?id=" + uuid.toString()))
