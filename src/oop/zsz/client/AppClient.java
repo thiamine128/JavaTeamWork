@@ -465,6 +465,26 @@ public class AppClient {
         );
     }
 
+    public void requestVerificationCode(String email) {
+        HttpRequest request = defaultBuilder()
+                .uri(URI.create(uri + "/verify/send-code" + "?email=" + email))
+                .POST(HttpRequest.BodyPublishers.noBody()).build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onSendVerificationCodeSuccess();
+                        return;
+                    }
+                    clientEventHandler.onSendVerificationCodeFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
     /*
     获取用户头像URL
      */

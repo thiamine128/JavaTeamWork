@@ -436,4 +436,14 @@ public class TestEventHandler implements IClientEventHandler {
         System.out.println("check liked post failed");
     }
 
+    @Override
+    public void onSendVerificationCodeSuccess() {
+
+    }
+
+    @Override
+    public void onSendVerificationCodeFailed(String error) {
+
+    }
+
 }

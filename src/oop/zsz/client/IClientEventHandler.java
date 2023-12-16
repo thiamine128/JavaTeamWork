@@ -54,4 +54,6 @@ public interface IClientEventHandler {
     void onDislikePostFailed(String error);
     void onCheckLikedPostSuccess(UUID post, boolean liked);
     void onCheckLikedPostFailed(String error);
+    void onSendVerificationCodeSuccess();
+    void onSendVerificationCodeFailed(String error);
 }
