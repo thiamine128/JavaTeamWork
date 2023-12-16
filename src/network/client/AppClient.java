@@ -31,10 +31,6 @@ import java.util.UUID;
 
 /**
  * The type App client. Provides methods to interact with server as a client.
- *
- * @author thiamine128
- * @Description:
- * @date 2023 /12/16 19:56
  */
 public class AppClient {
     private HttpClient httpClient;
@@ -717,6 +713,6 @@ public class AppClient {
      * @throws MalformedURLException the malformed url exception
      */
     public URL getPostImageURL(UUID image) throws MalformedURLException {
-        return new URL(protocol, host, 80, "/post/" + image.toString() + ".png");
+        return new URL(protocol, host, 80, "/post/" + image.toString() + ".jpg");
     }
 }

@@ -98,7 +98,6 @@ public class UIManager extends Application {
      *
      * @throws Exception the exception
      * @author RyotoBUAA
-     * @date 2023 /12/16 20:08
      */
     public void toPuzzleFrame() throws Exception { //切换到拼图界面
         PuzzleController.puzzleProvincePane = mainController.provincePane;
