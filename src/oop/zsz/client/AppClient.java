@@ -55,10 +55,12 @@ public class AppClient {
     用户名：数字，大小写字母构成的6-13长度的字符串
     密码：数字，大小写字母构成的6-13长度的字符串
      */
-    public void register(String username, String password) {
+    public void register(String username, String password, String email, String verificationCode) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("username", username);
         jsonObject.addProperty("password", password);
+        jsonObject.addProperty("email", email);
+        jsonObject.addProperty("verificationCode", verificationCode);
         HttpRequest request = defaultBuilder()
                 .uri(URI.create(uri + "/user/register"))
                 .POST(HttpRequest.BodyPublishers.ofString(jsonObject.toString())).build();
@@ -88,6 +90,31 @@ public class AppClient {
         jsonObject.addProperty("password", password);
         HttpRequest request = defaultBuilder()
                 .uri(URI.create(uri + "/user/login"))
+                .POST(HttpRequest.BodyPublishers.ofString(jsonObject.toString())).build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onLoginSuccess(response.get("data").getAsJsonObject().get("username").getAsString(),
+                                response.get("data").getAsJsonObject().get("token").getAsString(),
+                                this);
+                        return;
+                    }
+                    clientEventHandler.onLoginFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
+    public void loginEmail(String email, String password) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("email", email);
+        jsonObject.addProperty("password", password);
+        HttpRequest request = defaultBuilder()
+                .uri(URI.create(uri + "/user/login-email"))
                 .POST(HttpRequest.BodyPublishers.ofString(jsonObject.toString())).build();
         httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
                 body -> {

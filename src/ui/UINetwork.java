@@ -25,7 +25,7 @@ public class UINetwork {
 
     //尝试注册
     public static void tryRegister(String username, String password){
-        appClient.register(username, password);
+        appClient.register(username, password, null, null);
     }
 
     //发帖子
