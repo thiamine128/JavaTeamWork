@@ -378,6 +378,30 @@ public class AppClient {
         );
     }
 
+    public void resetPassword(String email, String verificationCode, String newPassword) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("password", newPassword);
+        jsonObject.addProperty("email", email);
+        jsonObject.addProperty("verificationCode", verificationCode);
+        HttpRequest request = defaultBuilder()
+                .uri(URI.create(uri + "/user/reset-password"))
+                .POST(HttpRequest.BodyPublishers.ofString(jsonObject.toString())).build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+                body -> {
+                    JsonObject response = gson.fromJson(body.body(), JsonObject.class);
+                    int code = -1;
+                    if (response.has("code")) {
+                        code = response.get("code").getAsInt();
+                    }
+                    if (code == 1) {
+                        clientEventHandler.onResetPasswordSuccess();
+                        return;
+                    }
+                    clientEventHandler.onResetPasswordFailed(response.get("data").getAsString());
+                }
+        );
+    }
+
     public void checkLikedPost(UUID uuid) {
         HttpRequest request = authenticatedBuilder()
                 .uri(URI.create(uri + "/user/liked-post" + "?id=" + uuid))

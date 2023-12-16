@@ -56,4 +56,6 @@ public interface IClientEventHandler {
     void onCheckLikedPostFailed(String error);
     void onSendVerificationCodeSuccess();
     void onSendVerificationCodeFailed(String error);
+    void onResetPasswordSuccess();
+    void onResetPasswordFailed(String error);
 }

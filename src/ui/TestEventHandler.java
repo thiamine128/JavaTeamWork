@@ -446,4 +446,14 @@ public class TestEventHandler implements IClientEventHandler {
 
     }
 
+    @Override
+    public void onResetPasswordSuccess() {
+
+    }
+
+    @Override
+    public void onResetPasswordFailed(String error) {
+
+    }
+
 }
