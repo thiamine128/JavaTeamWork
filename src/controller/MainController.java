@@ -1,7 +1,7 @@
 package controller;
 
-import Game.Hamiltonian;
-import Game.HamiltonianDetail;
+import game.Hamiltonian;
+import game.HamiltonianDetail;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,25 +26,72 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+/**
+ * The type Main controller.
+ */
 public class MainController implements Initializable {
 
+    /**
+     * The Prime pane.
+     */
     @FXML
     public Pane primePane; //总模板
+    /**
+     * The Opening pane.
+     */
     @FXML
     public Pane openingPane; //开头场景模板
+    /**
+     * The Province pane.
+     */
     @FXML
-    public Pane provincePane, pointPane; //各区域模板
+    public Pane provincePane, /**
+     * The Point pane.
+     */
+    pointPane; //各区域模板
+    /**
+     * The Circle animation group.
+     */
     @FXML
     public Group circleAnimationGroup; //鼠标点击动画
+    /**
+     * The Mask.
+     */
     @FXML
     public ImageView mask; //遮罩动画
+    /**
+     * The Info image.
+     */
     @FXML
-    public ImageView infoImage, provinceEdge, loadImage; //省份艺术字信息
+    public ImageView infoImage, /**
+     * The Province edge.
+     */
+    provinceEdge, /**
+     * The Load image.
+     */
+    loadImage; //省份艺术字信息
+    /**
+     * The Main frame ini.
+     */
     public ImageView mainFrameIni; //初始化触发器
+    /**
+     * The To puzzle button.
+     */
     public ImageView toPuzzleButton; //拼图游戏按钮
+    /**
+     * The Main frame bg.
+     */
     public ImageView mainFrameBG; //开头场景
+    /**
+     * The Frame username.
+     */
     public Text frameUsername;
 
+    /**
+     * Set frame username.
+     *
+     * @param content the content
+     */
     public void setFrameUsername(String content){
         frameUsername.setText(content);
         if (content.length() > 8){
@@ -56,17 +103,51 @@ public class MainController implements Initializable {
 
     private boolean userPower = false;
 
+    /**
+     * Set user power.
+     *
+     * @param key the key
+     */
     public void setUserPower(boolean key){
         userPower = key;
     }
 
+    /**
+     * Get user power boolean.
+     *
+     * @return the boolean
+     */
     public boolean getUserPower(){
         return userPower;
     }
 
-    public ImageView toPostButton, toQuestionButton, HButton, hamiButton, hamiButton2;
+    /**
+     * The To post button.
+     */
+    public ImageView toPostButton, /**
+     * The To question button.
+     */
+    toQuestionButton, /**
+     * The H button.
+     */
+    HButton, /**
+     * The Hami button.
+     */
+    hamiButton, /**
+     * The Hami button 2.
+     */
+    hamiButton2;
+    /**
+     * The Profile photo.
+     */
     public ImageView profilePhoto;
-    public boolean Hsituation = false, provinceProtect = false;
+    /**
+     * The Hsituation.
+     */
+    public boolean Hsituation = false, /**
+     * The Province protect.
+     */
+    provinceProtect = false;
     private Set<String> provinceSet = new HashSet<>();
     @FXML
     private void provinceAppear(Node[] provinceArray, int cnt, int i){ //省份贴图登入动画
@@ -76,6 +157,9 @@ public class MainController implements Initializable {
         }, 500*Math.random());
     }
 
+    /**
+     * Main frame trigger.
+     */
     public void mainFrameTrigger(){ //主界面触发
         UIAnimation.fadeAnimation(mask, null, false);
         mainFrameIni.setMouseTransparent(true);
@@ -96,6 +180,12 @@ public class MainController implements Initializable {
             }
         });
     }
+
+    /**
+     * Main frame button ini.
+     *
+     * @throws Exception the exception
+     */
     @FXML
     public void mainFrameButtonIni() throws Exception {
 
@@ -137,6 +227,11 @@ public class MainController implements Initializable {
         mask.setMouseTransparent(false);
     }
 
+    /**
+     * Set mouse circle animation.
+     *
+     * @param group the group
+     */
     public void setMouseCircleAnimation(Group group){
         UIAnimation.setMouseCircleAnimation(group); //鼠标效果设置
     }
@@ -148,9 +243,33 @@ public class MainController implements Initializable {
         return null;
     }
 
-    public Text hamiHint, hamiTitle, loadText, loadTitle;
-    public Pane hamiPane, loadPane;
-    public Rectangle loadKey, rec;
+    /**
+     * The Hami hint.
+     */
+    public Text hamiHint, /**
+     * The Hami title.
+     */
+    hamiTitle, /**
+     * The Load text.
+     */
+    loadText, /**
+     * The Load title.
+     */
+    loadTitle;
+    /**
+     * The Hami pane.
+     */
+    public Pane hamiPane, /**
+     * The Load pane.
+     */
+    loadPane;
+    /**
+     * The Load key.
+     */
+    public Rectangle loadKey, /**
+     * The Rec.
+     */
+    rec;
     private void hamiltonianCal(boolean timeControl){
         Set <Node> nodeSet = new HashSet<>();
         for (Node j : pointPane.getChildren()){

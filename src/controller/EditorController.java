@@ -24,26 +24,74 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * The type Editor controller.
+ */
 public class EditorController implements Initializable {
 
+    /**
+     * The Editor title field.
+     */
     public TextField editorTitleField; //标题编辑器
+    /**
+     * The Editor.
+     */
     public HTMLEditor editor; //帖子编辑器
-    public ImageView editorConfirm, editorCancel, editorImage; //确认、取消按钮
+    /**
+     * The Editor confirm.
+     */
+    public ImageView editorConfirm, /**
+     * The Editor cancel.
+     */
+    editorCancel, /**
+     * The Editor image.
+     */
+    editorImage; //确认、取消按钮
+    /**
+     * The Editor hint.
+     */
     public Text editorHint;
+    /**
+     * The Province info.
+     */
     public Text provinceInfo; //提示语
+    /**
+     * The Post success hint.
+     */
     public ImageView postSuccessHint; //发帖成功
+    /**
+     * The File chooser.
+     */
     public FileChooser fileChooser; //图片选择器
     private List<Path> postImagePath = new ArrayList<>(); //帖子图片路径
+    /**
+     * The Image hbox.
+     */
     public HBox imageHbox; //照片预览器
+
+    /**
+     * Reset path.
+     */
     public void resetPath() {
         postImagePath.clear(); //清空图片路径组
     }
 
+    /**
+     * Delete path.
+     *
+     * @param path        the path
+     * @param imageSelect the image select
+     */
     public void deletePath(Path path, ImageSelect imageSelect){
         postImagePath.remove(path);
         imageHbox.getChildren().removeAll(imageSelect);
     }
 
+    /**
+     * Upload post image.
+     *
+     * @throws IOException the io exception
+     */
     public void uploadPostImage() throws IOException { //上传图片
         if (postImagePath.size() <= 2){
             File postImage = fileChooser.showOpenDialog(UIManager.mainStage);
@@ -58,6 +106,9 @@ public class EditorController implements Initializable {
         }
     }
 
+    /**
+     * Reset editor.
+     */
     public void resetEditor(){
         editorHint.setText("发送失败");
         UIAnimation.timer(3000,event -> {

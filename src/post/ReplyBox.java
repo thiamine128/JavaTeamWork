@@ -11,11 +11,20 @@ import ui.UINetwork;
 
 import java.util.UUID;
 
+/**
+ * The type Reply box.
+ */
 public class ReplyBox extends TextFlow {
 
     private String thisUsername;
     private CommentBox commentBox;
-    public UUID commentID, replyID;
+    /**
+     * The Comment id.
+     */
+    public UUID commentID, /**
+     * The Reply id.
+     */
+    replyID;
 
     private static ColorAdjust effectMaker(double brightness){
         ColorAdjust color_adjust = new ColorAdjust();
@@ -26,6 +35,12 @@ public class ReplyBox extends TextFlow {
         return color_adjust;
     }
 
+    /**
+     * Set username func text.
+     *
+     * @param text0 the text 0
+     * @return the text
+     */
     public Text setUsernameFunc(Text text0){ //点击用户名：获取用户信息
         text0.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -104,6 +119,13 @@ public class ReplyBox extends TextFlow {
         return text0;
     }
 
+    /**
+     * Text maker text.
+     *
+     * @param content     the content
+     * @param boldControl the bold control
+     * @return the text
+     */
     public Text textMaker(String content, boolean boldControl){
         Text result = new Text(content);
         Font font;
@@ -147,6 +169,15 @@ public class ReplyBox extends TextFlow {
         return result;
     }
 
+    /**
+     * Instantiates a new Reply box.
+     *
+     * @param commentID  the comment id
+     * @param replyID    the reply id
+     * @param username   the username
+     * @param content    the content
+     * @param commentBox the comment box
+     */
     public ReplyBox(UUID commentID, UUID replyID, String username, String content, CommentBox commentBox){ //普通回复
         this.commentBox = commentBox;
         this.commentID = commentID;
@@ -160,6 +191,16 @@ public class ReplyBox extends TextFlow {
             this.getChildren().addAll(cancelMaker());
     }
 
+    /**
+     * Instantiates a new Reply box.
+     *
+     * @param commentID   the comment id
+     * @param replyID     the reply id
+     * @param username    the username
+     * @param repliedName the replied name
+     * @param content     the content
+     * @param commentBox  the comment box
+     */
     public ReplyBox(UUID commentID, UUID replyID, String username, String repliedName, String content, CommentBox commentBox){ //二级回复
         this.commentBox = commentBox;
         this.commentID = commentID;

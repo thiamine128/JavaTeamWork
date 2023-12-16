@@ -19,26 +19,99 @@ import ui.UIManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * The type Login controller.
+ */
 public class LoginController implements Initializable {
 
-    public ImageView loginFrameIni, loginBG; //登录界面触发器
+    /**
+     * The Login frame ini.
+     */
+    public ImageView loginFrameIni, /**
+     * The Login bg.
+     */
+    loginBG; //登录界面触发器
+    /**
+     * The Start hint.
+     */
     public ImageView startHint; //初始界面提示
-    public ImageView loginMainTitle, loginMainTitleWhite; //总标题
+    /**
+     * The Login main title.
+     */
+    public ImageView loginMainTitle, /**
+     * The Login main title white.
+     */
+    loginMainTitleWhite; //总标题
+    /**
+     * The Login pane.
+     */
     public AnchorPane loginPane; //登录输, 入端
+    /**
+     * The Confirm button.
+     */
     public ImageView confirmButton; //确认按键
-    public ImageView regButton, logButton, resetButton;
-    public Text loginHint, reglogTitle, lemail, lcode;
-    public TextField usernameInput, passwordInput, emailInput, codeInput;
+    /**
+     * The Reg button.
+     */
+    public ImageView regButton, /**
+     * The Log button.
+     */
+    logButton, /**
+     * The Reset button.
+     */
+    resetButton;
+    /**
+     * The Login hint.
+     */
+    public Text loginHint, /**
+     * The Reglog title.
+     */
+    reglogTitle, /**
+     * The Lemail.
+     */
+    lemail, /**
+     * The Lcode.
+     */
+    lcode;
+    /**
+     * The Username input.
+     */
+    public TextField usernameInput, /**
+     * The Password input.
+     */
+    passwordInput, /**
+     * The Email input.
+     */
+    emailInput, /**
+     * The Code input.
+     */
+    codeInput;
     private LoginSituation loginFrameSituation = LoginSituation.NULL;
+    /**
+     * The Login frame mask.
+     */
     public ImageView loginFrameMask; //登录界面遮罩
     private static boolean loginFrameBoolean = true;
     private FadeTransition startHintTrans = new FadeTransition();
+    /**
+     * The Send button.
+     */
     public ImageView sendButton;
 
+    /**
+     * Get login frame situation login situation.
+     *
+     * @return the login situation
+     */
     public LoginSituation getLoginFrameSituation(){
         return loginFrameSituation;
     }
 
+    /**
+     * Set situation.
+     *
+     * @param situation the situation
+     */
     public void setSituation(LoginSituation situation){
         if (situation != loginFrameSituation){
             LoginSituation fr = loginFrameSituation;
@@ -134,8 +207,9 @@ public class LoginController implements Initializable {
     }
 
 
-
-
+    /**
+     * Login frame trigger.
+     */
     public void loginFrameTrigger(){
         if (loginFrameBoolean){
             UIAnimation.titleSparkleAnimation(startHint, 0, 0.8, startHintTrans);
@@ -143,6 +217,9 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * Click start hint.
+     */
     public void clickStartHint(){
         loginFrameIni.setMouseTransparent(true);
         startHintTrans.stop();

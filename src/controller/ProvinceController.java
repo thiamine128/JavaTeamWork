@@ -1,6 +1,6 @@
 package controller;
 
-import Click.ProvinceDetail;
+import province.ProvinceDetail;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
@@ -15,25 +15,101 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+/**
+ * The type Province controller.
+ */
 public class ProvinceController implements Initializable {
 
-    //provinceFrame.fxml 具体身份界面
+    /**
+     * The Province bg.
+     */
+//provinceFrame.fxml 具体身份界面
     public ImageView provinceBG;
+    /**
+     * The Province frame group.
+     */
     public Group provinceFrameGroup; //表面实例组
+    /**
+     * The Mask rectangle.
+     */
     public Rectangle maskRectangle; //图片设定矩形
+    /**
+     * The Sparkles.
+     */
     public ImageView sparkles; //相机上闪光特效
-    public ImageView postButton, postTitle; //发帖按钮
+    /**
+     * The Post button.
+     */
+    public ImageView postButton, /**
+     * The Post title.
+     */
+    postTitle; //发帖按钮
+    /**
+     * The Province frame mask.
+     */
     public ImageView provinceFrameMask; //黑色遮罩
+    /**
+     * The Province frame back button.
+     */
     public ImageView provinceFrameBackButton; //返回按钮
+    /**
+     * The Province frame ini.
+     */
     public ImageView provinceFrameIni; //初始化触发器
+    /**
+     * The constant provinceName.
+     */
     public static String provinceName; //目前的身份名称
+    /**
+     * The constant detail.
+     */
     public static ProvinceDetail detail; //身份信息实例
-    public Text titleText, contentText; //下方文本标题、介绍
+    /**
+     * The Title text.
+     */
+    public Text titleText, /**
+     * The Content text.
+     */
+    contentText; //下方文本标题、介绍
+    /**
+     * The Province frame title.
+     */
     public ImageView provinceFrameTitle; //具体省份界面左上标题
-    public ImageView frButton, nxtButton; //向前向后按键
-    public ImageView foodTitle, interestTitle, folkTitle; //三种类型右标题
-    public ImageView foodButton, interestButton, folkButton; //三种类型按钮 (1)、(2)、(3)
+    /**
+     * The Fr button.
+     */
+    public ImageView frButton, /**
+     * The Nxt button.
+     */
+    nxtButton; //向前向后按键
+    /**
+     * The Food title.
+     */
+    public ImageView foodTitle, /**
+     * The Interest title.
+     */
+    interestTitle, /**
+     * The Folk title.
+     */
+    folkTitle; //三种类型右标题
+    /**
+     * The Food button.
+     */
+    public ImageView foodButton, /**
+     * The Interest button.
+     */
+    interestButton, /**
+     * The Folk button.
+     */
+    folkButton; //三种类型按钮 (1)、(2)、(3)
+    /**
+     * The Main image.
+     */
     public ImageView mainImage; //照片墙
+
+    /**
+     * Province frame trigger.
+     */
     public void provinceFrameTrigger(){ //具体省份界面初始化
 
         Random r = new Random();
@@ -54,6 +130,11 @@ public class ProvinceController implements Initializable {
 
     }
 
+    /**
+     * Change type.
+     *
+     * @param type0 the type 0
+     */
     public void changeType(int type0){
         if (type0 <= 3 && type0 >= 1){
             textType = type0;
@@ -63,6 +144,10 @@ public class ProvinceController implements Initializable {
     }
 
     private int textPos = 1, textType = 1;
+
+    /**
+     * Try fr.
+     */
     public void tryFr(){
         if (textPos > 1){
             textPos--;
@@ -70,6 +155,9 @@ public class ProvinceController implements Initializable {
         }
     }
 
+    /**
+     * Try nxt.
+     */
     public void tryNxt(){
         int eind = 0;
         switch (textType){

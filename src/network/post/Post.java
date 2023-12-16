@@ -1,4 +1,4 @@
-package oop.zsz.post;
+package network.post;
 
 import java.util.*;
 

@@ -5,6 +5,9 @@ import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 
+/**
+ * The type Audio manager.
+ */
 public class AudioManager {
 
     private static void oneShot(String musicFile){
@@ -22,6 +25,11 @@ public class AudioManager {
         player.play();
     }
 
+    /**
+     * Set button audio.
+     *
+     * @param i the
+     */
     public static void setButtonAudio(int i){
         switch (i){
             case 1: oneShot("src/audio/button1.wav"); break;
@@ -31,14 +39,25 @@ public class AudioManager {
         }
     }
 
+    /**
+     * Star audio.
+     */
     public static void starAudio(){
         oneShot("src/audio/star.wav", 0.5);
     }
 
+    /**
+     * Hit audio.
+     */
     public static void hitAudio(){
         oneShot("src/audio/hit.wav");
     }
 
+    /**
+     * Win audio.
+     *
+     * @param e the e
+     */
     public static void winAudio(endOfGame e){
         switch (e){
             case WIN: oneShot("src/audio/win.wav"); break;
@@ -48,6 +67,11 @@ public class AudioManager {
 
     private static MediaPlayer mainPlayer;
 
+    /**
+     * Set bg music.
+     *
+     * @param i the
+     */
     public static void setBGMusic(int i){
         if (mainPlayer != null) {
             mainPlayer.setVolume(0.8);
@@ -73,6 +97,9 @@ public class AudioManager {
         });
     }
 
+    /**
+     * Cancel music.
+     */
     public static void cancelMusic(){
         if (mainPlayer != null) {
             mainPlayer.setVolume(0.8);
@@ -94,7 +121,16 @@ public class AudioManager {
 
 }
 
+/**
+ * The enum End of game.
+ */
 enum endOfGame{
+    /**
+     * Win end of game.
+     */
     WIN,
+    /**
+     * Lose end of game.
+     */
     LOSE;
 }

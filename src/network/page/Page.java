@@ -1,4 +1,4 @@
-package oop.zsz.page;
+package network.page;
 
 import java.util.List;
 

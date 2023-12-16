@@ -1,20 +1,41 @@
-package Game;
+package game;
 
-import Click.ProvinceDetail;
+import province.ProvinceDetail;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The type Guess.
+ */
 public class Guess {
+    /**
+     * The All detail.
+     */
     static ProvinceDetail[] allDetail=new ProvinceDetail[40];
+    /**
+     * The All.
+     */
     static String[] all={"henan","hebei","shanxi","liaoning","jilin","heilongjiang","jiangsu","zhejiang","anhui","fujian","jiangxi","shandong","hubei","hunan","guangdong","hainan","sichuan","guizhou","yunnan","shaanxi","gansu","qinghai","ningxia","xinjiang","xizang","guangxi","neimenggu","taiwan","xianggang","aomen","beijing","tianjin","shanghai","chongqing"};
+
+    /**
+     * Prepare.
+     */
     public static void prepare() {
         for(int i=0;i<34;i++) {
             allDetail[i]=ProvinceDetail.getDetail(all[i]);
         }
     }
+
+    /**
+     * Reset guess detail [ ].
+     *
+     * @param opt the opt
+     * @param sum the sum
+     * @return the guess detail [ ]
+     */
     public static GuessDetail[] reset(int opt,int sum) {
         Random seed=new Random();
         List<Integer> a=new ArrayList<>();

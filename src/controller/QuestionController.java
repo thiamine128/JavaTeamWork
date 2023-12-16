@@ -1,7 +1,7 @@
 package controller;
 
-import Game.Guess;
-import Game.GuessDetail;
+import game.Guess;
+import game.GuessDetail;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
@@ -20,13 +20,46 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * The type Question controller.
+ */
 public class QuestionController implements Initializable {
 
+    /**
+     * The Question mask.
+     */
     public ImageView questionMask;
-    public ImageView ans0, ans1, ans2, ans3;
+    /**
+     * The Ans 0.
+     */
+    public ImageView ans0, /**
+     * The Ans 1.
+     */
+    ans1, /**
+     * The Ans 2.
+     */
+    ans2, /**
+     * The Ans 3.
+     */
+    ans3;
+    /**
+     * The Question cancel.
+     */
     public ImageView questionCancel;
-    public Text provinceName, correctNum, questionPos;
+    /**
+     * The Province name.
+     */
+    public Text provinceName, /**
+     * The Correct num.
+     */
+    correctNum, /**
+     * The Question pos.
+     */
+    questionPos;
     private GuessDetail[] details;
+    /**
+     * The Question group.
+     */
     public Group questionGroup;
     private int thisQuestion = 1, correct = 0;
     private boolean starBool = false;
@@ -50,6 +83,11 @@ public class QuestionController implements Initializable {
         }, false, 300);
     }
 
+    /**
+     * Reset question.
+     *
+     * @throws InterruptedException the interrupted exception
+     */
     public void resetQuestion() throws InterruptedException {
         UIAnimation.fadeAnimation(questionMask, null, false, 600);
         Guess.prepare();
@@ -81,14 +119,14 @@ public class QuestionController implements Initializable {
                     questionGroup, false);
         }
         UIAnimation.timer(2000, event -> {
-            if (thisQuestion < 20){
+            if (thisQuestion < 10){
                 thisQuestion++;
                 questionPos.setText(thisQuestion+"");
                 resetQuestionImage();
                 questionMask.setMouseTransparent(true);
             }else{
                 provinceName.setFill(Color.rgb(0, 155, 255));
-                if (correct < 10) provinceName.setText("已完成所有题目");
+                if (correct < 5) provinceName.setText("已完成所有题目");
                 else {
                     provinceName.setText("恭喜你获得答题奖杯");
                     try {

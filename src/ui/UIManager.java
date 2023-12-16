@@ -8,13 +8,23 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
 import controller.*;
-import Game.*;
+import game.*;
 import post.LanguageTool;
 
+/**
+ * The type Ui manager, the most important part of this software.
+ */
 public class UIManager extends Application {
-
+    /**
+     * The constant instance.
+     */
     public static UIManager instance;
 
+    /**
+     * Main.
+     *
+     * @param args the args
+     */
     public static void main(String [] args){ //主函数
         launch(UIManager.class); //启动窗口
     }
@@ -56,6 +66,11 @@ public class UIManager extends Application {
         questionFrameScene = new Scene(questionFrameParent);
     }
 
+    /**
+     * To editor frame.
+     *
+     * @throws Exception the exception
+     */
     public void toEditorFrame() throws Exception{
         editorController.editorConfirm.setMouseTransparent(false);
         editorController.editorCancel.setMouseTransparent(false);
@@ -67,9 +82,24 @@ public class UIManager extends Application {
         editorController.resetPath();
         changeScene(editorFrameScene);
     }
+
+    /**
+     * To post view frame.
+     *
+     * @throws Exception the exception
+     */
     public void toPostViewFrame() throws Exception{
         changeScene(postViewFrameScene);
     }
+
+    /**
+     * To puzzle frame.
+     * &#064;Description  去往拼图游戏界面
+     *
+     * @throws Exception the exception
+     * @author RyotoBUAA
+     * @date 2023 /12/16 20:08
+     */
     public void toPuzzleFrame() throws Exception { //切换到拼图界面
         PuzzleController.puzzleProvincePane = mainController.provincePane;
         PicturePuzzleGame.prepare(mainController.provincePane);
@@ -77,29 +107,64 @@ public class UIManager extends Application {
         puzzleController.puzzleFrameTrigger();
     }
 
+    /**
+     * To post frame.
+     *
+     * @throws Exception the exception
+     */
     public void toPostFrame() throws Exception{ //切换到帖子浏览场景
         changeScene(postFrameScene);
         postController.setPostFrameIni();
     }
 
+    /**
+     * To post frame.
+     *
+     * @param bool the bool
+     * @throws Exception the exception
+     */
     public void toPostFrame(boolean bool) throws Exception{ //切换到帖子浏览场景
         changeScene(postFrameScene);
     }
 
+    /**
+     * To province frame.
+     *
+     * @throws Exception the exception
+     */
     public void toProvinceFrame() throws Exception { //切换到具体省份界面
         changeScene(provinceFrameScene);
         provinceController.provinceFrameTrigger();
     }
 
+    /**
+     * To province frame.
+     *
+     * @param bool the bool
+     * @throws Exception the exception
+     */
     public void toProvinceFrame(boolean bool) throws Exception { //切换到具体省份界面
         changeScene(provinceFrameScene);
     }
 
+    /**
+     * To main frame.
+     *
+     * @param maskControl the mask control
+     * @throws Exception the exception
+     */
     public void toMainFrame(boolean maskControl) throws Exception { //切换到地图界面
         changeScene(mainFrameScene);
         if (maskControl) mainController.mainFrameTrigger();
     }
 
+    /**
+     * To person frame.
+     *
+     * @param frameEnum     the frame enum
+     * @param changeControl the change control
+     * @throws Exception the exception
+     */
     public void toPersonFrame(FrameEnum frameEnum, boolean changeControl) throws Exception{
         personController.backFrame = frameEnum;
         personController.setProvinceImage();
@@ -112,16 +177,35 @@ public class UIManager extends Application {
         }
         changeScene(personFrameScene);
     }
+
+    /**
+     * To question frame.
+     *
+     * @throws Exception the exception
+     */
     public void toQuestionFrame() throws Exception {
         questionController.resetQuestion();
         changeScene(questionFrameScene);
     }
+
+    /**
+     * Change scene.
+     *
+     * @param scene the scene
+     * @throws Exception the exception
+     */
     public void changeScene(Scene scene) throws Exception { //切换fxml场景
         mainScene = scene;
         mainStage.setScene(scene); //设定
     }
 
+    /**
+     * The constant mainScene.
+     */
     public static Scene mainScene; //记录当前场景
+    /**
+     * The constant mainStage.
+     */
     public static Stage mainStage; //当前舞台实例
 
     private static Scene mainFrameScene; //主界面舞台
@@ -134,14 +218,41 @@ public class UIManager extends Application {
     private static Scene personFrameScene;
     private static Scene questionFrameScene;
     private final double iniSceneWidth = 1000, iniSceneHeight = 800; //大小设定
+    /**
+     * The constant editorController.
+     */
     public static EditorController editorController;
+    /**
+     * The constant loginController.
+     */
     public static LoginController loginController;
+    /**
+     * The constant mainController.
+     */
     public static MainController mainController;
+    /**
+     * The constant postController.
+     */
     public static PostController postController;
+    /**
+     * The constant postViewController.
+     */
     public static PostViewController postViewController;
+    /**
+     * The constant provinceController.
+     */
     public static ProvinceController provinceController;
+    /**
+     * The constant puzzleController.
+     */
     public static PuzzleController puzzleController;
+    /**
+     * The constant personController.
+     */
     public static PersonController personController;
+    /**
+     * The constant questionController.
+     */
     public static QuestionController questionController;
 
     @Override

@@ -1,11 +1,11 @@
-package oop.zsz.client;
+package network.client;
 
-import oop.zsz.page.Page;
-import oop.zsz.post.Comment;
-import oop.zsz.post.DetailedPost;
-import oop.zsz.post.Post;
-import oop.zsz.post.Reply;
-import oop.zsz.user.UserProfile;
+import network.page.Page;
+import network.post.Comment;
+import network.post.DetailedPost;
+import network.post.Post;
+import network.post.Reply;
+import network.user.UserProfile;
 
 import java.util.UUID;
 

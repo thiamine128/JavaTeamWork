@@ -27,19 +27,83 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+/**
+ * The type Person controller.
+ */
 public class PersonController implements Initializable {
 
+    /**
+     * The File chooser.
+     */
     public FileChooser fileChooser; //图片选择器
-    public ImageView personCancel, changeButton; //退出按钮、切换头像按钮
-    public ImageView level, protraitImage, hkImage, mcImage; //用户等级、头像、港澳贴图
+    /**
+     * The Person cancel.
+     */
+    public ImageView personCancel, /**
+     * The Change button.
+     */
+    changeButton; //退出按钮、切换头像按钮
+    /**
+     * The Level.
+     */
+    public ImageView level, /**
+     * The Protrait image.
+     */
+    protraitImage, /**
+     * The Hk image.
+     */
+    hkImage, /**
+     * The Mc image.
+     */
+    mcImage; //用户等级、头像、港澳贴图
+    /**
+     * The Province group.
+     */
     public Group provinceGroup; //身份图片组
-    public Text username, loginDate, puzzleTime; //用户名、注册日期
-    public ImageView puzzleTrophy, postTrophy, questionTrophy; //奖杯
-    public Text puzzleHint, postHint, questionHint; //奖杯名称显示
+    /**
+     * The Username.
+     */
+    public Text username, /**
+     * The Login date.
+     */
+    loginDate, /**
+     * The Puzzle time.
+     */
+    puzzleTime; //用户名、注册日期
+    /**
+     * The Puzzle trophy.
+     */
+    public ImageView puzzleTrophy, /**
+     * The Post trophy.
+     */
+    postTrophy, /**
+     * The Question trophy.
+     */
+    questionTrophy; //奖杯
+    /**
+     * The Puzzle hint.
+     */
+    public Text puzzleHint, /**
+     * The Post hint.
+     */
+    postHint, /**
+     * The Question hint.
+     */
+    questionHint; //奖杯名称显示
+    /**
+     * The Chart.
+     */
     public StackedBarChart<String, Integer> chart;
     private List<Node> provinceList = new ArrayList<>(); //省份贴图存储
     private double ratioTest = 2.0; //缩放比例
+    /**
+     * The Back frame.
+     */
     public FrameEnum backFrame = FrameEnum.MainFrame;
+
+    /**
+     * Set province image.
+     */
     public void setProvinceImage(){ //设置省份贴图
         provinceGroup.getChildren().clear();
         for (Node province : UIManager.mainController.provincePane.getChildren()){
@@ -54,6 +118,12 @@ public class PersonController implements Initializable {
         }
     }
 
+    /**
+     * Set province color.
+     *
+     * @param provinceName the province name
+     * @param cnt          the cnt
+     */
     public void setProvinceColor(String provinceName, int cnt){
         if (cnt > 10) cnt = 10;
         double degree = 1.0 - 0.3*(cnt)/10;
@@ -64,6 +134,11 @@ public class PersonController implements Initializable {
         if (provinceName.equals("xianggang")) hkImage.setEffect(new ColorAdjust(degree, 1.0, 0.0, 1.0));
     }
 
+    /**
+     * Upload personal protrait.
+     *
+     * @throws IOException the io exception
+     */
     public void uploadPersonalProtrait() throws IOException { //上传图片
         File personalImage = fileChooser.showOpenDialog(UIManager.mainStage);
         System.out.println(personalImage.toPath());
@@ -74,6 +149,11 @@ public class PersonController implements Initializable {
         }
     }
 
+    /**
+     * Add chart info.
+     *
+     * @param mp the mp
+     */
     public void addChartInfo(Map<String, Long> mp){
 
         int cntSum = 0;

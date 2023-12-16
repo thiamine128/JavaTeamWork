@@ -3,6 +3,9 @@ package controller;
 import ui.UIFunction;
 import ui.UIManager;
 
+/**
+ * The type Timer thread.
+ */
 public class TimerThread implements Runnable{
 
     @Override

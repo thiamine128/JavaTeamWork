@@ -180,7 +180,7 @@
                         <Image url="@../resources/provinces/hunan.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="guizhou" fitHeight="74.0" fitWidth="87.0" layoutX="493.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true" x="-50.0" y="-80.0">
+                  <ImageView fx:id="guizhou" fitHeight="73.0" fitWidth="85.5" layoutX="493.0" layoutY="553.0" pickOnBounds="true" x="-50.0" y="-80.0">
                      <image>
                         <Image url="@../resources/provinces/guizhou.png" />
                      </image>

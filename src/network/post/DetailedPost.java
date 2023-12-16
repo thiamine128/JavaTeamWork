@@ -1,8 +1,6 @@
-package oop.zsz.post;
+package network.post;
 
-import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 public class DetailedPost extends Post {
     private Set<Comment> comments;

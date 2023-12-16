@@ -1,15 +1,15 @@
-package oop.zsz.client;
+package network.client;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
-import oop.zsz.page.Page;
-import oop.zsz.post.Comment;
-import oop.zsz.post.DetailedPost;
-import oop.zsz.post.Post;
-import oop.zsz.post.Reply;
-import oop.zsz.user.UserProfile;
+import network.page.Page;
+import network.post.Comment;
+import network.post.DetailedPost;
+import network.post.Post;
+import network.post.Reply;
+import network.user.UserProfile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

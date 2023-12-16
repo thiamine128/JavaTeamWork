@@ -5,10 +5,25 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * The type Language tool.
+ */
 public class LanguageTool {
+    /**
+     * The constant englishToChinese.
+     */
     public static Map<String, String> englishToChinese = new HashMap<>();
+    /**
+     * The constant chineseToEnglish.
+     */
     public static Map<String, String> chineseToEnglish = new HashMap<>();
+    /**
+     * The constant provinceSetChn.
+     */
     public static Set<String> provinceSetChn = new HashSet<>();
+    /**
+     * The constant provinceSetEng.
+     */
     public static Set<String> provinceSetEng = new HashSet<>();
 
     static {

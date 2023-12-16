@@ -1,5 +1,23 @@
 package controller;
 
+/**
+ * The enum Login situation.
+ */
 public enum LoginSituation{
-    LOGIN, REGISTER, RESET, NULL
+    /**
+     * Login login situation.
+     */
+    LOGIN,
+    /**
+     * Register login situation.
+     */
+    REGISTER,
+    /**
+     * Reset login situation.
+     */
+    RESET,
+    /**
+     * Null login situation.
+     */
+    NULL
 }

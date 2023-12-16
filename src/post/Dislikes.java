@@ -6,8 +6,14 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+/**
+ * The type Dislikes.
+ */
 public class Dislikes extends Text {
 
+    /**
+     * Instantiates a new Dislikes.
+     */
     public Dislikes(){
         this.setLayoutX(865);
         this.setLayoutY(720);

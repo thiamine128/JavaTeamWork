@@ -18,9 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The type Comment box.
+ */
 public class CommentBox extends VBox{
 
     private CommentBox instance;
+    /**
+     * The Comment id.
+     */
     public UUID commentID;
     private MainComment mainComment;
     private List<ReplyBox> replyList = new ArrayList<>();
@@ -63,6 +69,16 @@ public class CommentBox extends VBox{
         return result;
     }
 
+    /**
+     * Instantiates a new Comment box.
+     *
+     * @param id        the id
+     * @param username  the username
+     * @param content   the content
+     * @param imagepath the imagepath
+     * @param timeScale the time scale
+     * @param pos       the pos
+     */
     public CommentBox(UUID id, String username, String content, String imagepath, String timeScale, String pos){
         instance = this;
         author = username;
@@ -81,18 +97,38 @@ public class CommentBox extends VBox{
         this.getChildren().addAll(makeDown());
     }
 
+    /**
+     * Add reply.
+     *
+     * @param replyID  the reply id
+     * @param username the username
+     * @param content  the content
+     */
     public void addReply(UUID replyID, String username, String content){ //普通回复
         ReplyBox newbox = new ReplyBox(commentID, replyID, username, content, this);
         replyList.add(newbox);
         this.getChildren().addAll(newbox);
     }
 
+    /**
+     * Add reply.
+     *
+     * @param replyID     the reply id
+     * @param username    the username
+     * @param repliedName the replied name
+     * @param content     the content
+     */
     public void addReply(UUID replyID, String username, String repliedName, String content){ //二级回复
         ReplyBox newbox = new ReplyBox(commentID, replyID, username, repliedName, content, this);
         replyList.add(newbox);
         this.getChildren().addAll(newbox);
     }
 
+    /**
+     * Remove reply.
+     *
+     * @param replyID the reply id
+     */
     public void removeReply(UUID replyID){
         ReplyBox box = null;
         for (ReplyBox replyBox : replyList){

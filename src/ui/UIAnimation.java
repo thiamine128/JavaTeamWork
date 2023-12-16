@@ -18,8 +18,18 @@ import javafx.event.EventHandler;
 
 import static java.lang.Thread.sleep;
 
+/**
+ * The type Ui animation.
+ */
 public class UIAnimation {
 
+    /**
+     * Set rotate animation.
+     *
+     * @param item0      the item
+     * @param startAngle the start angle
+     * @param endAngle   the end angle
+     */
     public static void setRotateAnimation(Node item0, double startAngle, double endAngle){
         RotateTransition rotateTransition = new RotateTransition();
         rotateTransition.setNode(item0);
@@ -29,6 +39,11 @@ public class UIAnimation {
         rotateTransition.play();
     }
 
+    /**
+     * Set mouse circle animation.
+     *
+     * @param circleAnimationGroup the circle animation group
+     */
     public static void setMouseCircleAnimation(Group circleAnimationGroup){
         UIManager.mainScene.setOnMouseClicked(event ->{
             double centerX = event.getX();
@@ -60,6 +75,13 @@ public class UIAnimation {
 
     }
 
+    /**
+     * Fade animation.
+     *
+     * @param item0          the item
+     * @param event          the event
+     * @param controlDisable the control disable
+     */
     public static void fadeAnimation(Node item0, EventHandler event, boolean controlDisable){
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000));
         fadeTransition.setFromValue(1.0);   // 设置起始透明度为1.0
@@ -71,6 +93,14 @@ public class UIAnimation {
         item0.setDisable(controlDisable);         //图片失活
     }
 
+    /**
+     * Fade animation.
+     *
+     * @param item0          the item
+     * @param event          the event
+     * @param controlDisable the control disable
+     * @param timeScale      the time scale
+     */
     public static void fadeAnimation(Node item0, EventHandler event, boolean controlDisable, double timeScale){
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(timeScale));
         fadeTransition.setFromValue(1.0);   // 设置起始透明度为1.0
@@ -82,6 +112,12 @@ public class UIAnimation {
         item0.setDisable(controlDisable);         //图片失活
     }
 
+    /**
+     * Sparkle animation.
+     *
+     * @param item0      the item
+     * @param transition the transition
+     */
     public static void sparkleAnimation(Node item0, FadeTransition transition){
         transition.setNode(item0);
         transition.setFromValue(0.0);
@@ -92,6 +128,13 @@ public class UIAnimation {
         transition.play();
     }
 
+    /**
+     * Title sparkle animation.
+     *
+     * @param item0     the item
+     * @param fromValue the from value
+     * @param toValue   the to value
+     */
     public static void titleSparkleAnimation(Node item0, double fromValue, double toValue){
         FadeTransition transition = new FadeTransition();
         transition.setNode(item0);
@@ -103,6 +146,14 @@ public class UIAnimation {
         transition.play();
     }
 
+    /**
+     * Title sparkle animation.
+     *
+     * @param item0      the item
+     * @param fromValue  the from value
+     * @param toValue    the to value
+     * @param transition the transition
+     */
     public static void titleSparkleAnimation(Node item0, double fromValue, double toValue, FadeTransition transition){
         transition.setNode(item0);
         transition.setFromValue(fromValue);
@@ -113,6 +164,13 @@ public class UIAnimation {
         transition.play();
     }
 
+    /**
+     * Set black mask.
+     *
+     * @param item0     the item
+     * @param event     the event
+     * @param timeScale the time scale
+     */
     public static void setBlackMask(Node item0, EventHandler event, double timeScale){
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(timeScale));
         fadeTransition.setFromValue(0.0);   // 设置起始透明度为1.0
@@ -123,6 +181,15 @@ public class UIAnimation {
         fadeTransition.play();          // 播放动画
     }
 
+    /**
+     * Set black mask.
+     *
+     * @param item0     the item
+     * @param event     the event
+     * @param timeScale the time scale
+     * @param fromValue the from value
+     * @param toValue   the to value
+     */
     public static void setBlackMask(Node item0, EventHandler event, double timeScale, double fromValue, double toValue){
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(timeScale));
         fadeTransition.setFromValue(fromValue);
@@ -133,6 +200,15 @@ public class UIAnimation {
         fadeTransition.play();          // 播放动画
     }
 
+    /**
+     * Vector move.
+     *
+     * @param item0     the item
+     * @param x0        the x
+     * @param y0        the y
+     * @param timeScale the time scale
+     * @param event     the event
+     */
     public static void vectorMove(Node item0, double x0, double y0, double timeScale, EventHandler event){
         TranslateTransition transition = new TranslateTransition();
         transition.setByX(x0);
@@ -144,6 +220,14 @@ public class UIAnimation {
         transition.play();
     }
 
+    /**
+     * Button simple animation.
+     *
+     * @param province     the province
+     * @param transition   the transition
+     * @param paceLength   the pace length
+     * @param cycleControl the cycle control
+     */
     public static void buttonSimpleAnimation(
             Node province, TranslateTransition transition, double paceLength, boolean cycleControl){
         transition.setByY(paceLength); //按钮向上偏移
@@ -161,6 +245,11 @@ public class UIAnimation {
         transition.play(); //播放
     }
 
+    /**
+     * Button ini animation.
+     *
+     * @param province the province
+     */
     public static void buttonIniAnimation(Node province){
         TranslateTransition transition = new TranslateTransition();
         transition.setByY(-20); //按钮向上偏移
@@ -172,6 +261,13 @@ public class UIAnimation {
         AudioManager.hitAudio();
     }
 
+    /**
+     * Button info image animation.
+     *
+     * @param imageView      the image view
+     * @param fadeTransition the fade transition
+     * @param control        the control
+     */
     public static void buttonInfoImageAnimation(Node imageView, FadeTransition fadeTransition, boolean control){
         fadeTransition.stop();
         double imageOpacity = imageView.getOpacity();
@@ -183,7 +279,15 @@ public class UIAnimation {
         fadeTransition.play();          // 播放动画
     }
 
-    //烟花动画：游戏胜利结算
+    /**
+     * Puzzle fireworks.
+     *
+     * @param centerX      the center x
+     * @param centerY      the center y
+     * @param sceneGroup   the scene group
+     * @param colorControl the color control
+     */
+//烟花动画：游戏胜利结算
     public static void puzzleFireworks(double centerX, double centerY, Group sceneGroup, boolean colorControl) {
         for (int i = 0; i < 1145; i++) {
 
@@ -216,6 +320,13 @@ public class UIAnimation {
         }
     }
 
+    /**
+     * Sets sparkle circle.
+     *
+     * @param centerX    the center x
+     * @param centerY    the center y
+     * @param sceneGroup the scene group
+     */
     public static void setSparkleCircle(double centerX, double centerY, Group sceneGroup) {
         for (int i = 0; i < 500; i++) {
 
@@ -247,6 +358,14 @@ public class UIAnimation {
         }
     }
 
+    /**
+     * Set text change animation.
+     *
+     * @param item0     the item
+     * @param event     the event
+     * @param timeScale the time scale
+     * @param control   the control
+     */
     public static void setTextChangeAnimation(Node item0, EventHandler event, double timeScale, boolean control){
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(timeScale));
         if (control){
@@ -262,6 +381,12 @@ public class UIAnimation {
         fadeTransition.play();          // 播放动画
     }
 
+    /**
+     * Timer.
+     *
+     * @param timeScale the time scale
+     * @param event     the event
+     */
     public static void timer(double timeScale, EventHandler event){ //计时器
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(timeScale));
         fadeTransition.setCycleCount(1);
@@ -272,6 +397,12 @@ public class UIAnimation {
         fadeTransition.play();
     }
 
+    /**
+     * Starworks.
+     *
+     * @param sceneGroup the scene group
+     * @throws InterruptedException the interrupted exception
+     */
     public static void starworks(Group sceneGroup) throws InterruptedException {
         for (int i = 0; i < 5; i++) {
             double centerX = 1000*Math.random();

@@ -10,10 +10,23 @@ import ui.UIManager;
 
 import java.nio.file.Path;
 
+/**
+ * The type Image select.
+ */
 public class ImageSelect extends HBox {
     private TextField imageName;
     private ImageView cancelButton;
+    /**
+     * The Path.
+     */
     public Path path;
+
+    /**
+     * Instantiates a new Image select.
+     *
+     * @param path      the path
+     * @param imageName the image name
+     */
     public ImageSelect(Path path, String imageName){
 
         this.setOpacity(0.8);

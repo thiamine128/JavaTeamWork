@@ -26,24 +26,92 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
+/**
+ * The type Post view controller.
+ */
 public class PostViewController implements Initializable {
 
-    //postViewFrame.fxml 具体帖子浏览器
+    /**
+     * The Post view scroll pane.
+     */
+//postViewFrame.fxml 具体帖子浏览器
     public ScrollPane postViewScrollPane;
+    /**
+     * The Main v box.
+     */
     public VBox mainVBox;
+    /**
+     * The Post view cancel.
+     */
     public ImageView postViewCancel;
+    /**
+     * The Post content.
+     */
     public WebView postContent;
+    /**
+     * The Author protrait.
+     */
     public ImageView authorProtrait;
-    public Text authorText, title;
-    public AnchorPane commentPane, mainPane;
-    public ImageView likeButton, commentButton, commentCancel, commentConfirm;
+    /**
+     * The Author text.
+     */
+    public Text authorText, /**
+     * The Title.
+     */
+    title;
+    /**
+     * The Comment pane.
+     */
+    public AnchorPane commentPane, /**
+     * The Main pane.
+     */
+    mainPane;
+    /**
+     * The Like button.
+     */
+    public ImageView likeButton, /**
+     * The Comment button.
+     */
+    commentButton, /**
+     * The Comment cancel.
+     */
+    commentCancel, /**
+     * The Comment confirm.
+     */
+    commentConfirm;
+    /**
+     * The Comment editor.
+     */
     public HTMLEditor commentEditor;
+    /**
+     * The Reply field.
+     */
     public TextField replyField;
+    /**
+     * The Reply pane.
+     */
     public AnchorPane replyPane;
-    public ImageView replyConfirm, replyCancel;
+    /**
+     * The Reply confirm.
+     */
+    public ImageView replyConfirm, /**
+     * The Reply cancel.
+     */
+    replyCancel;
+    /**
+     * The Post id.
+     */
     public UUID postID;
+    /**
+     * The Image box.
+     */
     public VBox imageBox;
 
+    /**
+     * Add image.
+     *
+     * @param url the url
+     */
     public void addImage(URL url){
         ImageView imageView = new ImageView(new Image(url.toString(), true));
         imageView.setFitHeight(606);
@@ -52,18 +120,32 @@ public class PostViewController implements Initializable {
         imageBox.getChildren().addAll(imageView);
     }
 
+    /**
+     * Reset image box.
+     */
     public void resetImageBox(){
         imageBox.setMinHeight(1);
         imageBox.getChildren().clear();
     }
 
     private boolean isLiked = false;
+
+    /**
+     * Set white heart.
+     *
+     * @param key the key
+     */
     public void setWhiteHeart(int key){
         isLiked = false;
         likeButton.setImage(new Image("./resources/postViewFrameImage/hearts.png"));
         UIManager.postController.updateLikes(postID, key);
     }
 
+    /**
+     * Set red heart.
+     *
+     * @param key the key
+     */
     public void setRedHeart(int key){
         isLiked = true;
         likeButton.setImage(new Image("./resources/postViewFrameImage/redHearts.png"));

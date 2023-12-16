@@ -18,24 +18,76 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
+/**
+ * The type Post controller.
+ */
 public class PostController implements Initializable {
 
-    //postFrame.fxml 贴吧浏览器
+    /**
+     * The Post frame mask.
+     */
+//postFrame.fxml 贴吧浏览器
     public ImageView postFrameMask;
+    /**
+     * The Post frame ini.
+     */
     public ImageView postFrameIni;
-    public ImageView postCancel, frButton, nxtButton, searchButton;
+    /**
+     * The Post cancel.
+     */
+    public ImageView postCancel, /**
+     * The Fr button.
+     */
+    frButton, /**
+     * The Nxt button.
+     */
+    nxtButton, /**
+     * The Search button.
+     */
+    searchButton;
+    /**
+     * The Post main vbox.
+     */
     public VBox postMainVbox;
+    /**
+     * The Post scroll.
+     */
     public ScrollPane postScroll;
+    /**
+     * The Page num.
+     */
     public Text pageNum;
+    /**
+     * The Province search.
+     */
     public TextField provinceSearch;
     private int thisPage = 1, pageTotalNum = 1, pageSize0 = 10;
+
+    /**
+     * Set total num.
+     *
+     * @param num the num
+     */
     public void setTotalNum(int num){
         pageTotalNum = num;
     }
     private PostBox thisPostBox;
+
+    /**
+     * Set post box.
+     *
+     * @param box the box
+     */
     public void setPostBox(PostBox box){
         thisPostBox = box;
     }
+
+    /**
+     * Update likes.
+     *
+     * @param postID the post id
+     * @param key    the key
+     */
     public void updateLikes(UUID postID, int key){
         if (thisPostBox != null) thisPostBox.setlikes(key);
     }
@@ -49,6 +101,9 @@ public class PostController implements Initializable {
         pageNum.setText((pageNumber+1)+"");
     }
 
+    /**
+     * Set post frame ini.
+     */
     public void setPostFrameIni(){
         postFrameIni.setMouseTransparent(true);
         UIFunction.iniPostFrame();

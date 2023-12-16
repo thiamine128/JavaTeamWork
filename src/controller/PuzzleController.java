@@ -1,6 +1,6 @@
 package controller;
 
-import Game.PicturePuzzleGame;
+import game.PicturePuzzleGame;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
@@ -19,24 +19,61 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * The type Puzzle controller.
+ */
 public class PuzzleController implements Initializable {
 
-    //puzzleFrame.fxml 拼图界面
+    /**
+     * The constant puzzleProvincePane.
+     */
+//puzzleFrame.fxml 拼图界面
     public static Pane puzzleProvincePane; //省份载体
+    /**
+     * The Puzzle group.
+     */
     @FXML
     public Group puzzleGroup; //拼图载体
+    /**
+     * The Puzzle cg.
+     */
     @FXML
     public ImageView puzzleCG; //拼图背景图片
+    /**
+     * The Puzzle info.
+     */
     @FXML
     public ImageView puzzleInfo; //拼图信息
+    /**
+     * The Puzzle mask.
+     */
     @FXML
     public ImageView puzzleMask; //拼图界面遮罩
+    /**
+     * The Puzzle frame ini.
+     */
     public ImageView puzzleFrameIni; //初始化触发器
+    /**
+     * The Puzzle cancel.
+     */
     public ImageView puzzleCancel; //退出按键
     private List<ProvinceInfoStruct> provinceInfoSet = new ArrayList(); //省份信息列
+    /**
+     * The Timer text.
+     */
     public Text timerText;
+    /**
+     * The Thread.
+     */
     public Thread thread;
+    /**
+     * The Timer.
+     */
     public Long timer = 0L;
+
+    /**
+     * Puzzle frame trigger.
+     */
     public void puzzleFrameTrigger(){
 
         puzzleFrameIni.setMouseTransparent(true);

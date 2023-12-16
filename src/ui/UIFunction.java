@@ -17,17 +17,24 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import Click.ProvinceDetail;
-import Game.*;
-import post.PostBox;
+import province.ProvinceDetail;
+import game.*;
 
+/**
+ * The type Ui function.
+ */
 public class UIFunction {
 
+    /**
+     * The constant manager.
+     */
     public static UIManager manager;
+
+    /**
+     * Ini post frame.
+     */
     public static void iniPostFrame(){
 
         manager.postController.postCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -61,6 +68,12 @@ public class UIFunction {
 
     private static FadeTransition loginHintTrans = new FadeTransition();
     private static boolean sendCold = true;
+
+    /**
+     * Ini login frame button.
+     *
+     * @param loginController the login controller
+     */
     public static void iniLoginFrameButton(LoginController loginController){
 
         ColorAdjust color_adjust = new ColorAdjust();
@@ -220,13 +233,28 @@ public class UIFunction {
     private static double mouseX, mouseY;
     private static boolean mouseKey = false, isWin = false;
 
+    /**
+     * Check win boolean.
+     *
+     * @return the boolean
+     */
     public static boolean checkWin(){
         return isWin;
     }
+
+    /**
+     * Reset win.
+     */
     public static void resetWin(){
         isWin = false;
     }
 
+    /**
+     * Set mouse puzzle trans.
+     *
+     * @param provinceImage the province image
+     * @param puzzleGroup   the puzzle group
+     */
     public static void setMousePuzzleTrans(ImageView provinceImage, Group puzzleGroup){
 
         mouseKey = false;
@@ -366,10 +394,20 @@ public class UIFunction {
     private static FadeTransition infoImageFadeTransition = new FadeTransition();
     private static FadeTransition edgeImageFadeTransition = new FadeTransition();
 
+    /**
+     * Info fade.
+     */
     public static void infoFade(){
         UIAnimation.buttonInfoImageAnimation(UIManager.mainController.infoImage, infoImageFadeTransition, false);
     }
 
+    /**
+     * Ini main frame button.
+     *
+     * @param provincePane   the province pane
+     * @param infoImage      the info image
+     * @param mainController the main controller
+     */
     public static void iniMainFrameButton(Pane provincePane, ImageView infoImage, MainController mainController){
 
         infoImage.setOpacity(0.0);
@@ -620,6 +658,14 @@ public class UIFunction {
     private static FadeTransition interestTrans = new FadeTransition();
     private static FadeTransition folkTrans = new FadeTransition();
     private static FadeTransition postTrans = new FadeTransition();
+
+    /**
+     * Ini province frame button.
+     *
+     * @param postButton   the post button
+     * @param sparkleImage the sparkle image
+     * @param BackButton   the back button
+     */
     public static void iniProvinceFrameButton(Node postButton, Node sparkleImage, Node BackButton){
 
         sparkleImage.setMouseTransparent(true);

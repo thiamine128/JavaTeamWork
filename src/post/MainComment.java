@@ -18,6 +18,9 @@ import ui.UINetwork;
 import java.util.UUID;
 
 
+/**
+ * The type Main comment.
+ */
 public class MainComment extends HBox{
 
     private VBox protraitBox;
@@ -26,6 +29,14 @@ public class MainComment extends HBox{
     private WebView content;
     private UUID commentID;
 
+    /**
+     * Instantiates a new Main comment.
+     *
+     * @param commentID the comment id
+     * @param username  the username
+     * @param content   the content
+     * @param imagepath the imagepath
+     */
     public MainComment(UUID commentID, String username, String content, String imagepath){
         this.commentID = commentID;
         this.content = new WebView();
@@ -122,6 +133,13 @@ public class MainComment extends HBox{
         color_adjust.setSaturation(0.5);
         return color_adjust;
     }
+
+    /**
+     * Set username func text.
+     *
+     * @param text0 the text 0
+     * @return the text
+     */
     public Text setUsernameFunc(Text text0){ //点击用户名：获取用户信息
         text0.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override

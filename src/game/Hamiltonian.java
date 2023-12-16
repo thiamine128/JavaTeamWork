@@ -1,23 +1,51 @@
-package Game;
+package game;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
 import static java.lang.Math.min;
-import static java.util.Collections.swap;
 
+/**
+ * The type Hamiltonian.
+ */
 public class Hamiltonian {
+    /**
+     * The Dis.
+     */
     int[][] dis=new int[40][40];
+    /**
+     * The Tim.
+     */
     int[][] tim=new int[40][40];
-    int N,INF=1000000000;
+    /**
+     * The N.
+     */
+    int N, /**
+     * The Inf.
+     */
+    INF=1000000000;
+    /**
+     * The Ch id.
+     */
     HashMap<String,Integer> ChId=new HashMap<>();
+    /**
+     * The En id.
+     */
     HashMap<String,Integer> EnId=new HashMap<>();
+    /**
+     * The F.
+     */
     int[][] f=new int[1<<20][20];
+    /**
+     * The Name.
+     */
     String[] name=new String[40];
+
+    /**
+     * Instantiates a new Hamiltonian.
+     */
     public Hamiltonian() {
         FileInputStream fin=null;
         try {
@@ -67,7 +95,18 @@ public class Hamiltonian {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * The Points.
+     */
     int[] points=new int[20];
+
+    /**
+     * Calc dis hamiltonian detail.
+     *
+     * @param all the all
+     * @return the hamiltonian detail
+     */
     public HamiltonianDetail calcDis(String[] all) {
         int n=all.length;
         String[] res=new String[n+1];
@@ -107,6 +146,13 @@ public class Hamiltonian {
         res[n]=name[points[path.get(n-1)]];
         return new HamiltonianDetail(res,minn,true);
     }
+
+    /**
+     * Calc time hamiltonian detail.
+     *
+     * @param all the all
+     * @return the hamiltonian detail
+     */
     public HamiltonianDetail calcTime(String[] all) {
         int n=all.length;
         String[] res=new String[n+1];
@@ -146,6 +192,10 @@ public class Hamiltonian {
         res[n]=name[points[path.get(n-1)]];
         return new HamiltonianDetail(res,minn,true);
     }
+
+    /**
+     * The Path.
+     */
     ArrayList<Integer> path=new ArrayList<>();
     private void dfs(int u,int s,int n) {
         path.add(u);

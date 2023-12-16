@@ -6,8 +6,14 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+/**
+ * The type Likes.
+ */
 public class Likes extends Text {
 
+    /**
+     * Instantiates a new Likes.
+     */
     public Likes(){
         this.setLayoutX(865);
         this.setLayoutY(720);

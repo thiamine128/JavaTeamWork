@@ -18,6 +18,9 @@ import ui.UINetwork;
 import java.net.URL;
 import java.util.UUID;
 
+/**
+ * The type Post box.
+ */
 public class PostBox extends VBox{
 
     private UUID postID;
@@ -25,6 +28,11 @@ public class PostBox extends VBox{
     private int likes;
     private HBox imageBox;
 
+    /**
+     * Get post id uuid.
+     *
+     * @return the uuid
+     */
     public UUID getPostID(){
         return postID;
     }
@@ -113,6 +121,12 @@ public class PostBox extends VBox{
         return result;
     }
     private Text likesText;
+
+    /**
+     * Setlikes.
+     *
+     * @param key the key
+     */
     public void setlikes(int key){
         if (key > 0) likes++;
         else if (key < 0) likes--;
@@ -152,6 +166,16 @@ public class PostBox extends VBox{
         return result;
     }
 
+    /**
+     * Instantiates a new Post box.
+     *
+     * @param id       the id
+     * @param title    the title
+     * @param author   the author
+     * @param province the province
+     * @param postTime the post time
+     * @param likes    the likes
+     */
     public PostBox(UUID id, String title, String author, String province, String postTime, int likes){
         this.likes = likes;
         this.postID = id;
@@ -178,6 +202,11 @@ public class PostBox extends VBox{
         this.getChildren().addAll(imageBox);
     }
 
+    /**
+     * Add image.
+     *
+     * @param url the url
+     */
     public void addImage(URL url){
         imageBox.getChildren().addAll(new Separator(Orientation.VERTICAL));
         ImageView imageView = new ImageView(new Image(url.toString(), true));
@@ -188,6 +217,11 @@ public class PostBox extends VBox{
     }
 
 
+    /**
+     * Get uuid uuid.
+     *
+     * @return the uuid
+     */
     public UUID getUUID(){
         return this.postID;
     }

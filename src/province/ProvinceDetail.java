@@ -1,21 +1,66 @@
-package Click;
+package province;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * The type Province detail.
+ */
 public class ProvinceDetail {
+    /**
+     * The Interest.
+     */
     public String[] interest=new String[12];
+    /**
+     * The Food.
+     */
     public String[] food=new String[12];
+    /**
+     * The Folk.
+     */
     public String[] folk=new String[12];
+    /**
+     * The Interest name.
+     */
     public String[] interestName=new String[12];
+    /**
+     * The Food name.
+     */
     public String[] foodName=new String[12];
+    /**
+     * The Folk name.
+     */
     public String[] folkName=new String[12];
+    /**
+     * The Interest path.
+     */
     public String[] interestPath=new String[12];
+    /**
+     * The Food path.
+     */
     public String[] foodPath=new String[12];
+    /**
+     * The Folk path.
+     */
     public String[] folkPath=new String[12];
-    public int interestSum,foodSum,folkSum;
+    /**
+     * The Interest sum.
+     */
+    public int interestSum, /**
+     * The Food sum.
+     */
+    foodSum, /**
+     * The Folk sum.
+     */
+    folkSum;
+
+    /**
+     * Gets detail.
+     *
+     * @param x the x
+     * @return the detail
+     */
 //    Random seed=new Random();
 //    ProvinceDetail x=ProvinceDetail.getDetail("beijing");
 //        for(int i=1;i<=x.foodSum;i++) {
