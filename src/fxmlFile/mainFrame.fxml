@@ -232,7 +232,7 @@
                   <Image url="@../resources/provinceFrameImage/gyroscope.png" />
                </image>
             </ImageView>
-            <Text fx:id="frameUsername" fill="#3a50e0" layoutX="90.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="21377206" wrappingWidth="184.0">
+            <Text fx:id="frameUsername" fill="#3a50e0" layoutX="90.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="21377206" wrappingWidth="380.66668701171875">
                <font>
                   <Font name="Consolas Bold" size="36.0" />
                </font>

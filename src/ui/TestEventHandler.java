@@ -37,7 +37,7 @@ public class TestEventHandler implements IClientEventHandler {
             public void run() {
                 AudioManager.setButtonAudio(4);
                 UIManager.personController.username.setText(username);
-                UIManager.mainController.frameUsername.setText(username);
+                UIManager.mainController.setFrameUsername(username);
                 UIManager.loginController.loginHint.setText("登录成功");
                 UIManager.loginController.loginHint.setOpacity(0.8);
                 //登录成功入口
@@ -135,8 +135,6 @@ public class TestEventHandler implements IClientEventHandler {
             @Override
             public void run() {
 
-
-
                 UIManager.postViewController.authorProtrait.setImage(
                         new Image("http://116.204.117.136/portrait/"+post.getPoster()+".png"));
 
@@ -209,8 +207,12 @@ public class TestEventHandler implements IClientEventHandler {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(comment.getCreatedDate());
                 CommentBox commentBox = new CommentBox(comment.getId(), comment.getUser(), comment.getText(),
-                        "./resources/icon.png", "2023", "BUAA");
+                        "./resources/icon.png", calendar.get(Calendar.YEAR)+
+                        "年"+(calendar.get(Calendar.MONTH)+1)+"月"
+                        +calendar.get(Calendar.DAY_OF_MONTH)+"日", "BUAA");
                 UIManager.postViewController.mainVBox.getChildren().addAll(commentBox);
                 boxSet.add(commentBox);
             }
@@ -308,27 +310,27 @@ public class TestEventHandler implements IClientEventHandler {
 
     @Override
     public void onRemovePostFailed(String error) {
-
+        System.out.println("remove post failed");
     }
 
     @Override
     public void onRemoveCommentSuccess() {
-
+        System.out.println("remove comment success");
     }
 
     @Override
     public void onRemoveCommentFailed(String error) {
-
+        System.out.println("remove comment failed");
     }
 
     @Override
     public void onRemoveReplySuccess() {
-
+        System.out.println("remove reply success");
     }
 
     @Override
     public void onRemoveReplyFailed(String error) {
-
+        System.out.println("remove reply failed");
     }
 
     @Override
@@ -374,6 +376,9 @@ public class TestEventHandler implements IClientEventHandler {
                     UIManager.personController.setProvinceColor(key, Math.toIntExact(data.getHistory().get(key)));
                 }
                 UIManager.personController.addChartInfo(data.getHistory());
+                if (data.getUsername().equals(UIManager.mainController.frameUsername.getText())){
+                    if (data.getAdministrator()) UIManager.mainController.setUserPower(true);
+                }
                 if (data.getPortrait() != null){
                     if (data.getUsername().equals(UIManager.mainController.frameUsername.getText())){
                         UIManager.mainController.profilePhoto.setImage(new Image("http://116.204.117.136/portrait/"

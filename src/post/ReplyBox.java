@@ -1,6 +1,7 @@
 package post;
 import controller.FrameEnum;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -16,6 +17,7 @@ import java.util.UUID;
 public class ReplyBox extends TextFlow {
 
     private String thisUsername;
+    private CommentBox commentBox;
     public UUID commentID, replyID;
 
     private static ColorAdjust effectMaker(double brightness){
@@ -122,7 +124,34 @@ public class ReplyBox extends TextFlow {
         return result;
     }
 
-    public ReplyBox(UUID commentID, UUID replyID, String username, String content){ //普通回复
+    private Text cancelMaker(){
+        Text result = new Text("    "+"REMOVE"+"  ");
+        result.setFont(new Font(18));
+        result.setFill(Color.rgb(222, 28, 28));
+        result.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                UINetwork.removeReply(replyID);
+                commentBox.removeReply(replyID);
+            }
+        });
+        result.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                result.setFill(Color.rgb(222, 128, 100));
+            }
+        });
+        result.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                result.setFill(Color.rgb(222, 28, 28));
+            }
+        });
+        return result;
+    }
+
+    public ReplyBox(UUID commentID, UUID replyID, String username, String content, CommentBox commentBox){ //普通回复
+        this.commentBox = commentBox;
         this.commentID = commentID;
         this.replyID = replyID;
         thisUsername = username;
@@ -130,9 +159,12 @@ public class ReplyBox extends TextFlow {
         this.getChildren().addAll(setUsernameFunc(textMaker(username, true)));
         this.getChildren().addAll(setCommentReplyFunc(textMaker("："+content, false)));
         this.setMaxWidth(913);
+        if (UIManager.mainController.frameUsername.getText().equals(username) || UIManager.mainController.getUserPower())
+            this.getChildren().addAll(cancelMaker());
     }
 
-    public ReplyBox(UUID commentID, UUID replyID, String username, String repliedName, String content){ //二级回复
+    public ReplyBox(UUID commentID, UUID replyID, String username, String repliedName, String content, CommentBox commentBox){ //二级回复
+        this.commentBox = commentBox;
         this.commentID = commentID;
         this.replyID = replyID;
         thisUsername = username;
@@ -142,6 +174,8 @@ public class ReplyBox extends TextFlow {
         this.getChildren().addAll(setUsernameFunc(textMaker(repliedName, true)));
         this.getChildren().addAll(setCommentReplyFunc(textMaker("："+content, false)));
         this.setMaxWidth(913);
+        if (UIManager.mainController.frameUsername.getText().equals(username) || UIManager.mainController.getUserPower())
+            this.getChildren().addAll(cancelMaker());
     }
 
 }

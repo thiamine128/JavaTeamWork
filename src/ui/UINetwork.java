@@ -73,6 +73,14 @@ public class UINetwork {
         appClient.removePost(postID);
     }
 
+    public static void removeComment(UUID commentID){
+        appClient.removeComment(commentID);
+    }
+
+    public static void removeReply(UUID replyID){
+        appClient.removeReply(replyID);
+    }
+
     public static void uploadProtrait(Path imagePath) throws FileNotFoundException {
         appClient.uploadPortrait(imagePath);
     }

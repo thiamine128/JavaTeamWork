@@ -8,14 +8,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import ui.*;
 
@@ -43,6 +44,26 @@ public class MainController implements Initializable {
     public ImageView toPuzzleButton; //拼图游戏按钮
     public ImageView mainFrameBG; //开头场景
     public Text frameUsername;
+
+    public void setFrameUsername(String content){
+        frameUsername.setText(content);
+        if (content.length() > 8){
+            Font font = frameUsername.getFont();
+            frameUsername.setFont(Font.font(font.getFamily(), FontWeight.NORMAL, FontPosture.REGULAR, 22));
+            frameUsername.setLayoutY(frameUsername.getLayoutY()-7);
+        }
+    }
+
+    private boolean userPower = false;
+
+    public void setUserPower(boolean key){
+        userPower = key;
+    }
+
+    public boolean getUserPower(){
+        return userPower;
+    }
+
     public ImageView toPostButton, toQuestionButton, HButton, hamiButton, hamiButton2;
     public ImageView profilePhoto;
     public boolean Hsituation = false, provinceProtect = false;

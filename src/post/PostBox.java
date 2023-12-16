@@ -140,7 +140,7 @@ public class PostBox extends VBox{
         result.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                result.setFill(Color.rgb(222, 58, 58));
+                result.setFill(Color.rgb(222, 128, 100));
             }
         });
         result.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -166,7 +166,7 @@ public class PostBox extends VBox{
         flow.getChildren().addAll(authorMaker(author));
         flow.getChildren().addAll(likesTextMaker());
         flow.getChildren().addAll(provinceTimeTextMaker(LanguageTool.englishToChinese.get(province), postTime));
-        if (author.equals(UIManager.mainController.frameUsername.getText()))
+        if (author.equals(UIManager.mainController.frameUsername.getText()) || UIManager.mainController.getUserPower())
             flow.getChildren().addAll(cancelMaker());
         this.getChildren().addAll(flow);
         imageBox = new HBox();
