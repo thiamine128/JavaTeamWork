@@ -69,7 +69,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>app.App</mainClass>
+              <mainClass>oop.javateamworkmaven/app.App</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
@@ -86,7 +86,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>ui.UIManager</mainClass>
+              <mainClass>oop.javateamworkmaven/app.App</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

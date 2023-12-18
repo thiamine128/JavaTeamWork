@@ -17,4 +17,5 @@ module oop.javateamworkmaven {
     exports network.page;
     exports network.user;
     exports network.post;
+    exports app;
 }
