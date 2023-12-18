@@ -195,6 +195,11 @@ public class UINetwork {
         return appClient.getPostImageURL(imageId);
     }
 
+
+    public static URL getPortraitUrl(String username) throws MalformedURLException {
+        return appClient.getPortraitURL(username + ".png");
+    }
+
     /**
      * Sets puzzle win.
      *

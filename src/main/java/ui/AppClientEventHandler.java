@@ -139,8 +139,12 @@ public class AppClientEventHandler implements IClientEventHandler {
             @Override
             public void run() {
 
-                UIManager.postViewController.authorProtrait.setImage(
-                        new Image("http://116.204.117.136/portrait/"+post.getPoster()+".png"));
+                try {
+                    UIManager.postViewController.authorProtrait.setImage(
+                            new Image(UINetwork.getPortraitUrl(post.getPoster()).toString()));
+                } catch (MalformedURLException e) {
+
+                }
 
                 UIManager.postViewController.postID = post.getId();
 

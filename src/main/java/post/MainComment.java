@@ -15,6 +15,7 @@ import ui.AppClientEventHandler;
 import ui.UIManager;
 import ui.UINetwork;
 
+import java.net.MalformedURLException;
 import java.util.UUID;
 
 
@@ -47,7 +48,11 @@ public class MainComment extends HBox{
         this.content.getEngine().loadContent(content);
 
         commentAuthor = new Text(username);
-        authorImage = new ImageView(new Image("http://116.204.117.136/portrait/"+username+".png"));
+        try {
+            authorImage = new ImageView(new Image(UINetwork.getPortraitUrl(username).toString()));
+        } catch (MalformedURLException e) {
+
+        }
 
         commentAuthor.setWrappingWidth(180);
         commentAuthor.setTextAlignment(TextAlignment.CENTER);
