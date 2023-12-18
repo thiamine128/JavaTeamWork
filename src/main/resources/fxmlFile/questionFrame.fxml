@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.QuestionController">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="1000.0" pickOnBounds="true">
+         <image>
+            <Image url="@../questionImage/bg.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4f2ff" height="193.0" layoutX="95.0" layoutY="161.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="293.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4f2ff" height="193.0" layoutX="595.0" layoutY="472.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="293.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4f2ff" height="193.0" layoutX="105.0" layoutY="472.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="293.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4f2ff" height="193.0" layoutX="595.0" layoutY="161.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="293.0" />
+      <Text fill="WHITE" layoutX="44.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRIVIA" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="49.0" />
+         </font>
+      </Text>
+      <Text fill="#3d7eff" layoutX="41.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRIVIA" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="49.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="ans0" fitHeight="180.0" fitWidth="278.0" layoutX="102.0" layoutY="167.0" opacity="0.8" pickOnBounds="true">
+         <image>
+            <Image url="@../mask.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ans1" fitHeight="180.0" fitWidth="278.0" layoutX="602.0" layoutY="479.0" opacity="0.8" pickOnBounds="true">
+         <image>
+            <Image url="@../mask.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ans2" fitHeight="180.0" fitWidth="278.0" layoutX="602.0" layoutY="167.0" opacity="0.8" pickOnBounds="true">
+         <image>
+            <Image url="@../mask.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ans3" fitHeight="180.0" fitWidth="278.0" layoutX="112.0" layoutY="479.0" opacity="0.8" pickOnBounds="true">
+         <image>
+            <Image url="@../mask.jpg" />
+         </image>
+      </ImageView>
+      <Text fx:id="questionPos" fill="WHITE" layoutX="424.0" layoutY="449.0" opacity="0.3" strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" wrappingWidth="133.63018798828125">
+         <font>
+            <Font size="96.0" />
+         </font>
+      </Text>
+      <Text fx:id="provinceName" fill="WHITE" layoutX="317.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="北京" textAlignment="CENTER" wrappingWidth="348.66661071777344">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="questionCancel" fitHeight="54.0" fitWidth="59.0" layoutX="923.0" layoutY="14.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../puzzleImage/cancel.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="306.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/10" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="49.0" />
+         </font>
+      </Text>
+      <Text fx:id="correctNum" fill="#97cbff" layoutX="237.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="68.21826171875">
+         <font>
+            <Font name="System Bold" size="49.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="questionMask" fitHeight="800.0" fitWidth="1000.0" mouseTransparent="true" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@../mask.jpg" />
+         </image>
+      </ImageView>
+      <Group fx:id="questionGroup" mouseTransparent="true" />
+   </children>
+</AnchorPane>
