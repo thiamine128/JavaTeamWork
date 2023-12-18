@@ -482,7 +482,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onSendVerificationCodeFailed(String error) {
         System.out.println("send code failed");
-        UIManager.loginController.loginHint.setText("发送邮件失败");
+        UIManager.loginController.loginHint.setText(error);
     }
 
     @Override

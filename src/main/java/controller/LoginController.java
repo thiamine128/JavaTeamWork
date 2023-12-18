@@ -72,7 +72,10 @@ public class LoginController implements Initializable {
     lemail, /**
      * The Lcode.
      */
-    lcode;
+    lcode, /**
+     * The lusername.
+     */
+    lusername;
     /**
      * The Username input.
      */
@@ -127,7 +130,6 @@ public class LoginController implements Initializable {
                         UIAnimation.setTextChangeAnimation(reglogTitle, event -> {
                         }, 600, true);
                     }, 600, false);
-                    UIAnimation.vectorMove(reglogTitle, 0, 122, 600, null);
                     if (fr != LoginSituation.NULL)
                         UIAnimation.setBlackMask(loginMainTitle, null, 600, 0.0, 0.8);
                     usernameInput.setPromptText("请输入用户名或邮箱");
@@ -142,6 +144,19 @@ public class LoginController implements Initializable {
                     codeInput.setMouseTransparent(true);
                     emailInput.setMouseTransparent(true);
                     sendButton.setMouseTransparent(true);
+
+                    if (fr == LoginSituation.RESET) {
+                        UIAnimation.setBlackMask(lusername, null, 300);
+                        UIAnimation.setBlackMask(usernameInput, null, 300);
+                        UIAnimation.vectorMove(lcode, 0, -51, 600, null);
+                        UIAnimation.vectorMove(lemail, 0, -51, 600, null);
+                        UIAnimation.vectorMove(codeInput, 0, -51, 600, null);
+                        UIAnimation.vectorMove(emailInput, 0, -51, 600, null);
+                        UIAnimation.vectorMove(sendButton, 0, -51, 600, null);
+                        UIAnimation.vectorMove(reglogTitle, 0, 61, 600, null);
+                    } else {
+                        UIAnimation.vectorMove(reglogTitle, 0, 122, 600, null);
+                    }
                     break;
                 }
                 case RESET:{
@@ -152,23 +167,41 @@ public class LoginController implements Initializable {
                         UIAnimation.setTextChangeAnimation(reglogTitle, event -> {
                         }, 600, true);
                     }, 600, false);
+
                     usernameInput.setPromptText("请输入对应用户名");
                     passwordInput.setPromptText("请输入新密码");
                     emailInput.setPromptText("请输入你的邮箱");
                     codeInput.setPromptText("请输入验证码");
+
+                    UIAnimation.fadeAnimation(lusername, null, false, 300);
+                    UIAnimation.fadeAnimation(usernameInput, null, false, 300);
                     if (fr == LoginSituation.LOGIN){
                         UIAnimation.setBlackMask(loginMainTitle, null, 600, 0.8, 0.0);
-                        UIAnimation.vectorMove(reglogTitle, 0, -122, 600, null);
+                        UIAnimation.vectorMove(reglogTitle, 0, -61, 600, null);
                         UIAnimation.setBlackMask(lcode, null, 300, 0.0, 0.8);
                         UIAnimation.setBlackMask(lemail, null, 300, 0.0, 0.8);
                         UIAnimation.setBlackMask(codeInput, null, 300, 0.0, 0.8);
                         UIAnimation.setBlackMask(emailInput, null, 300, 0.0, 0.8);
                         UIAnimation.setBlackMask(sendButton, null, 300, 0.0, 0.8);
+
+                        UIAnimation.vectorMove(lcode, 0, 51, 600, null);
+                        UIAnimation.vectorMove(lemail, 0, 51, 600, null);
+                        UIAnimation.vectorMove(codeInput, 0, 51, 600, null);
+                        UIAnimation.vectorMove(emailInput, 0, 51, 600, null);
+                        UIAnimation.vectorMove(sendButton, 0, 51, 600, null);
+
                         lcode.setMouseTransparent(false);
                         lemail.setMouseTransparent(false);
                         codeInput.setMouseTransparent(false);
                         emailInput.setMouseTransparent(false);
                         sendButton.setMouseTransparent(false);
+                    } else if (fr == LoginSituation.REGISTER) {
+                        UIAnimation.vectorMove(reglogTitle, 0, 61, 600, null);
+                        UIAnimation.vectorMove(lcode, 0, 51, 600, null);
+                        UIAnimation.vectorMove(lemail, 0, 51, 600, null);
+                        UIAnimation.vectorMove(codeInput, 0, 51, 600, null);
+                        UIAnimation.vectorMove(emailInput, 0, 51, 600, null);
+                        UIAnimation.vectorMove(sendButton, 0, 51, 600, null);
                     }
                     break;
                 }
@@ -184,6 +217,8 @@ public class LoginController implements Initializable {
                     passwordInput.setPromptText("请输入密码");
                     emailInput.setPromptText("请输入邮箱");
                     codeInput.setPromptText("请输入验证码");
+
+
                     if (fr == LoginSituation.LOGIN){
                         UIAnimation.setBlackMask(loginMainTitle, null, 600, 0.8, 0.0);
                         UIAnimation.vectorMove(reglogTitle, 0, -122, 600, null);
@@ -193,11 +228,21 @@ public class LoginController implements Initializable {
                         UIAnimation.setBlackMask(codeInput, null, 300, 0.0, 0.8);
                         UIAnimation.setBlackMask(emailInput, null, 300, 0.0, 0.8);
                         UIAnimation.setBlackMask(sendButton, null, 300, 0.0, 0.8);
+
                         lcode.setMouseTransparent(false);
                         lemail.setMouseTransparent(false);
                         codeInput.setMouseTransparent(false);
                         emailInput.setMouseTransparent(false);
                         sendButton.setMouseTransparent(false);
+                    } else if (fr == LoginSituation.RESET) {
+                        UIAnimation.vectorMove(reglogTitle, 0, -61, 600, null);
+                        UIAnimation.setBlackMask(lusername, null, 300);
+                        UIAnimation.setBlackMask(usernameInput, null, 300);
+                        UIAnimation.vectorMove(lcode, 0, -51, 600, null);
+                        UIAnimation.vectorMove(lemail, 0, -51, 600, null);
+                        UIAnimation.vectorMove(codeInput, 0, -51, 600, null);
+                        UIAnimation.vectorMove(emailInput, 0, -51, 600, null);
+                        UIAnimation.vectorMove(sendButton, 0, -51, 600, null);
                     }
 
                     break;

@@ -65,7 +65,7 @@
                   <Font name="Freestyle Script" size="36.0" />
                </font>
             </Text>
-            <Text fill="#2d42c7" layoutX="320.0" layoutY="466.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+            <Text fx:id="lusername" fill="#2d42c7" layoutX="320.0" layoutY="466.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                <font>
                   <Font name="Freestyle Script" size="36.0" />
                </font>
