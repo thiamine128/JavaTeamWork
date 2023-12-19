@@ -6,6 +6,7 @@ module oop.javateamworkmaven {
     requires com.google.gson;
     requires java.net.http;
     requires javafx.media;
+    requires log4j;
 
     opens ui to javafx.fxml;
     opens controller to javafx.fxml;

@@ -17,17 +17,18 @@ import network.user.UserProfile;
 import post.CommentBox;
 import post.PostBox;
 
-import javax.print.attribute.SetOfIntegerSyntax;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.util.*;
+import org.apache.log4j.Logger;
+
 
 /**
  * The type app.App client event handler.
  */
 public class AppClientEventHandler implements IClientEventHandler {
-
+    private static final Logger LOGGER = Logger.getLogger(AppClientEventHandler.class);
     /**
      * The constant manager.
      */
@@ -35,7 +36,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onLoginSuccess(String username, String token, AppClient appClient) {
         appClient.setUserToken(token);
-        System.out.println("Login success: " + username);
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -79,31 +80,26 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onLoginFailed(String error) {
-        System.out.println("Login failed:");
-        System.out.println(error);
+        LOGGER.error("Login failed: " + error);
         UIManager.loginController.loginHint.setText("登录失败");
         UIAnimation.timer(1000, event -> UIManager.loginController.loginPane.setMouseTransparent(false));
     }
 
     @Override
     public void onRegisterSuccess(String username) {
-        System.out.println("Register success: " + username);
         UIManager.loginController.loginHint.setText("注册成功");
         UIAnimation.timer(1000, event -> UIManager.loginController.loginPane.setMouseTransparent(false));
     }
 
     @Override
     public void onRegisterFailed(String error) {
-        System.out.println("Register failed:");
-        System.out.println(error);
+        LOGGER.error("Register failed: " + error);
         UIManager.loginController.loginHint.setText("注册失败");
         UIAnimation.timer(1000, event -> UIManager.loginController.loginPane.setMouseTransparent(false));
     }
 
     @Override
     public void onPublishPostSuccess(Post post) {
-        System.out.println("Post published: " + post.getId());
-
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -124,8 +120,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onPublishPostFailed(String error) {
-        System.out.println("Failed to publish post:");
-        System.out.println("error");
+        LOGGER.error("Publish post failed: " + error);
         UIManager.editorController.resetEditor();
     }
 
@@ -205,8 +200,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onFetchPostFailed(String error) {
-        System.out.println("Failed to fetch post:");
-        System.out.println(error);
+        LOGGER.error("Fetch post failed: " + error);
     }
 
     @Override
@@ -229,8 +223,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onCommentPublishFailed(String error) {
-        System.out.println("Failed to publish comment :");
-        System.out.println(error);
+        LOGGER.error("Publish comment failed: " + error);
     }
 
     /**
@@ -261,8 +254,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onReplyPublishFailed(String error) {
-        System.out.println("Failed to publish reply :");
-        System.out.println(error);
+        LOGGER.error("Publish reply failed: " + error);
     }
 
     private void postsSet(Page<Post> postList){
@@ -301,8 +293,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onFetchAllPostsFailed(String error) {
-        System.out.println("Fetch all posts failed: ");
-        System.out.println(error);
+        LOGGER.error("Fetch all posts failed: " + error);
     }
 
     @Override
@@ -312,7 +303,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onSearchPostFailed(String error) {
-
+        LOGGER.error("Search post failed: " + error);
     }
 
     @Override
@@ -322,7 +313,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onRemovePostFailed(String error) {
-        System.out.println("remove post failed");
+        LOGGER.error("Remove post failed: " + error);
     }
 
     @Override
@@ -332,7 +323,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onRemoveCommentFailed(String error) {
-        System.out.println("remove comment failed");
+        LOGGER.error("Remove comment failed: " + error);
     }
 
     @Override
@@ -342,7 +333,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onRemoveReplyFailed(String error) {
-        System.out.println("remove reply failed");
+        LOGGER.error("Remove reply failed: " + error);
     }
 
     @Override
@@ -352,7 +343,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onUploadPortraitFailed(String data) {
-
+        LOGGER.error("Upload portrait failed: " + data);
     }
 
     @Override
@@ -418,7 +409,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onFetchProfileFailed(String data) {
-        System.out.println(data);
+        LOGGER.error("Fetch profile failed: " + data);
     }
 
     @Override
@@ -428,7 +419,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onUpdateJigsawFailed(String error) {
-        System.out.println("update jigsaw failed");
+        LOGGER.error("Update jigsaw failed: " + error);
     }
 
     @Override
@@ -438,7 +429,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onUpdateQuizFailed(String error) {
-        System.out.println("update quiz failed");
+        LOGGER.error("Update quiz failed: " + error);
     }
 
     @Override
@@ -448,7 +439,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onLikePostFailed(String error) {
-        System.out.println("like post failed");
+        LOGGER.error("Like post failed: " + error);
     }
 
     @Override
@@ -458,7 +449,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onDislikePostFailed(String error) {
-        System.out.println("dislike post failed");
+        LOGGER.error("Dislike post failed: " + error);
     }
 
     @Override
@@ -470,7 +461,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onCheckLikedPostFailed(String error) {
-        System.out.println("check liked post failed");
+        LOGGER.error("Check liked post error: " + error);
     }
 
     @Override
@@ -481,7 +472,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onSendVerificationCodeFailed(String error) {
-        System.out.println("send code failed");
+        LOGGER.error("Send code failed: " + error);
         UIManager.loginController.loginHint.setText(error);
     }
 
@@ -499,7 +490,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onResetPasswordFailed(String error) {
-        System.out.println("reset password failed");
+        LOGGER.error("Reset password failed: " + error);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -508,5 +499,4 @@ public class AppClientEventHandler implements IClientEventHandler {
             }
         });
     }
-
 }
