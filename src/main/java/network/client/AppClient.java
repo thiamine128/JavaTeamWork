@@ -28,6 +28,10 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * The type app.App client. Provides methods to interact with server as a client.
@@ -92,7 +96,10 @@ public class AppClient {
                     }
                     clientEventHandler.onRegisterFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onRegisterFailed("Timeout");
+            return null;
+        });;
     }
 
     /**
@@ -108,7 +115,7 @@ public class AppClient {
         HttpRequest request = defaultBuilder()
                 .uri(URI.create(uri + "/user/login"))
                 .POST(HttpRequest.BodyPublishers.ofString(jsonObject.toString())).build();
-        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
+        var completableFuture = httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(
                 body -> {
                     JsonObject response = gson.fromJson(body.body(), JsonObject.class);
                     int code = -1;
@@ -123,7 +130,10 @@ public class AppClient {
                     }
                     clientEventHandler.onLoginFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onLoginFailed("Timeout");
+            return null;
+        });
     }
 
 
@@ -155,7 +165,10 @@ public class AppClient {
                     }
                     clientEventHandler.onLoginFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onLoginFailed("Timeout");
+            return null;
+        });;
     }
 
 
@@ -198,7 +211,10 @@ public class AppClient {
                     }
                     clientEventHandler.onPublishPostFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(30, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onPublishPostFailed("Timeout");
+            return null;
+        });;
     }
 
 
@@ -224,7 +240,10 @@ public class AppClient {
                     }
                     clientEventHandler.onFetchPostFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(20, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onFetchPostFailed("Timeout");
+            return null;
+        });;
     }
 
 
@@ -251,7 +270,10 @@ public class AppClient {
                     }
                     clientEventHandler.onFetchAllPostsFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(30, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onFetchAllPostsFailed("Timeout");
+            return null;
+        });;
     }
 
     /**
@@ -280,7 +302,10 @@ public class AppClient {
                     }
                     clientEventHandler.onCommentPublishFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onCommentPublishFailed("Timeout");
+            return null;
+        });;
     }
 
 
@@ -312,7 +337,10 @@ public class AppClient {
                     }
                     clientEventHandler.onReplyPublishFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onReplyPublishFailed("Timeout");
+            return null;
+        });;
     }
 
 
@@ -364,7 +392,10 @@ public class AppClient {
                     }
                     clientEventHandler.onSearchPostFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onSearchPostFailed("Timeout");
+            return null;
+        });;
     }
 
     /**
@@ -392,7 +423,10 @@ public class AppClient {
                     }
                     clientEventHandler.onRemovePostFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onRemovePostFailed("Timeout");
+            return null;
+        });;
     }
 
     /**
@@ -417,7 +451,10 @@ public class AppClient {
                     }
                     clientEventHandler.onRemoveCommentFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onRemoveCommentFailed("Timeout");
+            return null;
+        });;
     }
 
     /**
@@ -442,7 +479,10 @@ public class AppClient {
                     }
                     clientEventHandler.onRemoveReplyFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onRemoveReplyFailed("Timeout");
+            return null;
+        });;
     }
 
 
@@ -468,7 +508,10 @@ public class AppClient {
                     }
                     clientEventHandler.onLikePostFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onLikePostFailed("Timeout");
+            return null;
+        });;
     }
 
     /**
@@ -493,7 +536,10 @@ public class AppClient {
                     }
                     clientEventHandler.onDislikePostFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onDislikePostFailed("Timeout");
+            return null;
+        });;
     }
 
     /**
@@ -524,7 +570,10 @@ public class AppClient {
                     }
                     clientEventHandler.onResetPasswordFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onResetPasswordFailed("Timeout");
+            return null;
+        });;
     }
 
     /**
@@ -550,7 +599,10 @@ public class AppClient {
                     }
                     clientEventHandler.onCheckLikedPostFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onCheckLikedPostFailed("Timeout");
+            return null;
+        });;
     }
 
     /**
@@ -581,7 +633,10 @@ public class AppClient {
                     }
                     clientEventHandler.onUploadPortraitFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onUploadPortraitFailed("Timeout");
+            return null;
+        });;
     }
 
     /**
@@ -608,7 +663,10 @@ public class AppClient {
                     }
                     clientEventHandler.onUpdateJigsawFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onUpdateJigsawFailed("Timeout");
+            return null;
+        });;
     }
 
     /**
@@ -634,7 +692,10 @@ public class AppClient {
                     }
                     clientEventHandler.onUpdateQuizFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onUpdateQuizFailed("Timeout");
+            return null;
+        });;
     }
 
     /**
@@ -663,7 +724,10 @@ public class AppClient {
                     }
                     clientEventHandler.onFetchProfileFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onFetchProfileFailed("Timeout");
+            return null;
+        });;
     }
 
     /**
@@ -688,7 +752,10 @@ public class AppClient {
                     }
                     clientEventHandler.onSendVerificationCodeFailed(response.get("data").getAsString());
                 }
-        );
+        ).orTimeout(10, TimeUnit.SECONDS).exceptionally(throwable -> {
+            clientEventHandler.onSendVerificationCodeFailed("Timeout");
+            return null;
+        });;
     }
 
     /**
