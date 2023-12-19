@@ -44,4 +44,8 @@ public class ErrorMessage {
         message.put("Invalid password", "密码格式错误（6-16个数字，大小写字母）");
         message.put("Invalid username", "用户名错误（6-13个数字，大小写字母）");
     }
+
+    public static void show(String error) {
+
+    }
 }

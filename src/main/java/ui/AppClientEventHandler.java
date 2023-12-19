@@ -7,6 +7,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import network.client.AppClient;
+import network.client.ErrorMessage;
 import network.client.IClientEventHandler;
 import network.page.Page;
 import network.post.Comment;
@@ -80,6 +81,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onLoginFailed(String error) {
+        ErrorMessage.show(error);
         LOGGER.error("Login failed: " + error);
         UIManager.loginController.loginHint.setText("登录失败");
         UIAnimation.timer(1000, event -> UIManager.loginController.loginPane.setMouseTransparent(false));
@@ -94,6 +96,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onRegisterFailed(String error) {
         LOGGER.error("Register failed: " + error);
+        ErrorMessage.show(error);
         UIManager.loginController.loginHint.setText("注册失败");
         UIAnimation.timer(1000, event -> UIManager.loginController.loginPane.setMouseTransparent(false));
     }
@@ -121,6 +124,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onPublishPostFailed(String error) {
         LOGGER.error("Publish post failed: " + error);
+        ErrorMessage.show(error);
         UIManager.editorController.resetEditor();
     }
 
@@ -201,6 +205,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onFetchPostFailed(String error) {
         LOGGER.error("Fetch post failed: " + error);
+        ErrorMessage.show(error);
     }
 
     @Override
@@ -224,6 +229,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onCommentPublishFailed(String error) {
         LOGGER.error("Publish comment failed: " + error);
+        ErrorMessage.show(error);
     }
 
     /**
@@ -255,6 +261,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onReplyPublishFailed(String error) {
         LOGGER.error("Publish reply failed: " + error);
+        ErrorMessage.show(error);
     }
 
     private void postsSet(Page<Post> postList){
@@ -294,6 +301,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onFetchAllPostsFailed(String error) {
         LOGGER.error("Fetch all posts failed: " + error);
+        ErrorMessage.show(error);
     }
 
     @Override
@@ -304,6 +312,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onSearchPostFailed(String error) {
         LOGGER.error("Search post failed: " + error);
+        ErrorMessage.show(error);
     }
 
     @Override
@@ -314,6 +323,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onRemovePostFailed(String error) {
         LOGGER.error("Remove post failed: " + error);
+        ErrorMessage.show(error);
     }
 
     @Override
@@ -324,6 +334,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onRemoveCommentFailed(String error) {
         LOGGER.error("Remove comment failed: " + error);
+        ErrorMessage.show(error);
     }
 
     @Override
@@ -334,6 +345,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onRemoveReplyFailed(String error) {
         LOGGER.error("Remove reply failed: " + error);
+        ErrorMessage.show(error);
     }
 
     @Override
@@ -344,6 +356,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onUploadPortraitFailed(String data) {
         LOGGER.error("Upload portrait failed: " + data);
+        ErrorMessage.show(data);
     }
 
     @Override
@@ -410,6 +423,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onFetchProfileFailed(String data) {
         LOGGER.error("Fetch profile failed: " + data);
+        ErrorMessage.show(data);
     }
 
     @Override
@@ -420,6 +434,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onUpdateJigsawFailed(String error) {
         LOGGER.error("Update jigsaw failed: " + error);
+        ErrorMessage.show(error);
     }
 
     @Override
@@ -430,6 +445,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onUpdateQuizFailed(String error) {
         LOGGER.error("Update quiz failed: " + error);
+        ErrorMessage.show(error);
     }
 
     @Override
@@ -440,6 +456,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onLikePostFailed(String error) {
         LOGGER.error("Like post failed: " + error);
+        ErrorMessage.show(error);
     }
 
     @Override
@@ -450,6 +467,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onDislikePostFailed(String error) {
         LOGGER.error("Dislike post failed: " + error);
+        ErrorMessage.show(error);
     }
 
     @Override
@@ -462,6 +480,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     @Override
     public void onCheckLikedPostFailed(String error) {
         LOGGER.error("Check liked post error: " + error);
+        ErrorMessage.show(error);
     }
 
     @Override
@@ -474,6 +493,7 @@ public class AppClientEventHandler implements IClientEventHandler {
     public void onSendVerificationCodeFailed(String error) {
         LOGGER.error("Send code failed: " + error);
         UIManager.loginController.loginHint.setText(error);
+        ErrorMessage.show(error);
     }
 
     @Override
@@ -490,6 +510,7 @@ public class AppClientEventHandler implements IClientEventHandler {
 
     @Override
     public void onResetPasswordFailed(String error) {
+        ErrorMessage.show(error);
         LOGGER.error("Reset password failed: " + error);
         Platform.runLater(new Runnable() {
             @Override
