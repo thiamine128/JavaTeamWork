@@ -1,5 +1,8 @@
 package network.client;
 
+import javafx.application.Platform;
+import ui.ErrorManager;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,6 +49,18 @@ public class ErrorMessage {
     }
 
     public static void show(String error) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String [] errorArray = error.split("\n");
+                    ErrorManager.sendError(message.get(errorArray[0].trim()));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
     }
 }

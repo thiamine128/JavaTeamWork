@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ErrorController">
+   <children>
+      <ImageView fitHeight="200.0" fitWidth="300.0" opacity="0.7" pickOnBounds="true">
+         <image>
+            <Image url="@../loginImage/bg1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="65.0" layoutX="-1.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../loginImage/TitleImage.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="135.0" layoutY="25.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../loginImage/aerial-signal.png" />
+         </image>
+      </ImageView>
+      <Text fill="#2f82ff" layoutX="41.0" layoutY="90.0" opacity="0.85" strokeType="OUTSIDE" strokeWidth="0.0" text="发生异常">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Text>
+      <Text fx:id="errorContent" fill="#0089ff" layoutX="22.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="网络不可用" textAlignment="CENTER" wrappingWidth="232.24031382799149">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

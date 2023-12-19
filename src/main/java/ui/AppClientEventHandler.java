@@ -294,7 +294,6 @@ public class AppClientEventHandler implements IClientEventHandler {
     }
     @Override
     public void onFetchAllPostsSuccess(Page<Post> postList) {
-
         postsSet(postList);
     }
 

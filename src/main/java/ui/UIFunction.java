@@ -1,9 +1,6 @@
 package ui;
 
-import controller.LoginController;
-import controller.LoginSituation;
-import controller.MainController;
-import controller.ProvinceController;
+import controller.*;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
@@ -19,6 +16,8 @@ import javafx.scene.layout.Pane;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javafx.stage.Stage;
 import province.ProvinceDetail;
 import game.*;
 
@@ -134,6 +133,7 @@ public class UIFunction {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 //登录？注册？
+
                 switch (loginController.getLoginFrameSituation()){
                     case LOGIN: {
                         loginController.loginPane.setMouseTransparent(true);
