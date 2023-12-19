@@ -3,6 +3,9 @@ package network.client;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The type Error message.
+ */
 public class ErrorMessage {
     private static Map<String, String> message;
 
@@ -38,5 +41,7 @@ public class ErrorMessage {
         message.put("Failed to reset password", "重置密码失败");
         message.put("Too many send request", "请求过于频繁");
         message.put("Failed to send email", "发送邮件失败");
+        message.put("Invalid password", "密码格式错误（6-16个数字，大小写字母）");
+        message.put("Invalid username", "用户名错误（6-13个数字，大小写字母）");
     }
 }
