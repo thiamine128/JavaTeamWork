@@ -25,7 +25,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dbdbdb" height="350.0" layoutX="66.0" layoutY="72.0" opacity="0.6" stroke="#bababa" strokeType="INSIDE" width="350.0" />
-      <ImageView fx:id="protraitImage" fitHeight="333.0" fitWidth="333.0" layoutX="75.0" layoutY="81.0" pickOnBounds="true">
+      <ImageView fx:id="portraitImage" fitHeight="333.0" fitWidth="333.0" layoutX="75.0" layoutY="81.0" pickOnBounds="true">
          <image>
             <Image url="@../icon.png" />
          </image>

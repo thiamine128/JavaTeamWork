@@ -15,8 +15,14 @@ import ui.ErrorManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * The error controller, corresponds to errorFrame.fxml.
+ */
 public class ErrorController implements Initializable {
 
+    /**
+     * The error content.
+     */
     public Text errorContent;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -21,44 +21,44 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * The type Question controller.
+ * The question controller, corresponds to questionFrame.fxml.
  */
 public class QuestionController implements Initializable {
 
     /**
-     * The Question mask.
+     * The question mask.
      */
     public ImageView questionMask;
     /**
-     * The Ans 0.
+     * The answer 0.
      */
     public ImageView ans0, /**
-     * The Ans 1.
+     * The answer 1.
      */
     ans1, /**
-     * The Ans 2.
+     * The answer 2.
      */
     ans2, /**
-     * The Ans 3.
+     * The answer 3.
      */
     ans3;
     /**
-     * The Question cancel.
+     * The question cancel button.
      */
     public ImageView questionCancel;
     /**
-     * The Province name.
+     * The province name.
      */
     public Text provinceName, /**
-     * The Correct num.
+     * The correct num.
      */
     correctNum, /**
-     * The Question pos.
+     * The question pos.
      */
     questionPos;
     private GuessDetail[] details;
     /**
-     * The Question group.
+     * The question group.
      */
     public Group questionGroup;
     private int thisQuestion = 1, correct = 0;

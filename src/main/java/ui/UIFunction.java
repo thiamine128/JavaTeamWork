@@ -22,7 +22,7 @@ import province.ProvinceDetail;
 import game.*;
 
 /**
- * The type Ui function.
+ * The UI function.
  */
 public class UIFunction {
 

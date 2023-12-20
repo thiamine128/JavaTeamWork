@@ -27,90 +27,90 @@ import java.util.ResourceBundle;
 import java.util.UUID;
 
 /**
- * The type Post view controller.
+ * The post view controller, corresponds to postViewFrame.fxml.
  */
 public class PostViewController implements Initializable {
 
     /**
-     * The Post view scroll pane.
+     * The post view scroll pane.
      */
 //postViewFrame.fxml 具体帖子浏览器
     public ScrollPane postViewScrollPane;
     /**
-     * The Main v box.
+     * The main box.
      */
     public VBox mainVBox;
     /**
-     * The Post view cancel.
+     * The post view cancel.
      */
     public ImageView postViewCancel;
     /**
-     * The Post content.
+     * The post content.
      */
     public WebView postContent;
     /**
-     * The Author protrait.
+     * The author protrait.
      */
     public ImageView authorProtrait;
     /**
-     * The Author text.
+     * The author text.
      */
     public Text authorText, /**
-     * The Title.
+     * The title.
      */
     title;
     /**
-     * The Comment pane.
+     * The comment pane.
      */
     public AnchorPane commentPane, /**
-     * The Main pane.
+     * The main pane.
      */
     mainPane;
     /**
-     * The Like button.
+     * The like button.
      */
     public ImageView likeButton, /**
-     * The Comment button.
+     * The comment button.
      */
     commentButton, /**
-     * The Comment cancel.
+     * The comment cancel button.
      */
     commentCancel, /**
-     * The Comment confirm.
+     * The comment confirm button.
      */
     commentConfirm;
     /**
-     * The Comment editor.
+     * The comment editor.
      */
     public HTMLEditor commentEditor;
     /**
-     * The Reply field.
+     * The reply field.
      */
     public TextField replyField;
     /**
-     * The Reply pane.
+     * The reply pane.
      */
     public AnchorPane replyPane;
     /**
-     * The Reply confirm.
+     * The reply confirm button.
      */
     public ImageView replyConfirm, /**
-     * The Reply cancel.
+     * The reply cancel button.
      */
     replyCancel;
     /**
-     * The Post id.
+     * The post id.
      */
     public UUID postID;
     /**
-     * The Image box.
+     * The image box.
      */
     public VBox imageBox;
 
     /**
-     * Add image.
+     * Add image of the post.
      *
-     * @param url the url
+     * @param url the image url
      */
     public void addImage(URL url){
         ImageView imageView = new ImageView(new Image(url.toString(), true));
@@ -133,7 +133,7 @@ public class PostViewController implements Initializable {
     /**
      * Set white heart.
      *
-     * @param key the key
+     * @param key the number of likes
      */
     public void setWhiteHeart(int key){
         isLiked = false;
@@ -144,7 +144,7 @@ public class PostViewController implements Initializable {
     /**
      * Set red heart.
      *
-     * @param key the key
+     * @param key the number of likes
      */
     public void setRedHeart(int key){
         isLiked = true;

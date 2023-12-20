@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
@@ -10,94 +9,90 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import post.LanguageTool;
 import ui.UIAnimation;
 import ui.UIManager;
 import ui.UINetwork;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
 /**
- * The type Person controller.
+ * The person controller, corresponds to personFrame.fxml.
  */
 public class PersonController implements Initializable {
 
     /**
-     * The File chooser.
+     * The file chooser.
      */
     public FileChooser fileChooser; //图片选择器
     /**
-     * The Person cancel.
+     * The cancel button.
      */
     public ImageView personCancel, /**
-     * The Change button.
+     * The change button.
      */
     changeButton; //退出按钮、切换头像按钮
     /**
-     * The Level.
+     * The level.
      */
     public ImageView level, /**
-     * The Protrait image.
+     * The portrait image.
      */
-    protraitImage, /**
-     * The Hk image.
+    portraitImage, /**
+     * The HK image.
      */
     hkImage, /**
-     * The Mc image.
+     * The MC image.
      */
     mcImage; //用户等级、头像、港澳贴图
     /**
-     * The Province group.
+     * The province group.
      */
     public Group provinceGroup; //身份图片组
     /**
-     * The Username.
+     * The username.
      */
     public Text username, /**
-     * The Login date.
+     * The login date.
      */
     loginDate, /**
-     * The Puzzle time.
+     * The puzzle time.
      */
     puzzleTime; //用户名、注册日期
     /**
-     * The Puzzle trophy.
+     * The puzzle trophy.
      */
     public ImageView puzzleTrophy, /**
-     * The Post trophy.
+     * The post trophy.
      */
     postTrophy, /**
-     * The Question trophy.
+     * The question trophy.
      */
     questionTrophy; //奖杯
     /**
-     * The Puzzle hint.
+     * The puzzle hint.
      */
     public Text puzzleHint, /**
-     * The Post hint.
+     * The post hint.
      */
     postHint, /**
-     * The Question hint.
+     * The question hint.
      */
     questionHint; //奖杯名称显示
     /**
-     * The Chart.
+     * The chart.
      */
     public StackedBarChart<String, Integer> chart;
     private List<Node> provinceList = new ArrayList<>(); //省份贴图存储
     private double ratioTest = 2.0; //缩放比例
     /**
-     * The Back frame.
+     * The back frame.
      */
     public FrameEnum backFrame = FrameEnum.MainFrame;
 
@@ -122,7 +117,7 @@ public class PersonController implements Initializable {
      * Set province color.
      *
      * @param provinceName the province name
-     * @param cnt          the cnt
+     * @param cnt          the count of posts published
      */
     public void setProvinceColor(String provinceName, int cnt){
         if (cnt > 10) cnt = 10;
@@ -135,11 +130,11 @@ public class PersonController implements Initializable {
     }
 
     /**
-     * Upload personal protrait.
+     * Upload personal portrait.
      *
-     * @throws IOException the io exception
+     * @throws IOException the io exception when reading local file
      */
-    public void uploadPersonalProtrait() throws IOException { //上传图片
+    public void uploadPersonalPortrait() throws IOException { //上传图片
         File personalImage = fileChooser.showOpenDialog(UIManager.mainStage);
         System.out.println(personalImage.toPath());
         if (personalImage != null){
@@ -152,7 +147,7 @@ public class PersonController implements Initializable {
     /**
      * Add chart info.
      *
-     * @param mp the mp
+     * @param mp the map
      */
     public void addChartInfo(Map<String, Long> mp){
 
@@ -229,7 +224,7 @@ public class PersonController implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 try {
-                    uploadPersonalProtrait();
+                    uploadPersonalPortrait();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -252,7 +247,6 @@ public class PersonController implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
 
-                //回到哪里？看具体情况
                 try {
                     switch (backFrame){
                         case MainFrame: UIManager.instance.toMainFrame(false); break;

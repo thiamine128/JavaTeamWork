@@ -17,7 +17,7 @@ public interface IClientEventHandler {
      * On login success.
      *
      * @param username  the username
-     * @param token     the token
+     * @param token     the user token
      * @param appClient the app client
      */
     void onLoginSuccess(String username, String token, AppClient appClient);
@@ -171,21 +171,21 @@ public interface IClientEventHandler {
     /**
      * On upload portrait failed.
      *
-     * @param data the data
+     * @param data the error
      */
     void onUploadPortraitFailed(String data);
 
     /**
      * On fetch profile success.
      *
-     * @param data the data
+     * @param data the profile
      */
     void onFetchProfileSuccess(UserProfile data);
 
     /**
      * On fetch profile failed.
      *
-     * @param data the data
+     * @param data the error
      */
     void onFetchProfileFailed(String data);
 

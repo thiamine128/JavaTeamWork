@@ -12,7 +12,7 @@ import game.*;
 import post.LanguageTool;
 
 /**
- * The type Ui manager, the most important part of this software.
+ * The UI manager, the most important part of this software.
  */
 public class UIManager extends Application {
     /**

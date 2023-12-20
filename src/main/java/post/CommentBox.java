@@ -19,13 +19,13 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * The type Comment box.
+ * The comment box.
  */
 public class CommentBox extends VBox{
 
     private CommentBox instance;
     /**
-     * The Comment id.
+     * The comment id.
      */
     public UUID commentID;
     private MainComment mainComment;

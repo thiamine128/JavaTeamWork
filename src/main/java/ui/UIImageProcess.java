@@ -3,7 +3,7 @@ package ui;
 import javafx.scene.image.ImageView;
 
 /**
- * The type Ui image process.
+ * The UI image process.
  */
 public class UIImageProcess {
 

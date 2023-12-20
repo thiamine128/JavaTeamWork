@@ -7,7 +7,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 /**
- * The type Likes.
+ * The likes.
  */
 public class Likes extends Text {
 

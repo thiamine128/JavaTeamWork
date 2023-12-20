@@ -1,23 +1,23 @@
 package game;
 
 /**
- * The type Point.
+ * The point.
  */
 public class Point {
     /**
-     * The X.
+     * The x.
      */
     double x, /**
-     * The Y.
+     * The y.
      */
     y;
 
     /**
      * Point minus point.
      *
-     * @param c the c
-     * @param d the d
-     * @return the point
+     * @param c the point c
+     * @param d the point d
+     * @return the result point
      */
     public static Point pointMinus(Point c,Point d) {
         Point res=new Point();

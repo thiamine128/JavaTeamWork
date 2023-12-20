@@ -1,19 +1,19 @@
 package controller;
 
 /**
- * The enum Login situation.
+ * The login situation enum.
  */
 public enum LoginSituation{
     /**
-     * Login login situation.
+     * Login situation.
      */
     LOGIN,
     /**
-     * Register login situation.
+     * Register situation.
      */
     REGISTER,
     /**
-     * Reset login situation.
+     * Reset password situation.
      */
     RESET,
     /**

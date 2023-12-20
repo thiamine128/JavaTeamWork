@@ -48,6 +48,11 @@ public class ErrorMessage {
         message.put("Invalid username", "用户名错误（6-13个数字，大小写字母）");
     }
 
+    /**
+     * Show an error.
+     *
+     * @param error the error to show
+     */
     public static void show(String error) {
 
         Platform.runLater(new Runnable() {

@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 /**
- * The type Province detail.
+ * The province detail.
  */
 public class ProvinceDetail {
     /**

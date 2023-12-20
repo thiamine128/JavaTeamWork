@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The type Guess detail.
+ * The guess detail.
  */
 public class GuessDetail {
     /**
-     * The Type.
+     * The question type.
      */
     public String type;
     /**
-     * The Path.
+     * The paths.
      */
     public List<String> path=new ArrayList<>();
     /**
-     * The Ans id.
+     * The answer id.
      */
     public int ansId;
     /**
-     * The Ans province.
+     * The answer province.
      */
     public String ansProvince;
 }

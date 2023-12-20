@@ -25,62 +25,62 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * The type Editor controller.
+ * The editor controller, corresponds to editorFrame.fxml
  */
 public class EditorController implements Initializable {
 
     /**
-     * The Editor title field.
+     * The title field.
      */
-    public TextField editorTitleField; //标题编辑器
+    public TextField editorTitleField;
     /**
-     * The Editor.
+     * The content editor.
      */
-    public HTMLEditor editor; //帖子编辑器
+    public HTMLEditor editor;
     /**
-     * The Editor confirm.
+     * The confirm button.
      */
     public ImageView editorConfirm, /**
-     * The Editor cancel.
+     * The cancel button.
      */
     editorCancel, /**
-     * The Editor image.
+     * The editor image.
      */
     editorImage; //确认、取消按钮
     /**
-     * The Editor hint.
+     * The editor hint.
      */
     public Text editorHint;
     /**
-     * The Province info.
+     * The province info.
      */
     public Text provinceInfo; //提示语
     /**
-     * The Post success hint.
+     * The post success hint.
      */
     public ImageView postSuccessHint; //发帖成功
     /**
-     * The File chooser.
+     * The file chooser.
      */
     public FileChooser fileChooser; //图片选择器
     private List<Path> postImagePath = new ArrayList<>(); //帖子图片路径
     /**
-     * The Image hbox.
+     * The image box.
      */
     public HBox imageHbox; //照片预览器
 
     /**
-     * Reset path.
+     * Reset chosen images' paths.
      */
     public void resetPath() {
         postImagePath.clear(); //清空图片路径组
     }
 
     /**
-     * Delete path.
+     * Delete chosen image's path.
      *
-     * @param path        the path
-     * @param imageSelect the image select
+     * @param path        the image path
+     * @param imageSelect the corresponding image select widget
      */
     public void deletePath(Path path, ImageSelect imageSelect){
         postImagePath.remove(path);
@@ -88,9 +88,9 @@ public class EditorController implements Initializable {
     }
 
     /**
-     * Upload post image.
+     * Upload post images.
      *
-     * @throws IOException the io exception
+     * @throws IOException the io exception when reading local images
      */
     public void uploadPostImage() throws IOException { //上传图片
         if (postImagePath.size() <= 2){
@@ -107,7 +107,7 @@ public class EditorController implements Initializable {
     }
 
     /**
-     * Reset editor.
+     * Reset editor with failure hint.
      */
     public void resetEditor(){
         editorHint.setText("发送失败");

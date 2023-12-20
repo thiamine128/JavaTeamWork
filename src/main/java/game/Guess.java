@@ -8,15 +8,15 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * The type Guess.
+ * The guess game.
  */
 public class Guess {
     /**
-     * The All detail.
+     * All details.
      */
     static ProvinceDetail[] allDetail=new ProvinceDetail[40];
     /**
-     * The All.
+     * All provinces.
      */
     static String[] all={"henan","hebei","shanxi","liaoning","jilin","heilongjiang","jiangsu","zhejiang","anhui","fujian","jiangxi","shandong","hubei","hunan","guangdong","hainan","sichuan","guizhou","yunnan","shaanxi","gansu","qinghai","ningxia","xinjiang","xizang","guangxi","neimenggu","taiwan","xianggang","aomen","beijing","tianjin","shanghai","chongqing"};
 
@@ -30,11 +30,11 @@ public class Guess {
     }
 
     /**
-     * Reset guess detail [ ].
+     * Reset guess detail.
      *
-     * @param opt the opt
+     * @param opt the option
      * @param sum the sum
-     * @return the guess detail [ ]
+     * @return the guess detail
      */
     public static GuessDetail[] reset(int opt,int sum) {
         Random seed=new Random();

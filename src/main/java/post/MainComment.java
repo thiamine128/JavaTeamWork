@@ -20,7 +20,7 @@ import java.util.UUID;
 
 
 /**
- * The type Main comment.
+ * The main comment.
  */
 public class MainComment extends HBox{
 

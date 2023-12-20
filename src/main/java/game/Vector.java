@@ -1,19 +1,19 @@
 package game;
 
 /**
- * The type Vector.
+ * The vector.
  */
 public class Vector {
     /**
-     * The X.
+     * The x.
      */
     double x, /**
-     * The Y.
+     * The y.
      */
     y;
 
     /**
-     * Instantiates a new Vector.
+     * Instantiates a new vector.
      *
      * @param c the c
      * @param d the d
@@ -24,7 +24,7 @@ public class Vector {
     }
 
     /**
-     * Instantiates a new Vector.
+     * Instantiates a new vector.
      *
      * @param c the c
      * @param d the d
@@ -35,30 +35,30 @@ public class Vector {
     }
 
     /**
-     * Check same boolean.
+     * Check is same vector.
      *
-     * @param c   the c
-     * @param d   the d
-     * @param eps the eps
-     * @return the boolean
+     * @param c   the vector c
+     * @param d   the vector d
+     * @param eps the error
+     * @return the same flag
      */
     public static boolean checkSame(Vector c,Vector d,double eps) {
         return Math.abs(c.x-d.x)<eps&&Math.abs(c.y-d.y)<eps;
     }
 
     /**
-     * Get x double.
+     * Get x.
      *
-     * @return the double
+     * @return the x
      */
     public double getX(){
         return x;
     }
 
     /**
-     * Get y double.
+     * Get y.
      *
-     * @return the double
+     * @return the y
      */
     public double getY(){
         return y;

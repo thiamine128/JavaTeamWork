@@ -19,7 +19,7 @@ import javafx.event.EventHandler;
 import static java.lang.Thread.sleep;
 
 /**
- * The type Ui animation.
+ * The UI animation.
  */
 public class UIAnimation {
 

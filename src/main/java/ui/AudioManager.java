@@ -7,7 +7,7 @@ import java.io.File;
 import java.net.URISyntaxException;
 
 /**
- * The type Audio manager.
+ * The audio manager.
  */
 public class AudioManager {
 
@@ -123,7 +123,7 @@ public class AudioManager {
 }
 
 /**
- * The enum End of game.
+ * The enum end of game.
  */
 enum endOfGame{
     /**

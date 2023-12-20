@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * The type Login controller.
+ * The login controller, corresponds to loginFrame.fxml.
  */
 public class LoginController implements Initializable {
 

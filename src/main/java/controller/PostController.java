@@ -19,54 +19,54 @@ import java.util.ResourceBundle;
 import java.util.UUID;
 
 /**
- * The type Post controller.
+ * The post controller, corresponds to postFrame.fxml.
  */
 public class PostController implements Initializable {
 
     /**
-     * The Post frame mask.
+     * The post frame mask.
      */
 //postFrame.fxml 贴吧浏览器
     public ImageView postFrameMask;
     /**
-     * The Post frame ini.
+     * The post frame ini.
      */
     public ImageView postFrameIni;
     /**
-     * The Post cancel.
+     * The post cancel.
      */
     public ImageView postCancel, /**
-     * The Fr button.
+     * The previous button.
      */
     frButton, /**
-     * The Nxt button.
+     * The next button.
      */
     nxtButton, /**
-     * The Search button.
+     * The search button.
      */
     searchButton;
     /**
-     * The Post main vbox.
+     * The post main vbox.
      */
     public VBox postMainVbox;
     /**
-     * The Post scroll.
+     * The post scroll.
      */
     public ScrollPane postScroll;
     /**
-     * The Page num.
+     * The page num.
      */
     public Text pageNum;
     /**
-     * The Province search.
+     * The province search.
      */
     public TextField provinceSearch;
     private int thisPage = 1, pageTotalNum = 1, pageSize0 = 10;
 
     /**
-     * Set total num.
+     * Set total number of posts.
      *
-     * @param num the num
+     * @param num the number of posts
      */
     public void setTotalNum(int num){
         pageTotalNum = num;
@@ -83,7 +83,7 @@ public class PostController implements Initializable {
     }
 
     /**
-     * Update likes.
+     * Update likes of certain post.
      *
      * @param postID the post id
      * @param key    the key
@@ -102,7 +102,7 @@ public class PostController implements Initializable {
     }
 
     /**
-     * Set post frame ini.
+     * Set post frame init.
      */
     public void setPostFrameIni(){
         postFrameIni.setMouseTransparent(true);

@@ -12,17 +12,17 @@ import ui.UINetwork;
 import java.util.UUID;
 
 /**
- * The type Reply box.
+ * The reply box.
  */
 public class ReplyBox extends TextFlow {
 
     private String thisUsername;
     private CommentBox commentBox;
     /**
-     * The Comment id.
+     * The comment id.
      */
     public UUID commentID, /**
-     * The Reply id.
+     * The reply id.
      */
     replyID;
 

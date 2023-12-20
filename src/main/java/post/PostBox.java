@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.UUID;
 
 /**
- * The type Post box.
+ * The post box.
  */
 public class PostBox extends VBox{
 
@@ -123,9 +123,9 @@ public class PostBox extends VBox{
     private Text likesText;
 
     /**
-     * Setlikes.
+     * Set likes.
      *
-     * @param key the key
+     * @param key the number of likes
      */
     public void setlikes(int key){
         if (key > 0) likes++;

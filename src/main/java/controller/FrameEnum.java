@@ -1,19 +1,19 @@
 package controller;
 
 /**
- * The enum Frame enum.
+ * The frame type enum.
  */
 public enum FrameEnum {
     /**
-     * Main frame frame enum.
+     * Main frame with a map.
      */
     MainFrame,
     /**
-     * Post frame frame enum.
+     * Post frame with a posts list.
      */
     PostFrame,
     /**
-     * Post view frame frame enum.
+     * Post view frame with a post.
      */
     PostViewFrame
 }

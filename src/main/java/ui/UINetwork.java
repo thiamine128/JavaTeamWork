@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * The type Ui network.
+ * The UI network.
  */
 public class UINetwork {
     //将host参数改为后端的部署ip

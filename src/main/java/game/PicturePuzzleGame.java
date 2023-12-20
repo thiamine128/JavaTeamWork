@@ -5,22 +5,22 @@ import javafx.scene.Node;
 import java.util.HashMap;
 
 /**
- * The type Picture puzzle game.
+ * The picture puzzle game.
  */
 public class PicturePuzzleGame {
     /**
-     * The Province id.
+     * The province id.
      */
     static HashMap<String,Integer> provinceId=new HashMap<>();
     /**
-     * The Cnt.
+     * The count.
      */
     static int cnt, /**
-     * The N.
+     * The number.
      */
     n=32;
     /**
-     * The Standard.
+     * The standard.
      */
     static Vector[] standard=new Vector[40];
     /**
@@ -31,10 +31,10 @@ public class PicturePuzzleGame {
     /**
      * Reset.
      *
-     * @param x1 the x 1
-     * @param x2 the x 2
-     * @param y1 the y 1
-     * @param y2 the y 2
+     * @param x1 the x position 1
+     * @param x2 the x position 2
+     * @param y1 the y position 1
+     * @param y2 the y position 2
      */
     static public void reset(double x1,double x2,double y1,double y2) {
         for(int i=1;i<=n;i++) {
@@ -43,7 +43,7 @@ public class PicturePuzzleGame {
     }
 
     /**
-     * Gets position.
+     * Get position.
      *
      * @param province the province
      * @return the position
@@ -66,7 +66,7 @@ public class PicturePuzzleGame {
     }
 
     /**
-     * The constant prepareKey.
+     * The constant prepare key flag.
      */
     public static boolean prepareKey = true;
 
@@ -97,9 +97,9 @@ public class PicturePuzzleGame {
     }
 
     /**
-     * Check boolean.
+     * Check valid.
      *
-     * @return the boolean
+     * @return the valid or not
      */
     static public boolean check() {
         for(int i=1;i<=32;i++) {

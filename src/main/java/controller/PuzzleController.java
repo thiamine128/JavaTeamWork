@@ -20,54 +20,54 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * The type Puzzle controller.
+ * The puzzle controller, corresponds to puzzleFrame.fxml.
  */
 public class PuzzleController implements Initializable {
 
     /**
-     * The constant puzzleProvincePane.
+     * The constant puzzle province pane.
      */
 //puzzleFrame.fxml 拼图界面
     public static Pane puzzleProvincePane; //省份载体
     /**
-     * The Puzzle group.
+     * The puzzle group.
      */
     @FXML
     public Group puzzleGroup; //拼图载体
     /**
-     * The Puzzle cg.
+     * The puzzle background.
      */
     @FXML
     public ImageView puzzleCG; //拼图背景图片
     /**
-     * The Puzzle info.
+     * The puzzle info.
      */
     @FXML
     public ImageView puzzleInfo; //拼图信息
     /**
-     * The Puzzle mask.
+     * The puzzle mask.
      */
     @FXML
     public ImageView puzzleMask; //拼图界面遮罩
     /**
-     * The Puzzle frame ini.
+     * The puzzle frame initializer.
      */
     public ImageView puzzleFrameIni; //初始化触发器
     /**
-     * The Puzzle cancel.
+     * The puzzle cancel.
      */
     public ImageView puzzleCancel; //退出按键
     private List<ProvinceInfoStruct> provinceInfoSet = new ArrayList(); //省份信息列
     /**
-     * The Timer text.
+     * The timer text.
      */
     public Text timerText;
     /**
-     * The Thread.
+     * The thread.
      */
     public Thread thread;
     /**
-     * The Timer.
+     * The timer.
      */
     public Long timer = 0L;
 

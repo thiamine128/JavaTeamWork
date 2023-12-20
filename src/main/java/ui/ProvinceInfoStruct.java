@@ -1,7 +1,7 @@
 package ui;
 
 /**
- * The type Province info struct.
+ * The province info struct.
  */
 public class ProvinceInfoStruct {
     private double x, y; //位置

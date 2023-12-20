@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
 
 
 /**
- * The type app.App client event handler.
+ * The app client event handler.
  */
 public class AppClientEventHandler implements IClientEventHandler {
     private static final Logger LOGGER = Logger.getLogger(AppClientEventHandler.class);
@@ -399,13 +399,13 @@ public class AppClientEventHandler implements IClientEventHandler {
                         UIManager.mainController.profilePhoto.setImage(new Image("http://116.204.117.136/portrait/"
                                 + data.getPortrait()));
                     }
-                    UIManager.personController.protraitImage.setImage(new Image("http://116.204.117.136/portrait/"
+                    UIManager.personController.portraitImage.setImage(new Image("http://116.204.117.136/portrait/"
                             + data.getPortrait()));
                 }else{
                     if (data.getUsername().equals(UIManager.mainController.frameUsername.getText())){
                         UIManager.mainController.profilePhoto.setImage(new Image(getClass().getResourceAsStream("/personImage/uncertainty.png")));
                     }
-                    UIManager.personController.protraitImage.setImage(new Image(getClass().getResourceAsStream("/personImage/uncertainty.png")));
+                    UIManager.personController.portraitImage.setImage(new Image(getClass().getResourceAsStream("/personImage/uncertainty.png")));
                     File file = new File(getClass().getResource("/personImage/uncertainty.png").getPath());
                     System.out.println(file.getAbsoluteFile().toPath());
                     try {

@@ -8,38 +8,38 @@ import java.util.Scanner;
 import static java.lang.Math.min;
 
 /**
- * The type Hamiltonian.
+ * The Hamiltonian algorithm.
  */
 public class Hamiltonian {
     /**
-     * The Dis.
+     * The distance.
      */
     int[][] dis=new int[40][40];
     /**
-     * The Tim.
+     * The time.
      */
     int[][] tim=new int[40][40];
     /**
-     * The N.
+     * The number.
      */
     int N, /**
-     * The Inf.
+     * The infinity.
      */
     INF=1000000000;
     /**
-     * The Ch id.
+     * The Chinese id.
      */
     HashMap<String,Integer> ChId=new HashMap<>();
     /**
-     * The En id.
+     * The English id.
      */
     HashMap<String,Integer> EnId=new HashMap<>();
     /**
-     * The F.
+     * The states.
      */
     int[][] f=new int[1<<20][20];
     /**
-     * The Name.
+     * The names.
      */
     String[] name=new String[40];
 
@@ -90,9 +90,9 @@ public class Hamiltonian {
     int[] points=new int[20];
 
     /**
-     * Calc dis hamiltonian detail.
+     * Calculate distance hamiltonian detail.
      *
-     * @param all the all
+     * @param all the all points
      * @return the hamiltonian detail
      */
     public HamiltonianDetail calcDis(String[] all) {
@@ -136,10 +136,10 @@ public class Hamiltonian {
     }
 
     /**
-     * Calc time hamiltonian detail.
+     * Calculate time Hamiltonian detail.
      *
-     * @param all the all
-     * @return the hamiltonian detail
+     * @param all the all points
+     * @return the Hamiltonian detail
      */
     public HamiltonianDetail calcTime(String[] all) {
         int n=all.length;

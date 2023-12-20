@@ -27,70 +27,70 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 /**
- * The type Main controller.
+ * The main controller, corresponds to mainFrame.fxml.
  */
 public class MainController implements Initializable {
 
     /**
-     * The Prime pane.
+     * The primary pane.
      */
     @FXML
-    public Pane primePane; //总模板
+    public Pane primePane;
     /**
-     * The Opening pane.
+     * The opening pane.
      */
     @FXML
-    public Pane openingPane; //开头场景模板
+    public Pane openingPane;
     /**
-     * The Province pane.
+     * The province pane.
      */
     @FXML
     public Pane provincePane, /**
-     * The Point pane.
+     * The point pane.
      */
-    pointPane; //各区域模板
+    pointPane;
     /**
-     * The Circle animation group.
-     */
-    @FXML
-    public Group circleAnimationGroup; //鼠标点击动画
-    /**
-     * The Mask.
+     * The circle animation group.
      */
     @FXML
-    public ImageView mask; //遮罩动画
+    public Group circleAnimationGroup;
     /**
-     * The Info image.
+     * The animation mask.
+     */
+    @FXML
+    public ImageView mask;
+    /**
+     * The info image.
      */
     @FXML
     public ImageView infoImage, /**
-     * The Province edge.
+     * The province edge.
      */
     provinceEdge, /**
-     * The Load image.
+     * The load image.
      */
     loadImage; //省份艺术字信息
     /**
-     * The Main frame ini.
+     * The main frame initializer.
      */
     public ImageView mainFrameIni; //初始化触发器
     /**
-     * The To puzzle button.
+     * The to puzzle button.
      */
     public ImageView toPuzzleButton; //拼图游戏按钮
     /**
-     * The Main frame bg.
+     * The main frame background.
      */
     public ImageView mainFrameBG; //开头场景
     /**
-     * The Frame username.
+     * The frame username.
      */
     public Text frameUsername;
 
     /**
      * Set frame username.
      *
-     * @param content the content
+     * @param content the username
      */
     public void setFrameUsername(String content){
         frameUsername.setText(content);
@@ -104,48 +104,48 @@ public class MainController implements Initializable {
     private boolean userPower = false;
 
     /**
-     * Set user power.
+     * Set user power(administration permission).
      *
-     * @param key the key
+     * @param key the administrator permission
      */
     public void setUserPower(boolean key){
         userPower = key;
     }
 
     /**
-     * Get user power boolean.
+     * Get user power(administration permission) boolean.
      *
-     * @return the boolean
+     * @return the administrator permission
      */
     public boolean getUserPower(){
         return userPower;
     }
 
     /**
-     * The To post button.
+     * The to post button.
      */
     public ImageView toPostButton, /**
-     * The To question button.
+     * The to question button.
      */
     toQuestionButton, /**
-     * The H button.
+     * The hamilton button.
      */
     HButton, /**
-     * The Hami button.
+     * The hamilton button.
      */
     hamiButton, /**
-     * The Hami button 2.
+     * The hamilton button 2.
      */
     hamiButton2;
     /**
-     * The Profile photo.
+     * The profile photo.
      */
     public ImageView profilePhoto;
     /**
-     * The Hsituation.
+     * The Hamilton situation.
      */
     public boolean Hsituation = false, /**
-     * The Province protect.
+     * The province protect.
      */
     provinceProtect = false;
     private Set<String> provinceSet = new HashSet<>();
@@ -158,9 +158,9 @@ public class MainController implements Initializable {
     }
 
     /**
-     * Main frame trigger.
+     * Main frame trigger at launch.
      */
-    public void mainFrameTrigger(){ //主界面触发
+    public void mainFrameTrigger(){
         UIAnimation.fadeAnimation(mask, null, false);
         mainFrameIni.setMouseTransparent(true);
         mainFrameBG.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -182,12 +182,10 @@ public class MainController implements Initializable {
     }
 
     /**
-     * Main frame button ini.
-     *
-     * @throws Exception the exception
+     * Main frame button initializer.
      */
     @FXML
-    public void mainFrameButtonIni() throws Exception {
+    public void mainFrameButtonIni() {
 
         UIAnimation.setBlackMask(mask, event -> {
 
@@ -230,7 +228,7 @@ public class MainController implements Initializable {
     /**
      * Set mouse circle animation.
      *
-     * @param group the group
+     * @param group the animation group
      */
     public void setMouseCircleAnimation(Group group){
         UIAnimation.setMouseCircleAnimation(group); //鼠标效果设置
@@ -244,30 +242,30 @@ public class MainController implements Initializable {
     }
 
     /**
-     * The Hami hint.
+     * The Hamilton hint.
      */
     public Text hamiHint, /**
-     * The Hami title.
+     * The Hamilton title.
      */
     hamiTitle, /**
-     * The Load text.
+     * The load text.
      */
     loadText, /**
-     * The Load title.
+     * The load title.
      */
     loadTitle;
     /**
-     * The Hami pane.
+     * The Hamilton pane.
      */
     public Pane hamiPane, /**
-     * The Load pane.
+     * The load pane.
      */
     loadPane;
     /**
-     * The Load key.
+     * The load key.
      */
     public Rectangle loadKey, /**
-     * The Rec.
+     * The rectangle.
      */
     rec;
     private void hamiltonianCal(boolean timeControl){
@@ -531,7 +529,6 @@ public class MainController implements Initializable {
                         UIAnimation.setBlackMask(hamiPane, null, 600, 0.8, 0.0);
                         hamiTitle.setText("");
                         hamiHint.setText("请选择省份");
-                        //重新按钮设定
                     }
                 }
             }
