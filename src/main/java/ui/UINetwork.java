@@ -14,7 +14,7 @@ import java.util.UUID;
  */
 public class UINetwork {
     //将host参数改为后端的部署ip
-    private static AppClient appClient = new AppClient("http", "116.204.117.136", 8080, new AppClientEventHandler());
+    private static AppClient appClient = new AppClient("http", "203.33.224.165", 8081, new AppClientEventHandler());
     //private static AppClient appClient = new AppClient("http", "10.193.220.242", 8080, new AppClientEventHandler());
 
     //重置manager

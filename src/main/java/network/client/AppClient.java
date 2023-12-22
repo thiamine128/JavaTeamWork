@@ -769,7 +769,7 @@ public class AppClient {
     获取用户头像URL
      */
     public URL getPortraitURL(String portrait) throws MalformedURLException {
-        return new URL(protocol, host, 80, "/portrait/" + portrait);
+        return new URL(protocol, host, 81, "/portrait/" + portrait);
     }
 
     /**
@@ -780,6 +780,6 @@ public class AppClient {
      * @throws MalformedURLException the malformed url exception
      */
     public URL getPostImageURL(UUID image) throws MalformedURLException {
-        return new URL(protocol, host, 80, "/post/" + image.toString() + ".jpg");
+        return new URL(protocol, host, 81, "/post/" + image.toString() + ".jpg");
     }
 }

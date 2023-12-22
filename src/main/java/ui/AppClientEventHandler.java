@@ -396,11 +396,13 @@ public class AppClientEventHandler implements IClientEventHandler {
                 }
                 if (data.getPortrait() != null){
                     if (data.getUsername().equals(UIManager.mainController.frameUsername.getText())){
-                        UIManager.mainController.profilePhoto.setImage(new Image("http://116.204.117.136/portrait/"
-                                + data.getPortrait()));
+                        try {
+                            UIManager.mainController.profilePhoto.setImage(new Image(UINetwork.getPortraitUrl(data.getUsername()).toString()));
+                            UIManager.personController.portraitImage.setImage(new Image(UINetwork.getPortraitUrl(data.getUsername()).toString()));
+                        } catch (MalformedURLException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
-                    UIManager.personController.portraitImage.setImage(new Image("http://116.204.117.136/portrait/"
-                            + data.getPortrait()));
                 }else{
                     if (data.getUsername().equals(UIManager.mainController.frameUsername.getText())){
                         UIManager.mainController.profilePhoto.setImage(new Image(getClass().getResourceAsStream("/personImage/uncertainty.png")));
