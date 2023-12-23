@@ -71,7 +71,8 @@ public class PicturePuzzleGame {
     public static boolean prepareKey = true;
 
     /**
-     * Prepare.
+     * Prepare for the following operation.
+     *
      *
      * @param provincePane the province pane
      */
@@ -97,7 +98,7 @@ public class PicturePuzzleGame {
     }
 
     /**
-     * Check valid.
+     * Check whether the Jigsaw puzzle is valid.
      *
      * @return the valid or not
      */

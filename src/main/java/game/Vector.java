@@ -35,7 +35,7 @@ public class Vector {
     }
 
     /**
-     * Check is same vector.
+     * Check whether the two vectors are the same vector.
      *
      * @param c   the vector c
      * @param d   the vector d
