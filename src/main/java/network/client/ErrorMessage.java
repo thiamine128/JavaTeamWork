@@ -49,7 +49,7 @@ public class ErrorMessage {
     }
 
     /**
-     * Show an error.
+     * Show the first error in a dialog.
      *
      * @param error the error to show
      */

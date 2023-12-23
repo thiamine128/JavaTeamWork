@@ -14,265 +14,265 @@ import java.util.UUID;
  */
 public interface IClientEventHandler {
     /**
-     * On login success.
+     * Called when login succeeded.
      *
-     * @param username  the username
-     * @param token     the user token
-     * @param appClient the app client
+     * @param username  the username of login
+     * @param token     the user token for authentication
+     * @param appClient the app client performing login
      */
     void onLoginSuccess(String username, String token, AppClient appClient);
 
     /**
-     * On login failed.
+     * Called when login failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onLoginFailed(String error);
 
     /**
-     * On register success.
+     * Called when register succeeded.
      *
-     * @param username the username
+     * @param username the username of registration
      */
     void onRegisterSuccess(String username);
 
     /**
-     * On register failed.
+     * Called when register failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onRegisterFailed(String error);
 
     /**
-     * On publish post success.
+     * Called when publish post succeeded.
      *
-     * @param post the post
+     * @param post the post published
      */
     void onPublishPostSuccess(Post post);
 
     /**
-     * On publish post failed.
+     * Called when publish post failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onPublishPostFailed(String error);
 
     /**
-     * On fetch post success.
+     * Called when fetch post succeeded.
      *
-     * @param post the post
+     * @param post the post fetched
      */
     void onFetchPostSuccess(DetailedPost post);
 
     /**
-     * On fetch post failed.
+     * Called when fetch post failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onFetchPostFailed(String error);
 
     /**
-     * On comment publish success.
+     * Called when comment publish succeeded.
      *
-     * @param comment the comment
+     * @param comment the comment published
      */
     void onCommentPublishSuccess(Comment comment);
 
     /**
-     * On comment publish failed.
+     * Called when comment publish failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onCommentPublishFailed(String error);
 
     /**
-     * On reply publish success.
+     * Called when reply publish succeeded.
      *
-     * @param reply the reply
+     * @param reply the reply published
      */
     void onReplyPublishSuccess(Reply reply);
 
     /**
-     * On reply publish failed.
+     * Called when reply publish failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onReplyPublishFailed(String error);
 
     /**
-     * On fetch all posts success.
+     * Called when fetch all posts succeeded.
      *
-     * @param postList the post list
+     * @param postList the post list fetched
      */
     void onFetchAllPostsSuccess(Page<Post> postList);
 
     /**
-     * On fetch all posts failed.
+     * Called when fetch all posts failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onFetchAllPostsFailed(String error);
 
     /**
-     * On search post success success.
+     * Called when search post succeeded succeeded.
      *
-     * @param postList the post list
+     * @param postList the post list of search result
      */
     void onSearchPostSuccessSuccess(Page<Post> postList);
 
     /**
-     * On search post failed.
+     * Called when search post failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onSearchPostFailed(String error);
 
     /**
-     * On remove post success.
+     * Called when remove post succeeded.
      */
     void onRemovePostSuccess();
 
     /**
-     * On remove post failed.
+     * Called when remove post failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onRemovePostFailed(String error);
 
     /**
-     * On remove comment success.
+     * Called when remove comment succeeded.
      */
     void onRemoveCommentSuccess();
 
     /**
-     * On remove comment failed.
+     * Called when remove comment failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onRemoveCommentFailed(String error);
 
     /**
-     * On remove reply success.
+     * Called when remove reply succeeded.
      */
     void onRemoveReplySuccess();
 
     /**
-     * On remove reply failed.
+     * Called when remove reply failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onRemoveReplyFailed(String error);
 
     /**
-     * On upload portrait success.
+     * Called when upload portrait succeeded.
      */
     void onUploadPortraitSuccess();
 
     /**
-     * On upload portrait failed.
+     * Called when upload portrait failed.
      *
-     * @param data the error
+     * @param data the error from the server
      */
     void onUploadPortraitFailed(String data);
 
     /**
-     * On fetch profile success.
+     * Called when fetch profile succeeded.
      *
-     * @param data the profile
+     * @param data the profile fetched
      */
     void onFetchProfileSuccess(UserProfile data);
 
     /**
-     * On fetch profile failed.
+     * Called when fetch profile failed.
      *
-     * @param data the error
+     * @param data the error from the server
      */
     void onFetchProfileFailed(String data);
 
     /**
-     * On update jigsaw success.
+     * Called when update jigsaw succeeded.
      */
     void onUpdateJigsawSuccess();
 
     /**
-     * On update jigsaw failed.
+     * Called when update jigsaw failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onUpdateJigsawFailed(String error);
 
     /**
-     * On update quiz success.
+     * Called when update quiz succeeded.
      */
     void onUpdateQuizSuccess();
 
     /**
-     * On update quiz failed.
+     * Called when update quiz failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onUpdateQuizFailed(String error);
 
     /**
-     * On like post success.
+     * Called when like post succeeded.
      */
     void onLikePostSuccess();
 
     /**
-     * On like post failed.
+     * Called when like post failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onLikePostFailed(String error);
 
     /**
-     * On dislike post success.
+     * Called when dislike post succeeded.
      */
     void onDislikePostSuccess();
 
     /**
-     * On dislike post failed.
+     * Called when dislike post failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onDislikePostFailed(String error);
 
     /**
-     * On check liked post success.
+     * Called when check liked post succeeded.
      *
-     * @param post  the post
-     * @param liked the liked
+     * @param post  the post checked
+     * @param liked the liked, true for liked and vice versa
      */
     void onCheckLikedPostSuccess(UUID post, boolean liked);
 
     /**
-     * On check liked post failed.
+     * Called when check liked post failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onCheckLikedPostFailed(String error);
 
     /**
-     * On send verification code success.
+     * Called when send verification code succeeded.
      */
     void onSendVerificationCodeSuccess();
 
     /**
-     * On send verification code failed.
+     * Called when send verification code failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onSendVerificationCodeFailed(String error);
 
     /**
-     * On reset password success.
+     * Called when reset password succeeded.
      */
     void onResetPasswordSuccess();
 
     /**
-     * On reset password failed.
+     * Called when reset password failed.
      *
-     * @param error the error
+     * @param error the error from the server
      */
     void onResetPasswordFailed(String error);
 }

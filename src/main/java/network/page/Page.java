@@ -15,9 +15,9 @@ public class Page<T> {
     /**
      * Instantiates a new Page.
      *
-     * @param currentPage the current page
-     * @param pageNum     the page num
-     * @param list        the list
+     * @param currentPage the current page number
+     * @param pageNum     the page number in total
+     * @param list        the list of content
      */
     public Page(int currentPage, int pageNum, List<T> list) {
         this.number = currentPage;
