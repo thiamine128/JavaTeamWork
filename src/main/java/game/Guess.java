@@ -21,7 +21,7 @@ public class Guess {
     static String[] all={"henan","hebei","shanxi","liaoning","jilin","heilongjiang","jiangsu","zhejiang","anhui","fujian","jiangxi","shandong","hubei","hunan","guangdong","hainan","sichuan","guizhou","yunnan","shaanxi","gansu","qinghai","ningxia","xinjiang","xizang","guangxi","neimenggu","taiwan","xianggang","aomen","beijing","tianjin","shanghai","chongqing"};
 
     /**
-     * Prepare.
+     * Prepare for the following operations.
      */
     public static void prepare() {
         for(int i=0;i<34;i++) {
@@ -32,8 +32,8 @@ public class Guess {
     /**
      * Reset guess detail.
      *
-     * @param opt the option
-     * @param sum the sum
+     * @param opt the type of the guess game
+     * @param sum the sum of the problems
      * @return the guess detail
      */
     public static GuessDetail[] reset(int opt,int sum) {

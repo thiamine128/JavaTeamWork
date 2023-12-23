@@ -45,6 +45,7 @@ public class Hamiltonian {
 
     /**
      * Instantiates a new Hamiltonian.
+     * We prepare sth for the following calculation.
      */
     public Hamiltonian() {
         InputStream fin=null;
@@ -185,6 +186,12 @@ public class Hamiltonian {
      * The Path.
      */
     ArrayList<Integer> path=new ArrayList<>();
+    /**
+     * Calculate distance hamiltonian detail.
+     *
+     * @param u start point, s status, n sum of provinces
+     *
+     */
     private void dfs(int u,int s,int n) {
         path.add(u);
         if(s==0) return ;
@@ -197,6 +204,12 @@ public class Hamiltonian {
             }
         }
     }
+    /**
+     * Calculate distance hamiltonian detail.
+     *
+     * @param u start point, s status, n sum of provinces
+     *
+     */
     private void dfs2(int u,int s,int n) {
         path.add(u);
         if(s==0) return ;
