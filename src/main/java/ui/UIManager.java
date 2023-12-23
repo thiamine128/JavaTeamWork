@@ -12,18 +12,18 @@ import game.*;
 import post.LanguageTool;
 
 /**
- * The UI manager, the most important part of this software.
+ * The UI manager, an important part of this software.
  */
 public class UIManager extends Application {
     /**
-     * The constant instance.
+     * The instance of UIManager.
      */
     public static UIManager instance;
 
     /**
-     * Main.
+     * the entry of this software.
      *
-     * @param args the args
+     * @param args parameters in command line.
      */
     public static void main(String [] args){ //主函数
         launch(UIManager.class); //启动窗口
@@ -67,9 +67,9 @@ public class UIManager extends Application {
     }
 
     /**
-     * To editor frame.
+     * the function switch to editorFrame.
      *
-     * @throws Exception the exception
+     * @throws Exception the exception when using this function.
      */
     public void toEditorFrame() throws Exception{
         editorController.editorConfirm.setMouseTransparent(false);
@@ -84,20 +84,18 @@ public class UIManager extends Application {
     }
 
     /**
-     * To post view frame.
+     * the function switch to postFrame.
      *
-     * @throws Exception the exception
+     * @throws Exception the exception when using this function.
      */
     public void toPostViewFrame() throws Exception{
         changeScene(postViewFrameScene);
     }
 
     /**
-     * To puzzle frame.
-     * &#064;Description  去往拼图游戏界面
+     * the function switch to puzzleFrame.
      *
-     * @throws Exception the exception
-     * @author RyotoBUAA
+     * @throws Exception the exception when using this function.
      */
     public void toPuzzleFrame() throws Exception { //切换到拼图界面
         PuzzleController.puzzleProvincePane = mainController.provincePane;
@@ -107,9 +105,9 @@ public class UIManager extends Application {
     }
 
     /**
-     * To post frame.
+     * the function switch to postFrame.
      *
-     * @throws Exception the exception
+     * @throws Exception the exception when using this function.
      */
     public void toPostFrame() throws Exception{ //切换到帖子浏览场景
         changeScene(postFrameScene);
@@ -117,19 +115,19 @@ public class UIManager extends Application {
     }
 
     /**
-     * To post frame.
+     * the function switch to postFrame.
      *
-     * @param bool the bool
-     * @throws Exception the exception
+     * @param bool control the animations.
+     * @throws Exception the exception when using this function.
      */
     public void toPostFrame(boolean bool) throws Exception{ //切换到帖子浏览场景
         changeScene(postFrameScene);
     }
 
     /**
-     * To province frame.
+     * the function switch to provinceFrame.
      *
-     * @throws Exception the exception
+     * @throws Exception the exception when using this function.
      */
     public void toProvinceFrame() throws Exception { //切换到具体省份界面
         changeScene(provinceFrameScene);
@@ -137,20 +135,19 @@ public class UIManager extends Application {
     }
 
     /**
-     * To province frame.
+     * the function switch to provinceFrame.
      *
-     * @param bool the bool
-     * @throws Exception the exception
+     * @throws Exception the exception when using this function.
      */
     public void toProvinceFrame(boolean bool) throws Exception { //切换到具体省份界面
         changeScene(provinceFrameScene);
     }
 
     /**
-     * To main frame.
+     * the function switch to mainFrame.
      *
-     * @param maskControl the mask control
-     * @throws Exception the exception
+     * @param maskControl decide whether to have a mask.
+     * @throws Exception the exception when using this function.
      */
     public void toMainFrame(boolean maskControl) throws Exception { //切换到地图界面
         changeScene(mainFrameScene);
@@ -158,11 +155,11 @@ public class UIManager extends Application {
     }
 
     /**
-     * To person frame.
+     * the function switch to personFrame.
      *
-     * @param frameEnum     the frame enum
-     * @param changeControl the change control
-     * @throws Exception the exception
+     * @param frameEnum     the frame now.
+     * @param changeControl decide whether to change.
+     * @throws Exception the exception when using this function.
      */
     public void toPersonFrame(FrameEnum frameEnum, boolean changeControl) throws Exception{
         personController.backFrame = frameEnum;
@@ -178,9 +175,9 @@ public class UIManager extends Application {
     }
 
     /**
-     * To question frame.
+     * the function switch to questionFrame.
      *
-     * @throws Exception the exception
+     * @throws Exception the exception when using this function.
      */
     public void toQuestionFrame() throws Exception {
         questionController.resetQuestion();
@@ -190,8 +187,8 @@ public class UIManager extends Application {
     /**
      * Change scene.
      *
-     * @param scene the scene
-     * @throws Exception the exception
+     * @param scene new scene
+     * @throws Exception the exception when using this function.
      */
     public void changeScene(Scene scene) throws Exception { //切换fxml场景
         mainScene = scene;
@@ -199,11 +196,11 @@ public class UIManager extends Application {
     }
 
     /**
-     * The constant mainScene.
+     * The constant mainScene: the instance of current scene.
      */
     public static Scene mainScene; //记录当前场景
     /**
-     * The constant mainStage.
+     * The constant mainStage: the instance of current stage.
      */
     public static Stage mainStage; //当前舞台实例
 
@@ -218,39 +215,39 @@ public class UIManager extends Application {
     private static Scene questionFrameScene;
     private final double iniSceneWidth = 1000, iniSceneHeight = 800; //大小设定
     /**
-     * The constant editorController.
+     *  editorController.
      */
     public static EditorController editorController;
     /**
-     * The constant loginController.
+     *  loginController.
      */
     public static LoginController loginController;
     /**
-     * The constant mainController.
+     *  mainController.
      */
     public static MainController mainController;
     /**
-     * The constant postController.
+     *  postController.
      */
     public static PostController postController;
     /**
-     * The constant postViewController.
+     *  postViewController.
      */
     public static PostViewController postViewController;
     /**
-     * The constant provinceController.
+     *  provinceController.
      */
     public static ProvinceController provinceController;
     /**
-     * The constant puzzleController.
+     *  puzzleController.
      */
     public static PuzzleController puzzleController;
     /**
-     * The constant personController.
+     *  personController.
      */
     public static PersonController personController;
     /**
-     * The constant questionController.
+     *  questionController.
      */
     public static QuestionController questionController;
 

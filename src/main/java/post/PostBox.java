@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.UUID;
 
 /**
- * The post box.
+ * a class showing posts.
  */
 public class PostBox extends VBox{
 
@@ -29,9 +29,9 @@ public class PostBox extends VBox{
     private HBox imageBox;
 
     /**
-     * Get post id uuid.
+     * Get post id.
      *
-     * @return the uuid
+     * @return post id.
      */
     public UUID getPostID(){
         return postID;
@@ -167,14 +167,14 @@ public class PostBox extends VBox{
     }
 
     /**
-     * Instantiates a new Post box.
+     * Instantiates a new object.
      *
-     * @param id       the id
-     * @param title    the title
-     * @param author   the author
-     * @param province the province
-     * @param postTime the post time
-     * @param likes    the likes
+     * @param id       the id.
+     * @param title    the title.
+     * @param author   the author.
+     * @param province the province.
+     * @param postTime the post time.
+     * @param likes    the likes.
      */
     public PostBox(UUID id, String title, String author, String province, String postTime, int likes){
         this.likes = likes;
@@ -205,7 +205,7 @@ public class PostBox extends VBox{
     /**
      * Add image.
      *
-     * @param url the url
+     * @param url the url.
      */
     public void addImage(URL url){
         imageBox.getChildren().addAll(new Separator(Orientation.VERTICAL));
@@ -218,9 +218,9 @@ public class PostBox extends VBox{
 
 
     /**
-     * Get uuid uuid.
+     * Get id in form of UUID.
      *
-     * @return the uuid
+     * @return post id.
      */
     public UUID getUUID(){
         return this.postID;

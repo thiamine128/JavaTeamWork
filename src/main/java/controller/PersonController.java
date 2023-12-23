@@ -39,16 +39,16 @@ public class PersonController implements Initializable {
      */
     changeButton; //退出按钮、切换头像按钮
     /**
-     * The level.
+     * The level of this user.
      */
     public ImageView level, /**
      * The portrait image.
      */
     portraitImage, /**
-     * The HK image.
+     * The image of Hongkong.
      */
     hkImage, /**
-     * The MC image.
+     * The image of Macao.
      */
     mcImage; //用户等级、头像、港澳贴图
     /**
@@ -59,10 +59,10 @@ public class PersonController implements Initializable {
      * The username.
      */
     public Text username, /**
-     * The login date.
+     * The date of register.
      */
     loginDate, /**
-     * The puzzle time.
+     * The time of puzzle game.
      */
     puzzleTime; //用户名、注册日期
     /**
@@ -86,7 +86,7 @@ public class PersonController implements Initializable {
      */
     questionHint; //奖杯名称显示
     /**
-     * The chart.
+     * The chart including posts in 34 provinces.
      */
     public StackedBarChart<String, Integer> chart;
     private List<Node> provinceList = new ArrayList<>(); //省份贴图存储
@@ -145,9 +145,9 @@ public class PersonController implements Initializable {
     }
 
     /**
-     * Add chart info.
+     * Add chart information.
      *
-     * @param mp the map
+     * @param mp the map of posts' number.
      */
     public void addChartInfo(Map<String, Long> mp){
 

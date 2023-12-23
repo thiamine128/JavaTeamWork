@@ -7,7 +7,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 /**
- * The likes.
+ * The likes cooperating animations.
  */
 public class Likes extends Text {
 

@@ -7,7 +7,7 @@ import java.io.File;
 import java.net.URISyntaxException;
 
 /**
- * The audio manager.
+ * The audio manager: manage music and sound effect.
  */
 public class AudioManager {
 
@@ -27,9 +27,9 @@ public class AudioManager {
     }
 
     /**
-     * Set button audio.
+     * Set audio(only once) when user press some buttons.
      *
-     * @param i the
+     * @param i the choose of sound effect during using button.
      */
     public static void setButtonAudio(int i){
         switch (i){
@@ -41,23 +41,23 @@ public class AudioManager {
     }
 
     /**
-     * Star audio.
+     * Sound effect of stars cooperating animations in main frame.
      */
     public static void starAudio(){
         oneShot("/audio/star.wav", 0.5);
     }
 
     /**
-     * Hit audio.
+     * Hit audio: a special sound effect of buttons.
      */
     public static void hitAudio(){
         oneShot("/audio/hit.wav");
     }
 
     /**
-     * Win audio.
+     * sound audio of win or lose.
      *
-     * @param e the e
+     * @param e the choice of win or lose.
      */
     public static void winAudio(endOfGame e){
         switch (e){
@@ -69,9 +69,9 @@ public class AudioManager {
     private static MediaPlayer mainPlayer;
 
     /**
-     * Set bg music.
+     * Set background music.
      *
-     * @param i the
+     * @param i choose music.
      */
     public static void setBGMusic(int i){
         if (mainPlayer != null) {
@@ -99,7 +99,7 @@ public class AudioManager {
     }
 
     /**
-     * Cancel music.
+     * Mute background music.
      */
     public static void cancelMusic(){
         if (mainPlayer != null) {
@@ -123,15 +123,15 @@ public class AudioManager {
 }
 
 /**
- * The enum end of game.
+ * The enum end of game: reflect win or lose.
  */
 enum endOfGame{
     /**
-     * Win end of game.
+     * Win end of game: 0 in fact.
      */
     WIN,
     /**
-     * Lose end of game.
+     * Lose end of game: 1 in fact.
      */
     LOSE;
 }

@@ -26,12 +26,12 @@ import org.apache.log4j.Logger;
 
 
 /**
- * The app client event handler.
+ * The app client event handler. It can change status of UI.
  */
 public class AppClientEventHandler implements IClientEventHandler {
     private static final Logger LOGGER = Logger.getLogger(AppClientEventHandler.class);
     /**
-     * The constant manager.
+     * The constant manager: use as a shortcut to instance of UIManager.
      */
     public static UIManager manager;
     @Override

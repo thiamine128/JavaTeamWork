@@ -20,7 +20,7 @@ import java.util.UUID;
 
 
 /**
- * The main comment.
+ * a class showing comments of some posts.
  */
 public class MainComment extends HBox{
 
@@ -31,12 +31,12 @@ public class MainComment extends HBox{
     private UUID commentID;
 
     /**
-     * Instantiates a new Main comment.
+     * Instantiates a new object.
      *
-     * @param commentID the comment id
-     * @param username  the username
-     * @param content   the content
-     * @param imagepath the imagepath
+     * @param commentID the comment id.
+     * @param username  the username.
+     * @param content   the content.
+     * @param imagepath the image path.
      */
     public MainComment(UUID commentID, String username, String content, String imagepath){
         this.commentID = commentID;
@@ -142,8 +142,8 @@ public class MainComment extends HBox{
     /**
      * Set username func text.
      *
-     * @param text0 the text 0
-     * @return the text
+     * @param text0 the text of username.
+     * @return the object that is a Text.
      */
     public Text setUsernameFunc(Text text0){ //点击用户名：获取用户信息
         text0.setOnMouseEntered(new EventHandler<MouseEvent>() {

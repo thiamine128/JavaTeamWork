@@ -26,20 +26,20 @@ import java.util.ResourceBundle;
 public class QuestionController implements Initializable {
 
     /**
-     * The question mask.
+     * mask.
      */
     public ImageView questionMask;
     /**
-     * The answer 0.
+     * first answer.
      */
     public ImageView ans0, /**
-     * The answer 1.
+     * second answer.
      */
     ans1, /**
-     * The answer 2.
+     * third answer.
      */
     ans2, /**
-     * The answer 3.
+     * forth answer.
      */
     ans3;
     /**
@@ -50,10 +50,10 @@ public class QuestionController implements Initializable {
      * The province name.
      */
     public Text provinceName, /**
-     * The correct num.
+     * The correct number.
      */
     correctNum, /**
-     * The question pos.
+     * The question position.
      */
     questionPos;
     private GuessDetail[] details;

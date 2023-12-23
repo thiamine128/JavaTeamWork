@@ -52,7 +52,7 @@ public class EditorController implements Initializable {
      */
     public Text editorHint;
     /**
-     * The province info.
+     * The province information.
      */
     public Text provinceInfo; //提示语
     /**

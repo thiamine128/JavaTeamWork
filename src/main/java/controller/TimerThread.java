@@ -4,7 +4,7 @@ import ui.UIFunction;
 import ui.UIManager;
 
 /**
- * The timer thread.
+ * The timer thread for puzzle game.
  */
 public class TimerThread implements Runnable{
 

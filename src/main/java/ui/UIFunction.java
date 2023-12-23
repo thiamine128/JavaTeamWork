@@ -22,17 +22,17 @@ import province.ProvinceDetail;
 import game.*;
 
 /**
- * The UI function.
+ * the manager of function processing the logic on the screen.
  */
 public class UIFunction {
 
     /**
-     * The constant manager.
+     * The constant manager: use as a shortcut to instance of UIManager.
      */
     public static UIManager manager;
 
     /**
-     * Ini post frame.
+     * Initialize postFrame.
      */
     public static void iniPostFrame(){
 
@@ -69,9 +69,9 @@ public class UIFunction {
     private static boolean sendCold = true;
 
     /**
-     * Ini login frame button.
+     * Initialize loginFrame.
      *
-     * @param loginController the login controller
+     * @param loginController the object of LoginController.
      */
     public static void iniLoginFrameButton(LoginController loginController){
 
@@ -234,26 +234,26 @@ public class UIFunction {
     private static boolean mouseKey = false, isWin = false;
 
     /**
-     * Check win boolean.
+     * Check win or lose after moving some puzzles.
      *
-     * @return the boolean
+     * @return the result of checking puzzle game.
      */
     public static boolean checkWin(){
         return isWin;
     }
 
     /**
-     * Reset win.
+     * Reset the puzzle game.
      */
     public static void resetWin(){
         isWin = false;
     }
 
     /**
-     * Set mouse puzzle trans.
+     * Set transition of puzzles.
      *
-     * @param provinceImage the province image
-     * @param puzzleGroup   the puzzle group
+     * @param provinceImage the image of provinces.
+     * @param puzzleGroup   the puzzle group(a special object).
      */
     public static void setMousePuzzleTrans(ImageView provinceImage, Group puzzleGroup){
 
@@ -395,18 +395,18 @@ public class UIFunction {
     private static FadeTransition edgeImageFadeTransition = new FadeTransition();
 
     /**
-     * Info fade.
+     * set fade animation for images of provinces' information.
      */
     public static void infoFade(){
         UIAnimation.buttonInfoImageAnimation(UIManager.mainController.infoImage, infoImageFadeTransition, false);
     }
 
     /**
-     * Ini main frame button.
+     * Initialize the buttons of mainFrame.
      *
-     * @param provincePane   the province pane
-     * @param infoImage      the info image
-     * @param mainController the main controller
+     * @param provincePane   the province pane including a lot of nodes.
+     * @param infoImage      the image of provinces' information.
+     * @param mainController the object of MainController.
      */
     public static void iniMainFrameButton(Pane provincePane, ImageView infoImage, MainController mainController){
 
@@ -660,11 +660,11 @@ public class UIFunction {
     private static FadeTransition postTrans = new FadeTransition();
 
     /**
-     * Ini province frame button.
+     * Initialize the buttons of provinceFrame.
      *
-     * @param postButton   the post button
-     * @param sparkleImage the sparkle image
-     * @param BackButton   the back button
+     * @param postButton   the post button.
+     * @param sparkleImage the images of stars.
+     * @param BackButton   the button including the function of backspace.
      */
     public static void iniProvinceFrameButton(Node postButton, Node sparkleImage, Node BackButton){
 

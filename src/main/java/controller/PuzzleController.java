@@ -40,7 +40,7 @@ public class PuzzleController implements Initializable {
     @FXML
     public ImageView puzzleCG; //拼图背景图片
     /**
-     * The puzzle info.
+     * The puzzle information.
      */
     @FXML
     public ImageView puzzleInfo; //拼图信息
@@ -67,7 +67,7 @@ public class PuzzleController implements Initializable {
      */
     public Thread thread;
     /**
-     * The timer.
+     * The timer of puzzle game.
      */
     public Long timer = 0L;
 

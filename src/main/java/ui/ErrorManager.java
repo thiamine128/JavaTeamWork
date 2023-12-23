@@ -8,31 +8,31 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
- * The error manager.
+ * The error manager: send error to screen.
  */
 public class ErrorManager {
 
     /**
      * Send error.
      *
-     * @param error the error
-     * @throws Exception the exception
+     * @param error the content of error.
+     * @throws Exception the probable exception using this function.
      */
     public static void sendError(String error) throws Exception {
         new ErrorManager().start(new Stage(), error);
     }
 
     /**
-     * The constant content.
+     * The constant content: the content of error.
      */
     public static String content;
 
     /**
      * Start.
      *
-     * @param stage the stage
-     * @param ct    the ct
-     * @throws Exception the exception
+     * @param stage a new stage
+     * @param ct    the content of error.
+     * @throws Exception the probable exception using this function.
      */
     public void start(Stage stage, String ct) throws Exception {
         content = ct;

@@ -1,7 +1,7 @@
 package ui;
 
 /**
- * The province info struct.
+ * The province information class: describe 34 provinces.
  */
 public class ProvinceInfoStruct {
     private double x, y; //位置
@@ -11,11 +11,11 @@ public class ProvinceInfoStruct {
     /**
      * Instantiates a new Province info struct.
      *
-     * @param x      the x
-     * @param y      the y
-     * @param width  the width
-     * @param height the height
-     * @param name   the name
+     * @param x      the x-axis
+     * @param y      the y-axis
+     * @param width  the width of the image
+     * @param height the height of the image
+     * @param name   the name of this province
      */
 //构造方法
     public ProvinceInfoStruct(double x, double y, double width, double height, String name){
@@ -27,45 +27,45 @@ public class ProvinceInfoStruct {
     }
 
     /**
-     * Get x double.
+     * Get x-axis.
      *
-     * @return the double
+     * @return x-axis of this province.
      */
     public double getX(){
         return x;
     }
 
     /**
-     * Get y double.
+     * Get y-axis.
      *
-     * @return the double
+     * @return y-axis of this province.
      */
     public double getY(){
         return y;
     }
 
     /**
-     * Get width double.
+     * Get width of this province.
      *
-     * @return the double
+     * @return width
      */
     public double getWidth(){
         return width;
     }
 
     /**
-     * Get height double.
+     * Get height of this province.
      *
-     * @return the double
+     * @return height
      */
     public double getHeight(){
         return height;
     }
 
     /**
-     * Get name string.
+     * Get name of the province.
      *
-     * @return the string
+     * @return name of province
      */
     public String getName(){
         return name;

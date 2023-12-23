@@ -24,12 +24,12 @@ import java.util.UUID;
 public class PostController implements Initializable {
 
     /**
-     * The post frame mask.
+     *  mask.
      */
 //postFrame.fxml 贴吧浏览器
     public ImageView postFrameMask;
     /**
-     * The post frame ini.
+     * The post frame initializer.
      */
     public ImageView postFrameIni;
     /**
@@ -54,7 +54,7 @@ public class PostController implements Initializable {
      */
     public ScrollPane postScroll;
     /**
-     * The page num.
+     * The page number.
      */
     public Text pageNum;
     /**
@@ -74,7 +74,7 @@ public class PostController implements Initializable {
     private PostBox thisPostBox;
 
     /**
-     * Set post box.
+     * reset post box.
      *
      * @param box the box
      */
@@ -102,7 +102,7 @@ public class PostController implements Initializable {
     }
 
     /**
-     * Set post frame init.
+     * Set post frame initialization.
      */
     public void setPostFrameIni(){
         postFrameIni.setMouseTransparent(true);

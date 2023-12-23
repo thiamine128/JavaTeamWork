@@ -6,23 +6,23 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * The language tool.
+ * The language tool including English and Chinese.
  */
 public class LanguageTool {
     /**
-     * The constant English to Chinese.
+     * English to Chinese.
      */
     public static Map<String, String> englishToChinese = new HashMap<>();
     /**
-     * The constant Chinese to English.
+     * Chinese to English.
      */
     public static Map<String, String> chineseToEnglish = new HashMap<>();
     /**
-     * The constant province set in Chinese.
+     * provinces in Chinese.
      */
     public static Set<String> provinceSetChn = new HashSet<>();
     /**
-     * The constant province set in English.
+     * provinces in English.
      */
     public static Set<String> provinceSetEng = new HashSet<>();
 

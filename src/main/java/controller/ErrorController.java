@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 public class ErrorController implements Initializable {
 
     /**
-     * The error content.
+     * The content of error.
      */
     public Text errorContent;
     @Override

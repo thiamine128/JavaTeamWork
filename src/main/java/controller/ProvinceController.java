@@ -145,7 +145,7 @@ public class ProvinceController implements Initializable {
     private int textPos = 1, textType = 1;
 
     /**
-     * Try previous.
+     * Try previous image.
      */
     public void tryFr(){
         if (textPos > 1){
@@ -155,7 +155,7 @@ public class ProvinceController implements Initializable {
     }
 
     /**
-     * Try next.
+     * Try next image.
      */
     public void tryNxt(){
         int eind = 0;

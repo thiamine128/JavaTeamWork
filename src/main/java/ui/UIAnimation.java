@@ -19,16 +19,16 @@ import javafx.event.EventHandler;
 import static java.lang.Thread.sleep;
 
 /**
- * The UI animation.
+ * manager of animations in this software.
  */
 public class UIAnimation {
 
     /**
      * Set rotate animation.
      *
-     * @param item0      the item
-     * @param startAngle the start angle
-     * @param endAngle   the end angle
+     * @param item0      some object that need to be handled.
+     * @param startAngle angle at the beginning.
+     * @param endAngle   angle in the end.
      */
     public static void setRotateAnimation(Node item0, double startAngle, double endAngle){
         RotateTransition rotateTransition = new RotateTransition();
@@ -40,9 +40,9 @@ public class UIAnimation {
     }
 
     /**
-     * Set mouse circle animation.
+     * Set animation when user clicks the screen.
      *
-     * @param circleAnimationGroup the circle animation group
+     * @param circleAnimationGroup the circle animation group(a class in JavaFX).
      */
     public static void setMouseCircleAnimation(Group circleAnimationGroup){
         UIManager.mainScene.setOnMouseClicked(event ->{
@@ -78,9 +78,9 @@ public class UIAnimation {
     /**
      * Fade animation.
      *
-     * @param item0          the item
-     * @param event          the event
-     * @param controlDisable the control disable
+     * @param item0          some object that need to be handled.
+     * @param event          the event in the end of this animation.
+     * @param controlDisable decide whether to keep the object.
      */
     public static void fadeAnimation(Node item0, EventHandler event, boolean controlDisable){
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000));
@@ -96,10 +96,10 @@ public class UIAnimation {
     /**
      * Fade animation.
      *
-     * @param item0          the item
-     * @param event          the event
-     * @param controlDisable the control disable
-     * @param timeScale      the time scale
+     * @param item0          some object that need to be handled.
+     * @param event          the event in the end of this animation.
+     * @param controlDisable decide whether to keep the object.
+     * @param timeScale      duration.
      */
     public static void fadeAnimation(Node item0, EventHandler event, boolean controlDisable, double timeScale){
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(timeScale));
@@ -115,8 +115,8 @@ public class UIAnimation {
     /**
      * Sparkle animation.
      *
-     * @param item0      the item
-     * @param transition the transition
+     * @param item0      some object that need to be handled.
+     * @param transition the transition(a special object).
      */
     public static void sparkleAnimation(Node item0, FadeTransition transition){
         transition.setNode(item0);
@@ -129,11 +129,11 @@ public class UIAnimation {
     }
 
     /**
-     * Title sparkle animation.
+     * sparkle animation including chinese characters.
      *
-     * @param item0     the item
-     * @param fromValue the from value
-     * @param toValue   the to value
+     * @param item0     some object that need to be handled.
+     * @param fromValue the opacity of the object at the beginning.
+     * @param toValue   the opacity of the object in the end.
      */
     public static void titleSparkleAnimation(Node item0, double fromValue, double toValue){
         FadeTransition transition = new FadeTransition();
@@ -147,12 +147,12 @@ public class UIAnimation {
     }
 
     /**
-     * Title sparkle animation.
+     * sparkle animation including chinese characters.
      *
-     * @param item0      the item
-     * @param fromValue  the from value
-     * @param toValue    the to value
-     * @param transition the transition
+     * @param item0      some object that need to be handled.
+     * @param fromValue  the opacity of the object at the beginning.
+     * @param toValue    the opacity of the object in the end.
+     * @param transition the transition(a special object).
      */
     public static void titleSparkleAnimation(Node item0, double fromValue, double toValue, FadeTransition transition){
         transition.setNode(item0);
@@ -165,11 +165,11 @@ public class UIAnimation {
     }
 
     /**
-     * Set black mask.
+     * make a black mask on the screen.
      *
-     * @param item0     the item
-     * @param event     the event
-     * @param timeScale the time scale
+     * @param item0     some object that need to be handled.
+     * @param event     the event after setting black mask.
+     * @param timeScale duration.
      */
     public static void setBlackMask(Node item0, EventHandler event, double timeScale){
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(timeScale));
@@ -182,13 +182,13 @@ public class UIAnimation {
     }
 
     /**
-     * Set black mask.
+     * make a black mask on the screen.
      *
-     * @param item0     the item
-     * @param event     the event
-     * @param timeScale the time scale
-     * @param fromValue the from value
-     * @param toValue   the to value
+     * @param item0     some object that need to be handled.
+     * @param event     the event after setting black mask.
+     * @param timeScale duration.
+     * @param fromValue the opacity of the object at the beginning.
+     * @param toValue   the opacity of the object in the end.
      */
     public static void setBlackMask(Node item0, EventHandler event, double timeScale, double fromValue, double toValue){
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(timeScale));
@@ -201,13 +201,13 @@ public class UIAnimation {
     }
 
     /**
-     * Vector move.
+     * move a node using vectors.
      *
-     * @param item0     the item
-     * @param x0        the x
-     * @param y0        the y
-     * @param timeScale the time scale
-     * @param event     the event
+     * @param item0     some object that need to be handled.
+     * @param x0        the x-axis.
+     * @param y0        the y-axis.
+     * @param timeScale duration.
+     * @param event     the event after setting black mask.
      */
     public static void vectorMove(Node item0, double x0, double y0, double timeScale, EventHandler event){
         TranslateTransition transition = new TranslateTransition();
@@ -221,12 +221,12 @@ public class UIAnimation {
     }
 
     /**
-     * Button simple animation.
+     * simple animation when user presses a button.
      *
-     * @param province     the province
-     * @param transition   the transition
-     * @param paceLength   the pace length
-     * @param cycleControl the cycle control
+     * @param province     the Node of the province.
+     * @param transition   the transition(a special object).
+     * @param paceLength   the length of moving.
+     * @param cycleControl decide whether to rotate.
      */
     public static void buttonSimpleAnimation(
             Node province, TranslateTransition transition, double paceLength, boolean cycleControl){
@@ -246,9 +246,9 @@ public class UIAnimation {
     }
 
     /**
-     * Button ini animation.
+     * initial animation for buttons.
      *
-     * @param province the province
+     * @param province the node of provinces.
      */
     public static void buttonIniAnimation(Node province){
         TranslateTransition transition = new TranslateTransition();
@@ -262,11 +262,11 @@ public class UIAnimation {
     }
 
     /**
-     * Button info image animation.
+     * information image animation.
      *
-     * @param imageView      the image view
-     * @param fadeTransition the fade transition
-     * @param control        the control
+     * @param imageView      object of imageView: map of provinces.
+     * @param fadeTransition the fade transition(a special object).
+     * @param control        decide whether to emerge.
      */
     public static void buttonInfoImageAnimation(Node imageView, FadeTransition fadeTransition, boolean control){
         fadeTransition.stop();
@@ -280,12 +280,12 @@ public class UIAnimation {
     }
 
     /**
-     * Puzzle fireworks.
+     * fireworks at the end of the puzzle game.
      *
-     * @param centerX      the center x
-     * @param centerY      the center y
-     * @param sceneGroup   the scene group
-     * @param colorControl the color control
+     * @param centerX      the x-axis.
+     * @param centerY      the y-axis.
+     * @param sceneGroup   the scene group(a class in JavaFX).
+     * @param colorControl control the color of fireworks.
      */
 //烟花动画：游戏胜利结算
     public static void puzzleFireworks(double centerX, double centerY, Group sceneGroup, boolean colorControl) {
@@ -321,11 +321,11 @@ public class UIAnimation {
     }
 
     /**
-     * Sets sparkle circle.
+     * Sets sparkle circle same as fireworks.
      *
-     * @param centerX    the center x
-     * @param centerY    the center y
-     * @param sceneGroup the scene group
+     * @param centerX    th x-axis.
+     * @param centerY    the y-axis.
+     * @param sceneGroup the scene group(a class in JavaFX).
      */
     public static void setSparkleCircle(double centerX, double centerY, Group sceneGroup) {
         for (int i = 0; i < 500; i++) {
@@ -359,12 +359,12 @@ public class UIAnimation {
     }
 
     /**
-     * Set text change animation.
+     * animation changing text.
      *
-     * @param item0     the item
-     * @param event     the event
-     * @param timeScale the time scale
-     * @param control   the control
+     * @param item0     some object that need to be handled.
+     * @param event     the event after this animation.
+     * @param timeScale duration.
+     * @param control   control the opacity of nodes.
      */
     public static void setTextChangeAnimation(Node item0, EventHandler event, double timeScale, boolean control){
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(timeScale));
@@ -382,10 +382,10 @@ public class UIAnimation {
     }
 
     /**
-     * Timer.
+     * a simple timer using transition.
      *
-     * @param timeScale the time scale
-     * @param event     the event
+     * @param timeScale duration.
+     * @param event     the event after the end of timer.
      */
     public static void timer(double timeScale, EventHandler event){ //计时器
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(timeScale));
@@ -398,10 +398,10 @@ public class UIAnimation {
     }
 
     /**
-     * Starworks.
+     * star animation same as fireworks.
      *
-     * @param sceneGroup the scene group
-     * @throws InterruptedException the interrupted exception
+     * @param sceneGroup the scene group(a special object in JavaFX).
+     * @throws InterruptedException the interrupted exception using this function.
      */
     public static void starworks(Group sceneGroup) throws InterruptedException {
         for (int i = 0; i < 5; i++) {

@@ -60,7 +60,7 @@ public class MainController implements Initializable {
     @FXML
     public ImageView mask;
     /**
-     * The info image.
+     * The information image.
      */
     @FXML
     public ImageView infoImage, /**
@@ -88,7 +88,7 @@ public class MainController implements Initializable {
     public Text frameUsername;
 
     /**
-     * Set frame username.
+     * Set username.
      *
      * @param content the username
      */
@@ -104,7 +104,7 @@ public class MainController implements Initializable {
     private boolean userPower = false;
 
     /**
-     * Set user power(administration permission).
+     * Set user administration permission.
      *
      * @param key the administrator permission
      */
@@ -113,7 +113,7 @@ public class MainController implements Initializable {
     }
 
     /**
-     * Get user power(administration permission) boolean.
+     * Get user administration permission.
      *
      * @return the administrator permission
      */
@@ -122,10 +122,10 @@ public class MainController implements Initializable {
     }
 
     /**
-     * The to post button.
+     * The button to postFrame.
      */
     public ImageView toPostButton, /**
-     * The to question button.
+     * The button to questionFrame.
      */
     toQuestionButton, /**
      * The hamilton button.
@@ -145,7 +145,7 @@ public class MainController implements Initializable {
      * The Hamilton situation.
      */
     public boolean Hsituation = false, /**
-     * The province protect.
+     * province protect.
      */
     provinceProtect = false;
     private Set<String> provinceSet = new HashSet<>();
@@ -226,7 +226,7 @@ public class MainController implements Initializable {
     }
 
     /**
-     * Set mouse circle animation.
+     * Set animations using mouse.
      *
      * @param group the animation group
      */

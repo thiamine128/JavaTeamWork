@@ -19,13 +19,13 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * The comment box.
+ * The comment box showing comments.
  */
 public class CommentBox extends VBox{
 
     private CommentBox instance;
     /**
-     * The comment id.
+     * The id of this comment.
      */
     public UUID commentID;
     private MainComment mainComment;
@@ -72,12 +72,12 @@ public class CommentBox extends VBox{
     /**
      * Instantiates a new Comment box.
      *
-     * @param id        the id
-     * @param username  the username
-     * @param content   the content
-     * @param imagepath the imagepath
-     * @param timeScale the time scale
-     * @param pos       the pos
+     * @param id        the id of this comment.
+     * @param username  the username.
+     * @param content   the content.
+     * @param imagepath image path.
+     * @param timeScale the time of upload.
+     * @param pos       position.
      */
     public CommentBox(UUID id, String username, String content, String imagepath, String timeScale, String pos){
         instance = this;
@@ -100,9 +100,9 @@ public class CommentBox extends VBox{
     /**
      * Add reply.
      *
-     * @param replyID  the reply id
-     * @param username the username
-     * @param content  the content
+     * @param replyID  the id of this reply.
+     * @param username the username.
+     * @param content  the content.
      */
     public void addReply(UUID replyID, String username, String content){ //普通回复
         ReplyBox newbox = new ReplyBox(commentID, replyID, username, content, this);
@@ -113,10 +113,10 @@ public class CommentBox extends VBox{
     /**
      * Add reply.
      *
-     * @param replyID     the reply id
-     * @param username    the username
-     * @param repliedName the replied name
-     * @param content     the content
+     * @param replyID     the reply id.
+     * @param username    the username.
+     * @param repliedName the replied name.
+     * @param content     the content.
      */
     public void addReply(UUID replyID, String username, String repliedName, String content){ //二级回复
         ReplyBox newbox = new ReplyBox(commentID, replyID, username, repliedName, content, this);
@@ -127,7 +127,7 @@ public class CommentBox extends VBox{
     /**
      * Remove reply.
      *
-     * @param replyID the reply id
+     * @param replyID the reply id.
      */
     public void removeReply(UUID replyID){
         ReplyBox box = null;

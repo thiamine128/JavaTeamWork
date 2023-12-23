@@ -17,7 +17,7 @@ public enum LoginSituation{
      */
     RESET,
     /**
-     * Null login situation.
+     * Other situation.
      */
     NULL
 }

@@ -11,21 +11,21 @@ import ui.UIManager;
 import java.nio.file.Path;
 
 /**
- * The image select.
+ * a class showing a uploaded image.
  */
 public class ImageSelect extends HBox {
     private TextField imageName;
     private ImageView cancelButton;
     /**
-     * The path.
+     * The path of the image.
      */
     public Path path;
 
     /**
-     * Instantiates a new image select.
+     * Instantiates a new object.
      *
-     * @param path      the path
-     * @param imageName the image name
+     * @param path      the path of the image.
+     * @param imageName the name of the image.
      */
     public ImageSelect(Path path, String imageName){
 

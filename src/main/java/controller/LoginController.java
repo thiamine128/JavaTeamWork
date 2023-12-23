@@ -25,10 +25,10 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     /**
-     * The Login frame ini.
+     * The Login frame initialization.
      */
     public ImageView loginFrameIni, /**
-     * The Login bg.
+     * The Login background.
      */
     loginBG; //登录界面触发器
     /**
@@ -36,10 +36,10 @@ public class LoginController implements Initializable {
      */
     public ImageView startHint; //初始界面提示
     /**
-     * The Login main title.
+     * main title.
      */
     public ImageView loginMainTitle, /**
-     * The Login main title white.
+     * The Login main title whose color is white.
      */
     loginMainTitleWhite; //总标题
     /**
@@ -51,10 +51,10 @@ public class LoginController implements Initializable {
      */
     public ImageView confirmButton; //确认按键
     /**
-     * The Reg button.
+     * The Register button.
      */
     public ImageView regButton, /**
-     * The Log button.
+     * The Login button.
      */
     logButton, /**
      * The Reset button.
@@ -64,16 +64,16 @@ public class LoginController implements Initializable {
      * The Login hint.
      */
     public Text loginHint, /**
-     * The Reglog title.
+     * sub title.
      */
     reglogTitle, /**
-     * The Lemail.
+     * email text.
      */
     lemail, /**
-     * The Lcode.
+     * verification code text.
      */
     lcode, /**
-     * The lusername.
+     * username text.
      */
     lusername;
     /**
@@ -91,7 +91,7 @@ public class LoginController implements Initializable {
     codeInput;
     private LoginSituation loginFrameSituation = LoginSituation.NULL;
     /**
-     * The Login frame mask.
+     * mask.
      */
     public ImageView loginFrameMask; //登录界面遮罩
     private static boolean loginFrameBoolean = true;
@@ -253,7 +253,7 @@ public class LoginController implements Initializable {
 
 
     /**
-     * Login frame trigger.
+     * Login frame trigger using as an init.
      */
     public void loginFrameTrigger(){
         if (loginFrameBoolean){
@@ -263,7 +263,7 @@ public class LoginController implements Initializable {
     }
 
     /**
-     * Click start hint.
+     * Click on the screen.
      */
     public void clickStartHint(){
         loginFrameIni.setMouseTransparent(true);

@@ -12,7 +12,7 @@ import ui.UINetwork;
 import java.util.UUID;
 
 /**
- * The reply box.
+ * a class showing replies.
  */
 public class ReplyBox extends TextFlow {
 
@@ -38,8 +38,8 @@ public class ReplyBox extends TextFlow {
     /**
      * Set username func text.
      *
-     * @param text0 the text 0
-     * @return the text
+     * @param text0 the text of reply.
+     * @return the object that is a Text.
      */
     public Text setUsernameFunc(Text text0){ //点击用户名：获取用户信息
         text0.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -120,11 +120,11 @@ public class ReplyBox extends TextFlow {
     }
 
     /**
-     * Text maker text.
+     * Text maker.
      *
-     * @param content     the content
-     * @param boldControl the bold control
-     * @return the text
+     * @param content     the content.
+     * @param boldControl decide whether to be bold.
+     * @return the object that is a Text.
      */
     public Text textMaker(String content, boolean boldControl){
         Text result = new Text(content);
@@ -172,11 +172,11 @@ public class ReplyBox extends TextFlow {
     /**
      * Instantiates a new Reply box.
      *
-     * @param commentID  the comment id
-     * @param replyID    the reply id
-     * @param username   the username
-     * @param content    the content
-     * @param commentBox the comment box
+     * @param commentID  the comment id.
+     * @param replyID    the reply id.
+     * @param username   the username.
+     * @param content    the content.
+     * @param commentBox the comment box.
      */
     public ReplyBox(UUID commentID, UUID replyID, String username, String content, CommentBox commentBox){ //普通回复
         this.commentBox = commentBox;
@@ -194,12 +194,12 @@ public class ReplyBox extends TextFlow {
     /**
      * Instantiates a new Reply box.
      *
-     * @param commentID   the comment id
-     * @param replyID     the reply id
-     * @param username    the username
-     * @param repliedName the replied name
-     * @param content     the content
-     * @param commentBox  the comment box
+     * @param commentID   the comment id.
+     * @param replyID     the reply id.
+     * @param username    the username.
+     * @param repliedName the replied name.
+     * @param content     the content.
+     * @param commentBox  the comment box.
      */
     public ReplyBox(UUID commentID, UUID replyID, String username, String repliedName, String content, CommentBox commentBox){ //二级回复
         this.commentBox = commentBox;
